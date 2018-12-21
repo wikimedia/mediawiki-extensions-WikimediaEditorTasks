@@ -14,6 +14,26 @@
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/"
 	},
+	"ServiceWiringFiles": [
+		"ServiceWiring.php"
+	],
+	"ConfigRegistry": {
+		"WikimediaEditorTasks": "GlobalVarConfig::newInstance"
+	},
+	"config": {
+		"WikimediaEditorTasksCluster": {
+			"value": false,
+			"description": "Database cluster to use for storing extension data. False means the cluster of the current wiki will be used."
+		},
+		"WikimediaEditorTasksDatabase": {
+			"value": false,
+			"description": "Database to use for storing extension data. False means use the database of the current wiki. To use a table prefix, use '<database>-<prefix'>' format."
+		},
+		"WikimediaEditorTasksEnabledCounters": {
+			"value": [],
+			"description": "Counter classes to enable, with associated configuation. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\\n* target_count: the number of edits required before unlocking the feature associated with this counter."
+		}
+	},
 	"Hooks": {
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates"
 	},
