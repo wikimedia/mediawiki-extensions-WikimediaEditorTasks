@@ -19,20 +19,24 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use DatabaseUpdater;
+
 /**
  * Hooks for WikimediaEditorTasks extension
  */
 class Hooks {
 
 	/**
-	 * Hook: NameOfHook
-	 *
-	 * @param string $arg1 First argument
-	 * @param bool $arg2 Second argument
-	 * @param bool $arg3 Third argument
+	 * @param DatabaseUpdater $updater
+	 * @return bool
 	 */
-	public static function onNameOfHook( $arg1, $arg2, $arg3 ) {
-		// Stub
+	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
+		$baseDir = dirname( __DIR__ );
+		$updater->addExtensionTable( 'wikimedia_editor_tasks_keys', "$baseDir/sql/keys.sql" );
+		$updater->addExtensionTable( 'wikimedia_editor_tasks_counts', "$baseDir/sql/counts.sql" );
+		$updater->addExtensionTable( 'wikimedia_editor_tasks_targets_passed',
+			"$baseDir/sql/targets_passed.sql" );
+		return true;
 	}
 
 }

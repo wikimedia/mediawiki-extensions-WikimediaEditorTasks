@@ -15,7 +15,7 @@
 		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/"
 	},
 	"Hooks": {
-		"NameOfHook": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onNameOfHook"
+		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates"
 	},
 	"MessagesDirs": {
 		"WikimediaEditorTasks": [
