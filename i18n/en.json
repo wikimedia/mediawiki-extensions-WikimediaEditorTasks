@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Michael Holloway"
+		]
+	},
+	"wikimediaeditortasks-desc": "Task generation, storage, and API service for microcontributions. Supports the [[:mw:Android_editing_features|App Editor Tasks]] project of the [[:mw:Wikimedia_Apps|Wikimedia Apps]] team."
+}
