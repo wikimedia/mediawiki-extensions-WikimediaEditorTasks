@@ -12,7 +12,8 @@
 		"MediaWiki": ">= 1.33"
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/"
+		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/",
+		"MediaWiki\\Extension\\WikimediaEditorTasks\\Test\\": "tests/phpunit/"
 	},
 	"ServiceWiringFiles": [
 		"ServiceWiring.php"
