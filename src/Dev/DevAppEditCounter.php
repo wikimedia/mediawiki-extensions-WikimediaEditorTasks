@@ -17,27 +17,37 @@
  * @file
  */
 
-namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
+namespace MediaWiki\Extension\WikimediaEditorTasks\Dev;
 
 use MediaWiki\Extension\WikimediaEditorTasks\Counter;
 
 /**
- * Counter for unit testing.
+ * A counter of app edits for development and testing.
  */
-class DecrementOnRevertTestCounter extends Counter {
+class DevAppEditCounter extends Counter {
 
 	/**
 	 * @inheritDoc
 	 */
 	public function onEditSuccess( $centralId, $request ) {
-		$this->incrementForLang( $centralId, 'test' );
+		if ( $this->isRequestFromApp( $request ) ) {
+			$this->incrementForLang( $centralId, '*' );
+		}
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function onRevert( $centralId ) {
-		$this->decrementForLang( $centralId, 'test' );
+		$this->reset( $centralId );
+	}
+
+	private function isRequestFromApp( $request ) {
+		$ua = $request->getHeader( 'User-agent' );
+		if ( $ua ) {
+			return strpos( $ua, 'WikipediaApp/' ) === 0;
+		}
+		return false;
 	}
 
 }

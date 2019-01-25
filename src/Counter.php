@@ -52,15 +52,16 @@ abstract class Counter {
 	 * Specifies the action to take when a successful edit is made.
 	 * E.g., increment a counter if the edit is an in-app Wikidata description edit.
 	 * @param int $centralId central ID user who edited
+	 * @param WebRequest $request the request object
 	 */
-	abstract public function onEditSuccess( $centralId );
+	abstract public function onEditSuccess( $centralId, $request );
 
 	/**
 	 * Specifies the action to take when a revert is performed.
-	 * E.g., decrement or reset an editor's counter if the reverted edit is an in-app Wikidata
-	 *  description edit.
-	 * Note: this is called specifically in response to undo and rollback actions, although in
-	 *  principle this class is agnostic with respect to the definition used.
+	 * E.g., decrement or reset the counter.
+	 * Note: this is currently called specifically in response to undo and rollback actions,
+	 * although in principle this class is agnostic with respect to the definition of "revert"
+	 * used.
 	 * @param int $centralId central ID of the user who was reverted
 	 */
 	abstract public function onRevert( $centralId );

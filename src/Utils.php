@@ -56,4 +56,13 @@ class Utils {
 			CentralIdLookup::AUDIENCE_RAW );
 	}
 
+	/**
+	 * Get the enabled counter definitions from the extension configuration
+	 * @return array enabled counter config
+	 */
+	public static function getEnabledCounters() {
+		$config = WikimediaEditorTasksServices::getInstance()->getExtensionConfig();
+		return $config->get( 'WikimediaEditorTasksEnabledCounters' );
+	}
+
 }
