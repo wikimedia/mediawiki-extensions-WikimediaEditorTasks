@@ -46,6 +46,9 @@
 			"description": "Counter classes to enable, with associated configuation. Fields:\n* class: the fully qualified class name\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\n* target_count: the number of edits required before unlocking the feature associated with this counter."
 		}
 	},
+	"APIMetaModules": {
+		"wikimediaeditortaskscounts": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksCounts"
+	},
 	"Hooks": {
 		"ArticleRollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRollbackComplete",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates",

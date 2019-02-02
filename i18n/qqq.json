@@ -4,5 +4,7 @@
 			"Michael Holloway"
 		]
 	},
-	"wikimediaeditortasks-desc": "{{desc|name=WikimediaEditorTasks|url=https://www.mediawiki.org/wiki/Extension:WikimediaEditorTasks}}"
+	"wikimediaeditortasks-desc": "{{desc|name=WikimediaEditorTasks|url=https://www.mediawiki.org/wiki/Extension:WikimediaEditorTasks}}",
+	"apihelp-query+wikimediaeditortaskscounts-summary": "{{doc-apihelp-summary|wikimediaeditortaskscounts}}",
+	"apihelp-query+wikimediaeditortaskscounts-example": "{{doc-apihelp-example|query+wikimediaeditortaskscounts}}"
 }
