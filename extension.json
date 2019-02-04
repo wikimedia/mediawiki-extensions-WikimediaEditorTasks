@@ -33,17 +33,12 @@
 		"WikimediaEditorTasksEnabledCounters": {
 			"value": [
 				{
-					"class": "MediaWiki\\Extension\\WikimediaEditorTasks\\Dev\\DevEditCounter",
-					"counter_key": "dev_edits",
-					"target_counts": [ 5 ]
-				},
-				{
-					"class": "MediaWiki\\Extension\\WikimediaEditorTasks\\Dev\\DevAppEditCounter",
-					"counter_key": "dev_app_edits",
-					"target_counts": [ 5 ]
+					"class": "MediaWiki\\Extension\\WikimediaEditorTasks\\WikipediaAppDescriptionEditCounter",
+					"counter_key": "app_description_edits",
+					"target_counts": [ 5, 50 ]
 				}
 			],
-			"description": "Counter classes to enable, with associated configuation. Fields:\n* class: the fully qualified class name\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\n* target_count: the number of edits required before unlocking the feature associated with this counter."
+			"description": "Counter classes to enable, with associated configuation. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\\n* target_counts: target counts associated with this counter"
 		}
 	},
 	"APIMetaModules": {
