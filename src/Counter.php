@@ -19,6 +19,8 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use WebRequest;
+
 /**
  * Base counter class containing most of the logic for interacting with the DAO.  Subclasses must
  * implement onEditSuccess and onRevert methods containing any custom filtering logic according to
@@ -37,14 +39,19 @@ abstract class Counter {
 	/** @var int[]|null */
 	private $targetCounts;
 
+	/** @var int|null */
+	private $delay;
+
 	/**
 	 * @param int $keyId edit counter key ID
 	 * @param int|int[]|null $targetCounts target count(s) for the counter (if any)
+	 * @param int|null $delay delay to apply before passing the target takes effect
 	 * @param Dao $dao
 	 */
-	public function __construct( $keyId, $targetCounts, Dao $dao ) {
+	public function __construct( $keyId, $targetCounts, $delay, Dao $dao ) {
 		$this->keyId = $keyId;
 		$this->targetCounts = is_int( $targetCounts ) ? [ $targetCounts ] : $targetCounts;
+		$this->delay = $delay;
 		$this->dao = $dao;
 	}
 
@@ -140,6 +147,6 @@ abstract class Counter {
 		if ( !$targetsPassed ) {
 			return;
 		}
-		$this->dao->updateTargetsPassed( $centralId, $this->keyId, $targetsPassed );
+		$this->dao->updateTargetsPassed( $centralId, $this->keyId, $targetsPassed, $this->delay );
 	}
 }

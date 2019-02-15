@@ -63,6 +63,7 @@ class CounterFactory {
 		return new $definition['class'](
 			$this->nameTableStore->acquireId( $definition['counter_key'] ),
 			$definition['target_counts'],
+			$definition['delay'],
 			$this->dao
 		);
 	}

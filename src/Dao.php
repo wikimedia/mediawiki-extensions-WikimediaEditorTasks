@@ -203,7 +203,10 @@ class Dao {
 		$wrapper = $this->dbr->select(
 			[ 'wikimedia_editor_tasks_targets_passed', 'wikimedia_editor_tasks_keys' ],
 			[ 'wet_key', 'wettp_count' ],
-			[ 'wettp_user' => $centralId ],
+			[
+				'wettp_user' => $centralId,
+				'wettp_effective_time <= ' . $this->dbr->timestamp()
+			],
 			__METHOD__,
 			[],
 			[
@@ -251,10 +254,12 @@ class Dao {
 	 * @param int $centralId central user ID
 	 * @param int $keyId counter key ID
 	 * @param int[] $targetCounts array of target counts for which to update the table, if needed
+	 * @param int $delay time, in seconds, to delay the effects of passing the target from taking
+	 * 	effect
 	 * @return bool true if no exception was thrown
 	 */
-	public function updateTargetsPassed( $centralId, $keyId, array $targetCounts ) {
-		$ts = $this->dbw->timestamp();
+	public function updateTargetsPassed( $centralId, $keyId, array $targetCounts, $delay = 0 ) {
+		$ts = $this->dbw->timestamp( time() + $delay );
 		return $this->dbw->insert(
 			'wikimedia_editor_tasks_targets_passed',
 			array_map( function ( $count ) use ( $centralId, $keyId, $ts ) {

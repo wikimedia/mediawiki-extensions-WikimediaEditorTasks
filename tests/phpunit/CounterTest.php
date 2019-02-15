@@ -56,13 +56,15 @@ class CounterTest extends MediaWikiTestCase {
 				"class" => "MediaWiki\\Extension\\WikimediaEditorTasks\\Test\\"
 						   . "DecrementOnRevertTestCounter",
 				"counter_key" => "decrement_on_revert",
-				"target_counts" => 3
+				"target_counts" => 3,
+				"delay" => null
 			],
 			[
 				"class" => "MediaWiki\\Extension\\WikimediaEditorTasks\\Test\\"
 						   . "ResetOnRevertTestCounter",
 				"counter_key" => "reset_on_revert",
-				"target_counts" => 3
+				"target_counts" => 3,
+				"delay" => null
 			]
 		] ) );
 
