@@ -42,6 +42,9 @@
 			"description": "Counter classes to enable, with associated configuation. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\\n* target_counts: target counts associated with this counter\\n* delay: delay, in seconds, to apply before passing the counter target takes effect"
 		}
 	},
+	"APIListModules": {
+		"wikimediaeditortaskssuggestions": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksSuggestions"
+	},
 	"APIMetaModules": {
 		"wikimediaeditortaskscounts": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksCounts"
 	},

@@ -20,7 +20,7 @@ namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 use Wikimedia\Rdbms\DBConnRef;
 
-class Dao {
+class CounterDao {
 
 	/** @var DBConnRef */
 	private $dbw;
@@ -29,7 +29,7 @@ class Dao {
 	private $dbr;
 
 	/**
-	 * Dao constructor.
+	 * CounterDao constructor.
 	 * @param DBConnRef $dbw handle to DB_MASTER for writes
 	 * @param DBConnRef $dbr handle to DB_REPLICA for reads
 	 */

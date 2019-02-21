@@ -49,7 +49,7 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 		}
 		$this->checkUserRightsAny( 'viewmyprivateinfo' );
 
-		$dao = WikimediaEditorTasksServices::getInstance()->getDao();
+		$dao = WikimediaEditorTasksServices::getInstance()->getCounterDao();
 		$centralId = Utils::getCentralId( $this->getUser() );
 
 		$counts = $dao->getAllCounts( $centralId );

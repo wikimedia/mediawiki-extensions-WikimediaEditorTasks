@@ -25,9 +25,9 @@ use MediaWikiTestCase;
 
 /**
  * @group Database
- * @covers \MediaWiki\Extension\WikimediaEditorTasks\Dao
+ * @covers \MediaWiki\Extension\WikimediaEditorTasks\CounterDao
  */
-class DaoTest extends MediaWikiTestCase {
+class CounterDaoTest extends MediaWikiTestCase {
 
 	const KEY_ID = 0;
 	const LANG = 'test';
@@ -45,7 +45,7 @@ class DaoTest extends MediaWikiTestCase {
 			'wikimedia_editor_tasks_counts',
 			'wikimedia_editor_tasks_targets_passed'
 		] );
-		$this->dao = WikimediaEditorTasksServices::getInstance()->getDao();
+		$this->dao = WikimediaEditorTasksServices::getInstance()->getCounterDao();
 		$this->userId = $this::getTestUser()->getUser()->getId();
 	}
 

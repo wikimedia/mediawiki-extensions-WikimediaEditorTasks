@@ -30,7 +30,7 @@ use WebRequest;
  */
 abstract class Counter {
 
-	/** @var Dao */
+	/** @var CounterDao */
 	private $dao;
 
 	/** @var int */
@@ -46,9 +46,9 @@ abstract class Counter {
 	 * @param int $keyId edit counter key ID
 	 * @param int|int[]|null $targetCounts target count(s) for the counter (if any)
 	 * @param int|null $delay delay to apply before passing the target takes effect
-	 * @param Dao $dao
+	 * @param CounterDao $dao
 	 */
-	public function __construct( $keyId, $targetCounts, $delay, Dao $dao ) {
+	public function __construct( $keyId, $targetCounts, $delay, CounterDao $dao ) {
 		$this->keyId = $keyId;
 		$this->targetCounts = is_int( $targetCounts ) ? [ $targetCounts ] : $targetCounts;
 		$this->delay = $delay;

@@ -1,7 +1,8 @@
 <?php
 
 use MediaWiki\Extension\WikimediaEditorTasks\CounterFactory;
-use MediaWiki\Extension\WikimediaEditorTasks\Dao;
+use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
+use MediaWiki\Extension\WikimediaEditorTasks\SuggestionsDao;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
 use MediaWiki\Logger\LoggerFactory;
@@ -17,11 +18,12 @@ return [
 	'WikimediaEditorTasksCounterFactory' => function ( MediaWikiServices $services ):
 		CounterFactory {
 		$wmeServices = WikimediaEditorTasksServices::wrap( $services );
-		return new CounterFactory( $wmeServices->getDao(), $wmeServices->getNameTableStore() );
+		return new CounterFactory( $wmeServices->getCounterDao(),
+			$wmeServices->getNameTableStore() );
 	},
 
-	'WikimediaEditorTasksDao' => function ( MediaWikiServices $services ): Dao {
-		return new Dao(
+	'WikimediaEditorTasksCounterDao' => function ( MediaWikiServices $services ): CounterDao {
+		return new CounterDao(
 			Utils::getDB( DB_MASTER, $services ),
 			Utils::getDB( DB_REPLICA, $services )
 		);
@@ -48,4 +50,8 @@ return [
 		);
 	},
 
+	'WikimediaEditorTasksSuggestionsDao' => function ( MediaWikiServices $services ):
+		SuggestionsDao {
+		return new SuggestionsDao( Utils::getDB( DB_REPLICA, $services ) );
+	}
 ];

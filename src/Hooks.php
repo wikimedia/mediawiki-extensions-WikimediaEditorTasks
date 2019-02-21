@@ -118,6 +118,8 @@ class Hooks {
 		$updater->addExtensionTable( 'wikimedia_editor_tasks_counts', "$baseDir/sql/counts.sql" );
 		$updater->addExtensionTable( 'wikimedia_editor_tasks_targets_passed',
 			"$baseDir/sql/targets_passed.sql" );
+		$updater->addExtensionTable( 'wikimedia_editor_tasks_entity_description_exists',
+			"$baseDir/sql/description_exists.sql" );
 		return true;
 	}
 

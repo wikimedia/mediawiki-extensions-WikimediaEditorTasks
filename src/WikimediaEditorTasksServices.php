@@ -58,10 +58,10 @@ class WikimediaEditorTasksServices {
 	}
 
 	/**
-	 * @return Dao
+	 * @return CounterDao
 	 */
-	public function getDao(): Dao {
-		return $this->services->getService( 'WikimediaEditorTasksDao' );
+	public function getCounterDao(): CounterDao {
+		return $this->services->getService( 'WikimediaEditorTasksCounterDao' );
 	}
 
 	/**
@@ -76,6 +76,13 @@ class WikimediaEditorTasksServices {
 	 */
 	public function getNameTableStore(): NameTableStore {
 		return $this->services->getService( 'WikimediaEditorTasksNameTableStore' );
+	}
+
+	/**
+	 * @return SuggestionsDao
+	 */
+	public function getSuggestionsDao(): SuggestionsDao {
+		return $this->services->getService( 'WikimediaEditorTasksSuggestionsDao' );
 	}
 
 }

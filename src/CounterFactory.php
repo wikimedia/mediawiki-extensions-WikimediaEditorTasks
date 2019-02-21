@@ -30,17 +30,17 @@ use MediaWiki\Storage\NameTableStore;
  */
 class CounterFactory {
 
-	/** @var Dao */
+	/** @var CounterDao */
 	private $dao;
 
 	/** @var NameTableStore */
 	private $nameTableStore;
 
 	/**
-	 * @param Dao $dao
+	 * @param CounterDao $dao
 	 * @param NameTableStore $nameTableStore store for the wikimedia_editor_tasks_keys table
 	 */
-	public function __construct( Dao $dao, NameTableStore $nameTableStore ) {
+	public function __construct( CounterDao $dao, NameTableStore $nameTableStore ) {
 		$this->dao = $dao;
 		$this->nameTableStore = $nameTableStore;
 	}
