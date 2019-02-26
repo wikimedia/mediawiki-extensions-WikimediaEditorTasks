@@ -70,4 +70,10 @@ class DaoTest extends MediaWikiTestCase {
 		$this->assertTrue( $this->dao->getTargetPassed( $this->userId, self::KEY_ID ) );
 	}
 
+	public function testDeletePendingTargetsPassed() {
+		$this->assertFalse( $this->dao->getTargetPassed( $this->userId, self::KEY_ID ) );
+		$this->dao->updateTargetsPassed( $this->userId, self::KEY_ID, [ 1 ], 86400 );
+		$this->dao->deletePendingTargetsPassed( $this->userId, self::KEY_ID );
+		$this->assertFalse( $this->dao->getTargetPassed( $this->userId, self::KEY_ID ) );
+	}
 }

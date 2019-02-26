@@ -32,6 +32,7 @@ use Wikimedia\TestingAccessWrapper;
 class CounterTest extends MediaWikiTestCase {
 
 	const LANG = 'test';
+	const TARGET_COUNT = 2;
 
 	/** @var Counter[] */
 	private $counters;
@@ -56,15 +57,15 @@ class CounterTest extends MediaWikiTestCase {
 				"class" => "MediaWiki\\Extension\\WikimediaEditorTasks\\Test\\"
 						   . "DecrementOnRevertTestCounter",
 				"counter_key" => "decrement_on_revert",
-				"target_counts" => 3,
+				"target_counts" => self::TARGET_COUNT,
 				"delay" => null
 			],
 			[
 				"class" => "MediaWiki\\Extension\\WikimediaEditorTasks\\Test\\"
 						   . "ResetOnRevertTestCounter",
 				"counter_key" => "reset_on_revert",
-				"target_counts" => 3,
-				"delay" => null
+				"target_counts" => self::TARGET_COUNT,
+				"delay" => 86400
 			]
 		] ) );
 
@@ -103,16 +104,39 @@ class CounterTest extends MediaWikiTestCase {
 	}
 
 	public function testOnRevert() {
+		$decrementOnRevertCounter = $this->counters[0];
+		$resetOnRevertCounter = $this->counters[1];
+
 		foreach ( $this->counters as $counter ) {
-			$counter->onEditSuccess( $this->userId, null );
-			$counter->onEditSuccess( $this->userId, null );
+			for ( $i = 0; $i < self::TARGET_COUNT; $i++ ) {
+				$counter->onEditSuccess( $this->userId, null );
+			}
 			$this->assertEquals( 2, $counter->getCountForLang( $this->userId, self::LANG ) );
+		}
+
+		$this->assertTrue( $decrementOnRevertCounter->getTargetPassed( $this->userId,
+			self::TARGET_COUNT ) );
+		$this->assertFalse( $decrementOnRevertCounter->getPendingTargetPassed( $this->userId,
+			self::TARGET_COUNT ) );
+
+		$this->assertFalse( $resetOnRevertCounter->getTargetPassed( $this->userId,
+			self::TARGET_COUNT ) );
+		$this->assertTrue( $resetOnRevertCounter->getPendingTargetPassed( $this->userId,
+			self::TARGET_COUNT ) );
+
+		foreach ( $this->counters as $counter ) {
 			$counter->onRevert( $this->userId );
 		}
-		$decrementOnRevertCounter = $this->counters[0];
-		$this->assertEquals( 1, $decrementOnRevertCounter->getCountForLang( $this->userId, self::LANG ) );
-		$resetOnRevertCounter = $this->counters[1];
-		$this->assertEquals( 0, $resetOnRevertCounter->getCountForLang( $this->userId, self::LANG ) );
+
+		$this->assertEquals( 1, $decrementOnRevertCounter->getCountForLang( $this->userId,
+			self::LANG ) );
+		$this->assertTrue( $decrementOnRevertCounter->getTargetPassed( $this->userId,
+			self::TARGET_COUNT ) );
+
+		$this->assertEquals( 0, $resetOnRevertCounter->getCountForLang( $this->userId,
+			self::LANG ) );
+		$this->assertFalse( $resetOnRevertCounter->getPendingTargetPassed( $this->userId,
+			self::TARGET_COUNT ) );
 	}
 
 }

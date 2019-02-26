@@ -120,6 +120,8 @@ abstract class Counter {
 	 */
 	protected function decrementForLang( $centralId, $lang ) {
 		$this->dao->decrementCountForKeyAndLang( $centralId, $this->keyId, $lang );
+
+		$this->deletePendingTargetsPassed( $centralId );
 	}
 
 	/**
@@ -128,6 +130,29 @@ abstract class Counter {
 	 */
 	protected function reset( $centralId ) {
 		$this->dao->deleteAllCountsForKey( $centralId, $this->keyId );
+
+		$this->deletePendingTargetsPassed( $centralId );
+	}
+
+	/**
+	 * Get whether the user has passed a target count for this counter.
+	 * @param int $centralId central user ID
+	 * @param int|null $count target count to check, or null to see if any target count is passed
+	 * @return bool true if there is a target and the user passed it
+	 */
+	public function getTargetPassed( $centralId, $count ) {
+		return $this->dao->getTargetPassed( $centralId, $this->keyId, $count );
+	}
+
+	/**
+	 * Get whether the user has a pending target passed flag for this counter.
+	 * @param int $centralId central user ID
+	 * @param int|null $count target count to check, or null to see if any target passed flag is
+	 * pending
+	 * @return bool true if there is a target passed flag pending
+	 */
+	public function getPendingTargetPassed( $centralId, $count ) {
+		return $this->dao->getPendingTargetPassed( $centralId, $this->keyId, $count );
 	}
 
 	/**
@@ -148,5 +173,16 @@ abstract class Counter {
 			return;
 		}
 		$this->dao->updateTargetsPassed( $centralId, $this->keyId, $targetsPassed, $this->delay );
+	}
+
+	/**
+	 * Delete pending targets passed for this user (e.g., on revert).
+	 * @param int $centralId central ID of this user
+	 */
+	private function deletePendingTargetsPassed( $centralId ) {
+		if ( !$this->targetCounts ) {
+			return;
+		}
+		$this->dao->deletePendingTargetsPassed( $centralId, $this->keyId );
 	}
 }

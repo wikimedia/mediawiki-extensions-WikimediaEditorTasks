@@ -250,6 +250,31 @@ class Dao {
 	}
 
 	/**
+	 * Get whether the user has a pending target passed flag for a single counter.
+	 * @param int $centralId central user ID
+	 * @param int $keyId counter key ID
+	 * @param int|null $count target count to check, or omit to see if any target passed flag is
+	 * pending
+	 * @return bool true if there is a target passed flag pending
+	 */
+	public function getPendingTargetPassed( $centralId, $keyId, $count = null ) {
+		$where = [
+			'wettp_user' => $centralId,
+			'wettp_key_id' => $keyId,
+			'wettp_effective_time > ' . $this->dbr->timestamp()
+		];
+		if ( $count && is_int( $count ) ) {
+			$where['wettp_count'] = $count;
+		}
+		return (bool)$this->dbr->selectRowCount(
+			'wikimedia_editor_tasks_targets_passed',
+			'*',
+			$where,
+			__METHOD__
+		);
+	}
+
+	/**
 	 * Add one or more rows to the targets_passed table to mark target(s) passed
 	 * @param int $centralId central user ID
 	 * @param int $keyId counter key ID
@@ -272,6 +297,26 @@ class Dao {
 			}, $targetCounts ),
 			__METHOD__,
 			[ 'IGNORE' ]
+		);
+	}
+
+	/**
+	 * Delete any records of the user having passed a target where the delay period (if any) has not
+	 * yet passed. This is needed when the user is reverted during the waiting period (delay) of
+	 * having passed a counter.
+	 * @param int $centralId central user ID
+	 * @param int $keyId counter key ID
+	 * @return bool true if no exception was thrown
+	 */
+	public function deletePendingTargetsPassed( $centralId, $keyId ) {
+		return $this->dbw->delete(
+			'wikimedia_editor_tasks_targets_passed',
+			[
+				'wettp_user' => $centralId,
+				'wettp_key_id' => $keyId,
+				'wettp_effective_time > ' . $this->dbw->timestamp(),
+			],
+			__METHOD__
 		);
 	}
 
