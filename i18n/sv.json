@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Sturban"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Önskat antal resultat. Observera att färre resultat kan returneras, om färre än det önskade antalet är tillgängligt."
+}

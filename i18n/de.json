@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metalhead64"
+		]
+	},
+	"wikimediaeditortasks-desc": "Erzeugung von Aufgaben, Speicher und API-Dienst für Mikrobeiträge. Unterstützt das [[:mw:Android_editing_features|App-Autorenaufgaben]]-Projekt des [[:mw:Wikimedia_Apps|Wikimedia-Apps]]-Teams."
+}

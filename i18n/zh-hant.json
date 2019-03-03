@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Kly"
+		]
+	},
+	"wikimediaeditortasks-desc": "用於微量貢獻的任務產生、存儲，以及 API 服務。支援 [[:mw:Wikimedia_Apps|Wikimedia 應用程式]]團隊的[[:mw:Android_editing_features|應用程式編輯者任務]]專案。"
+}

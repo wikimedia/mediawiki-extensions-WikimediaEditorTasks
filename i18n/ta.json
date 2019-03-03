@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Nisha"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "பணி பரிந்துரை/யோசனை வகை.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "கொடுக்கப்பட்ட உருப்படிக்கு உள்ளடக்கம் இல்லாத மொழியின் விக்கி மொழி குறியீடு.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "விரும்பப்பட்ட முடிவுகளின் எண்ணிக்கை. குறிப்பரை:\nஒரு வேளை கிடைக்கக்கூடிய விருப்பமான எண்கள் குறைவாக இருக்கும் பட்சத்தில், குறைவான முடிவுகளே திரும்பி கிடைக்கும்."
+}

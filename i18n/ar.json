@@ -1,0 +1,17 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25"
+		]
+	},
+	"wikimediaeditortasks-desc": "توليد المهام، التخزين، وخدمة API للمساهمات المصغرة. تدعم مشروع [[:mw:Android_editing_features|مهام محرر التطبيق]] لفريق [[:mw:Wikimedia_Apps|Wikimedia Apps]].",
+	"apihelp-query+wikimediaeditortaskscounts-summary": "إحصاءات التعديل حسب الخاصية للمستخدمين المسجلين.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "الحصول على عدادات حسب المهمة والأهداف المرسلة للمستخدمين المسجلين.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "اقتراحات المساهمات المصغرة لأنواع معرفة مسبقا.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "الحصول على معرفات كيانات ويكي بيانات للعناصر بأوصاف بالإيطالية لكن ليس باليابانية (مع مقالات موصولة في ويكيبيديا الإيطالية واليابانية معا).",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "الحصول على معرفات كيانات ويكي بيانات للعناصر بمقالات موصولة في ويكيبيديا الإيطالية لكن تفقد الوصف بالإيطالية، واستخدامها كمولد.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "نوع اقتراح المهمة.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "لاقتراحات المهام المتعلقة بالترجمة، كود لغة الويكي للغة التي المحتوى ينبغي أن يكون موجودا بها لعنصر معطى.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "كود لغة الويكي للغة التي المحتوى بها مفقود لعنصر معطى.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "عدد النتائج المرغوب. لاحظ أن النتائج الأقل ربما يتم إرجاعها، لو أن عددا أقل من الرقم المرغوب متوفر."
+}
