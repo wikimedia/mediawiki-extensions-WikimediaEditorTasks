@@ -8,7 +8,7 @@
 	"apihelp-query+wikimediaeditortaskscounts-summary": "已登入使用者的功能特定編輯統計。",
 	"apihelp-query+wikimediaeditortaskscounts-example": "取得登入使用者的任務特定計數與目標達成。",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "預先定義類型的微量貢獻建議。",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "取得用於以義大利語；而非以日語描述的項目之維基數據實體 ID（以及在義大利語與日語維基百科兩方的連結條目）。",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "取得用於以義大利語；而非以日語描述的項目之維基數據實體 ID（以及在義大利語與日語維基百科兩邊的連結條目）。",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "取得連結到義大利語維基百科條目；但缺少義大利語描述的項目之維基數據實體 ID，並使用它們作為產生器。",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "任務建議類型。",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "翻譯類型任務建議，用於應存在於指令項目內容的語言之 wiki 語言代碼。",
