@@ -205,7 +205,7 @@ class CounterDao {
 			[ 'wet_key', 'wettp_count' ],
 			[
 				'wettp_user' => $centralId,
-				'wettp_effective_time <= ' . $this->dbr->timestamp()
+				'wettp_effective_time <= ' . $this->dbr->addQuotes( $this->dbr->timestamp() )
 			],
 			__METHOD__,
 			[],
@@ -236,7 +236,7 @@ class CounterDao {
 		$where = [
 			'wettp_user' => $centralId,
 			'wettp_key_id' => $keyId,
-			'wettp_effective_time <= ' . $this->dbr->timestamp()
+			'wettp_effective_time <= ' . $this->dbr->addQuotes( $this->dbr->timestamp() )
 		];
 		if ( $count && is_int( $count ) ) {
 			$where['wettp_count'] = $count;
@@ -261,7 +261,7 @@ class CounterDao {
 		$where = [
 			'wettp_user' => $centralId,
 			'wettp_key_id' => $keyId,
-			'wettp_effective_time > ' . $this->dbr->timestamp()
+			'wettp_effective_time > ' . $this->dbr->addQuotes( $this->dbr->timestamp() )
 		];
 		if ( $count && is_int( $count ) ) {
 			$where['wettp_count'] = $count;
@@ -314,7 +314,7 @@ class CounterDao {
 			[
 				'wettp_user' => $centralId,
 				'wettp_key_id' => $keyId,
-				'wettp_effective_time > ' . $this->dbw->timestamp(),
+				'wettp_effective_time > ' . $this->dbw->addQuotes( $this->dbw->timestamp() ),
 			],
 			__METHOD__
 		);
