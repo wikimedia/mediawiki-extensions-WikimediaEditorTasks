@@ -6,7 +6,7 @@ CREATE TABLE /*_*/wikimedia_editor_tasks_targets_passed (
     wettp_key_id INTEGER UNSIGNED NOT NULL,
     -- Count which was passed
     wettp_count INTEGER UNSIGNED NOT NULL,
-    -- UNIX timestamp establishing when the effect of meeting the target should begin.
+    -- Timestamp establishing when the effect of meeting the target should begin.
     -- May be in the future, in cases where a delay is configured.
     wettp_effective_time BINARY(14) NOT NULL DEFAULT '19700101000000',
     PRIMARY KEY (wettp_user,wettp_key_id,wettp_count)
