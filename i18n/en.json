@@ -4,7 +4,7 @@
 			"Michael Holloway"
 		]
 	},
-	"wikimediaeditortasks-desc": "Task generation, storage, and API service for microcontributions. Supports the [[:mw:Android_editing_features|App Editor Tasks]] project of the [[:mw:Wikimedia_Apps|Wikimedia Apps]] team.",
+	"wikimediaeditortasks-desc": "Task generation, storage, and API modules for microcontributions.",
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Feature-specific editing statistics for the logged-in user.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Get task-specific counts and targets passed for the logged-in user.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Microcontribution suggestions of predefined types.",
