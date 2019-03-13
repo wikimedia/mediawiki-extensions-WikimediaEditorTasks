@@ -1,10 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Meno25"
+			"Meno25",
+			"ديفيد"
 		]
 	},
-	"wikimediaeditortasks-desc": "توليد المهام، التخزين، وخدمة API للمساهمات المصغرة. تدعم مشروع [[:mw:Android_editing_features|مهام محرر التطبيق]] لفريق [[:mw:Wikimedia_Apps|Wikimedia Apps]].",
+	"wikimediaeditortasks-desc": "توليد المهام، التخزين، وخدمة API للمساهمات المصغرة.",
 	"apihelp-query+wikimediaeditortaskscounts-summary": "إحصاءات التعديل حسب الخاصية للمستخدمين المسجلين.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "الحصول على عدادات حسب المهمة والأهداف المرسلة للمستخدمين المسجلين.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "اقتراحات المساهمات المصغرة لأنواع معرفة مسبقا.",

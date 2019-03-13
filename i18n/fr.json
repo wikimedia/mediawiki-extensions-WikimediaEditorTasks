@@ -5,7 +5,7 @@
 			"Wladek92"
 		]
 	},
-	"wikimediaeditortasks-desc": "Génération de tâches, stockage, et services d'API pour les micro-contributions. Prend en charge le projet [[:mw:Android_editing_features|App Editor Tasks]] de l'équipe [[:mw:Wikimedia_Apps|Wikimedia Apps]].",
+	"wikimediaeditortasks-desc": "Génération de tâches, stockage, et services d’API pour les micro-contributions.",
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Statistiques d’édition spécifiques à la fonctionnalité pour l’utilisateur connecté.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Obtenir les compteurs spécifiques à la tâche et les cibles passées pour l’utilisateur connecté.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Suggestions de micro-contributions de types prédéfinis.",

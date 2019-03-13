@@ -4,7 +4,7 @@
 			"Eduardo Addad de Oliveira"
 		]
 	},
-	"wikimediaeditortasks-desc": "Geração de tarefas, armazenamento e serviço de API para microcontribuições. Suporta o projeto [[:mw:Android_editing_features|App Editor Tasks]] da equipe [[:mw:Wikimedia_Apps|Wikimedia Apps]].",
+	"wikimediaeditortasks-desc": "Geração de tarefas, armazenamento e módulos API para microcontribuições.",
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Estatísticas de edição específicas do recurso para o usuário conectado.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Obter contagens e destinos específicos da tarefa passados para o usuário conectado.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Sugestões de microconferência de tipos pré-definidos.",
