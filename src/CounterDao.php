@@ -166,6 +166,7 @@ class CounterDao {
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
 				'wetc_lang' => $lang,
+				'wetc_count > 0'
 			],
 			__METHOD__
 		);
@@ -188,8 +189,8 @@ class CounterDao {
 				'wetc_lang' => $lang,
 				'wetc_count' => $count,
 			],
-			[ 'wetc_user', 'wetc_key_id', 'wetc_lang' ],
-			[ 'wetc_count' => $count ],
+			[ [ 'wetc_user', 'wetc_key_id', 'wetc_lang' ] ],
+			[ 'wetc_count = wetc_count + ' . (int)$count ],
 			__METHOD__
 		);
 	}
@@ -241,9 +242,9 @@ class CounterDao {
 		if ( $count && is_int( $count ) ) {
 			$where['wettp_count'] = $count;
 		}
-		return (bool)$this->dbr->selectRowCount(
+		return (bool)$this->dbr->selectField(
 			'wikimedia_editor_tasks_targets_passed',
-			'*',
+			'1',
 			$where,
 			__METHOD__
 		);
@@ -266,9 +267,9 @@ class CounterDao {
 		if ( $count && is_int( $count ) ) {
 			$where['wettp_count'] = $count;
 		}
-		return (bool)$this->dbr->selectRowCount(
+		return (bool)$this->dbr->selectField(
 			'wikimedia_editor_tasks_targets_passed',
-			'*',
+			'1',
 			$where,
 			__METHOD__
 		);

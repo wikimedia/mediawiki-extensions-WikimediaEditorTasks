@@ -104,11 +104,11 @@ abstract class Counter {
 	 * @param string $lang language code
 	 */
 	protected function incrementForLang( $centralId, $lang ) {
-		if ( !$this->getCountForLang( $centralId, $lang ) ) {
-			$this->setCountForLang( $centralId, $lang, 0 );
+		if ( $this->getCountForLang( $centralId, $lang ) ) {
+			$this->dao->incrementCountForKeyAndLang( $centralId, $this->keyId, $lang );
+		} else {
+			$this->setCountForLang( $centralId, $lang, 1 );
 		}
-
-		$this->dao->incrementCountForKeyAndLang( $centralId, $this->keyId, $lang );
 
 		$this->updateTargetsPassed( $centralId );
 	}

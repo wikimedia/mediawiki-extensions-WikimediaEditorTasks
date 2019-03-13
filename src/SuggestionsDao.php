@@ -45,30 +45,28 @@ class SuggestionsDao {
 		$rand = $this->getRandomFloat();
 		$fname = __METHOD__;
 
-		$cond = [
-			'wetede_language' => $lang,
-			'wetede_description_exists' => 0,
-			'wetede_rand > ' . strval( $rand ),
-		];
-
-		$select = function ( $cond ) use ( $fname, $limit ) {
+		$select = function ( $ascending, $limit ) use ( $fname, $lang, $rand ) {
 			return $this->dbr->selectFieldValues(
 				'wikimedia_editor_tasks_entity_description_exists',
 				'wetede_entity_id',
-				$cond,
+				[
+					'wetede_language' => $lang,
+					'wetede_description_exists' => 0,
+					'wetede_rand ' . ( $ascending ? '>' : '<' ) . ' ' . strval( $rand )
+				],
 				$fname,
 				[
-					'ORDER BY' => 'wetede_rand',
-					'LIMIT' => $limit,
+					'ORDER BY' => 'wetede_rand ' . ( $ascending ? 'ASC' : 'DESC' ),
+					'LIMIT' => $limit
 				]
 			);
 		};
 
-		$result = $select( $cond );
+		$result = $select( true, $limit );
 
-		if ( count( $result ) < $limit ) {
-			$cond[0] = str_replace( '>', '<=', $cond[0] );
-			$result = array_merge( $result, $select( $cond ) );
+		$shortfall = $limit - count( $result );
+		if ( $shortfall > 0 ) {
+			$result = array_merge( $result, $select( false, $shortfall ) );
 		}
 
 		return $result;
@@ -86,42 +84,40 @@ class SuggestionsDao {
 		$rand = $this->getRandomFloat();
 		$fname = __METHOD__;
 
-		$cond = [
-			'source.wetede_description_exists' => 1,
-			'target.wetede_description_exists' => 0,
-			'source.wetede_rand > ' . strval( $rand ),
-		];
-
-		$select = function ( $cond ) use ( $sourceLang, $targetLang, $fname, $limit ) {
+		$select = function ( $ascending, $limit ) use ( $sourceLang, $targetLang, $fname, $rand ) {
 			return $this->dbr->selectFieldValues(
 				[
 					'source' => 'wikimedia_editor_tasks_entity_description_exists',
 					'target' => 'wikimedia_editor_tasks_entity_description_exists',
 				],
 				'source.wetede_entity_id',
-				$cond,
+				[
+					'source.wetede_language' => $sourceLang,
+					'source.wetede_description_exists' => 1,
+					'source.wetede_rand ' . ( $ascending ? '>' : '<' ) . ' ' . strval( $rand )
+				],
 				$fname,
 				[
-					'ORDER BY' => 'source.wetede_rand',
-					'LIMIT' => $limit,
+					'ORDER BY' => 'source.wetede_rand ' . ( $ascending ? 'ASC' : 'DESC' ),
+					'LIMIT' => $limit
 				],
 				[
 					'target' => [
 						'INNER JOIN',
 						[
-							'source.wetede_entity_id=target.wetede_entity_id',
-							'source.wetede_language' => $sourceLang,
+							'target.wetede_entity_id=source.wetede_entity_id',
 							'target.wetede_language' => $targetLang,
+							'target.wetede_description_exists' => 0
 						]
 					],
 				] );
 		};
 
-		$result = $select( $cond );
+		$result = $select( true, $limit );
 
-		if ( count( $result ) < $limit ) {
-			$cond[0] = str_replace( '>', '<=', $cond[0] );
-			$result = array_merge( $result, $select( $cond ) );
+		$shortfall = $limit - count( $result );
+		if ( $shortfall > 0 ) {
+			$result = array_merge( $result, $select( false, $shortfall ) );
 		}
 
 		return $result;

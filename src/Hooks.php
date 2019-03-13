@@ -31,6 +31,7 @@ use Status;
 use Title;
 use User;
 use WikiPage;
+use AutoCommitUpdate;
 
 /**
  * Hooks for WikimediaEditorTasks extension
@@ -64,7 +65,7 @@ class Hooks {
 		$sectionanchor,
 		&$flags,
 		$revision,
-		&$status,
+		Status &$status,
 		$baseRevId,
 		$undidRevId = 0
 	) {
@@ -77,7 +78,11 @@ class Hooks {
 				self::countersOnUndo( $undidRevId, $wikiPage );
 			}
 		};
-		DeferredUpdates::addCallableUpdate( $cb, DeferredUpdates::POSTSEND, wfGetDB( DB_MASTER ) );
+
+		DeferredUpdates::addUpdate(
+			new AutoCommitUpdate( wfGetDB( DB_MASTER ), __METHOD__, $cb ),
+			DeferredUpdates::POSTSEND
+		);
 	}
 
 	/**
@@ -102,7 +107,11 @@ class Hooks {
 				}
 			}
 		};
-		DeferredUpdates::addCallableUpdate( $cb, DeferredUpdates::POSTSEND, wfGetDB( DB_MASTER ) );
+
+		DeferredUpdates::addUpdate(
+			new AutoCommitUpdate( wfGetDB( DB_MASTER ), __METHOD__, $cb ),
+			DeferredUpdates::POSTSEND
+		);
 	}
 
 	/**
