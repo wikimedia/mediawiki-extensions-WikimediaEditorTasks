@@ -149,7 +149,7 @@ class Hooks {
 			return;
 		}
 
-		$undidUserId = $undidRev->getUser( RevisionRecord::RAW )->getId();
+		$undidUserId = $undidRev->getUser( RevisionRecord::FOR_PUBLIC )->getId();
 		if ( !$undidUserId ) {
 			return;
 		}
