@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Fitoschido"
+			"Fitoschido",
+			"Marcelo9987"
 		]
 	},
+	"wikimediaeditortasks-desc": "Generación de tarea, almacenamiento, y API módulos para microcontributions.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Sugerencias de microcontribuciones de tipos predefinidos."
 }
