@@ -19,6 +19,7 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
 use IDBAccessObject;
@@ -26,6 +27,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use RequestContext;
 use Revision;
+use Status;
+use Title;
 use User;
 use WikiPage;
 
@@ -155,7 +158,8 @@ class Hooks {
 		}
 
 		// Check that this isn't a spoofed revert (T59474)
-		if ( !$undidRev->getPageAsLinkTarget()->equals( $wikiPage->getTitle() ) ) {
+		$undidTitle = Title::newFromLinkTarget( $undidRev->getPageAsLinkTarget() );
+		if ( !$undidTitle->equals( $wikiPage->getTitle() ) ) {
 			return;
 		}
 
