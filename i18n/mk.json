@@ -4,7 +4,7 @@
 			"Bjankuloski06"
 		]
 	},
-	"wikimediaeditortasks-desc": "Создавање, складирање на и приложник за микропридонеси. Го поддржува проектот [[:mw:Android_editing_features|Задачи за прилошки уредувања]] на екипата [[:mw:Wikimedia_Apps|Викимедиини прилози]].",
+	"wikimediaeditortasks-desc": "Создавање, складирање на и приложник за микропридонеси.",
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Уредувачка статистика за најавениот корисник според поединечни можности.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Бројки и цели за поединечни задачи за најавениот корисник.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Предложени микропридонеси од предодредени видови.",
