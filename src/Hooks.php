@@ -53,8 +53,6 @@ class Hooks {
 	 * @param Status &$status
 	 * @param int $baseRevId
 	 * @param int $undidRevId
-	 *
-	 * @return bool true in all cases
 	 */
 	public static function onPageContentSaveComplete(
 		&$wikiPage,
@@ -80,7 +78,6 @@ class Hooks {
 			}
 		};
 		DeferredUpdates::addCallableUpdate( $cb, DeferredUpdates::POSTSEND, wfGetDB( DB_MASTER ) );
-		return true;
 	}
 
 	/**
@@ -91,10 +88,8 @@ class Hooks {
 	 * @param User $agent The user who did the rollback
 	 * @param Revision $newRev The revision the page was reverted back to
 	 * @param Revision $oldRev The revision of the top edit that was reverted
-	 *
-	 * @return bool true in all cases
 	 */
-	public static function onRollbackComplete( WikiPage $wikiPage, $agent, $newRev, $oldRev ) {
+	public static function onArticleRollbackComplete( WikiPage $wikiPage, $agent, $newRev, $oldRev ) {
 		$cb = function () use ( $oldRev, $newRev ) {
 			$victimId = $oldRev->getUser();
 			if (
@@ -108,12 +103,10 @@ class Hooks {
 			}
 		};
 		DeferredUpdates::addCallableUpdate( $cb, DeferredUpdates::POSTSEND, wfGetDB( DB_MASTER ) );
-		return true;
 	}
 
 	/**
 	 * @param DatabaseUpdater $updater
-	 * @return bool
 	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		$baseDir = dirname( __DIR__ );
@@ -123,13 +116,12 @@ class Hooks {
 			"$baseDir/sql/targets_passed.sql" );
 		$updater->addExtensionTable( 'wikimedia_editor_tasks_entity_description_exists',
 			"$baseDir/sql/description_exists.sql" );
-		return true;
 	}
 
 	/**
 	 * @param User $user user who succeeded in editing
 	 */
-	public static function countersOnEditSuccess( $user ) {
+	private static function countersOnEditSuccess( $user ) {
 		$centralId = Utils::getCentralId( $user );
 
 		// We need to check the underlying request headers to determine if this is an app edit
@@ -144,7 +136,7 @@ class Hooks {
 	 * @param int $undidRevId revision that was undone
 	 * @param WikiPage $wikiPage wiki page that was just edited
 	 */
-	public static function countersOnUndo( $undidRevId, $wikiPage ) {
+	private static function countersOnUndo( $undidRevId, $wikiPage ) {
 		$undidRev = MediaWikiServices::getInstance()->getRevisionStore()
 			->getRevisionById( $undidRevId, IDBAccessObject::READ_LATEST_IMMUTABLE );
 

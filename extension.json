@@ -49,7 +49,7 @@
 		"wikimediaeditortaskscounts": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksCounts"
 	},
 	"Hooks": {
-		"ArticleRollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRollbackComplete",
+		"ArticleRollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onArticleRollbackComplete",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates",
 		"PageContentSaveComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onPageContentSaveComplete"
 	},
