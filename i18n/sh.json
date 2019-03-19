@@ -4,7 +4,7 @@
 			"Vlad5250"
 		]
 	},
-	"wikimediaeditortasks-desc": "Stvaranje, spremište na i priložnik za mikro-doprinose. Podržava projekt [[:mw:Android_editing_features|Zadatci za priloška uređivanja]] ekipe [[:mw:Wikimedia_Apps|Wikimedijini prilozi]].",
+	"wikimediaeditortasks-desc": "Stvaranje, spremište na i priložnik za mikro-doprinose.",
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Uredničke statistike za prijavljenog korisnika prema pojedinim mogućnosti.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Brojevi i ciljevi za pojedinačne zadatke prijavljenog korisnika.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Predloženi mikro-doprinosi predodređenih vrsta.",
