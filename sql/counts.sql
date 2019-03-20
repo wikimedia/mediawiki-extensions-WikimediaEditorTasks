@@ -5,7 +5,7 @@ CREATE TABLE /*_*/wikimedia_editor_tasks_counts (
     -- Key ID for the counter
     wetc_key_id INTEGER UNSIGNED NOT NULL,
     -- Language code for this count
-    wetc_lang VARBINARY(255) NOT NULL,
+    wetc_lang VARBINARY(32) NOT NULL,
     -- Counter value
     wetc_count INTEGER UNSIGNED NOT NULL DEFAULT 0,
     PRIMARY KEY (wetc_user,wetc_key_id,wetc_lang)
