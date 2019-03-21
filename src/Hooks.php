@@ -79,8 +79,14 @@ class Hooks {
 			}
 		};
 
+		$services = MediaWikiServices::getInstance();
 		DeferredUpdates::addUpdate(
-			new AutoCommitUpdate( wfGetDB( DB_MASTER ), __METHOD__, $cb ),
+			new AutoCommitUpdate(
+				Utils::getDB( DB_MASTER, $services ),
+				__METHOD__,
+				$cb,
+				[ wfGetDB( DB_MASTER ) ]
+			),
 			DeferredUpdates::POSTSEND
 		);
 	}
@@ -108,8 +114,14 @@ class Hooks {
 			}
 		};
 
+		$services = MediaWikiServices::getInstance();
 		DeferredUpdates::addUpdate(
-			new AutoCommitUpdate( wfGetDB( DB_MASTER ), __METHOD__, $cb ),
+			new AutoCommitUpdate(
+				Utils::getDB( DB_MASTER, $services ),
+				__METHOD__,
+				$cb,
+				[ wfGetDB( DB_MASTER ) ]
+			),
 			DeferredUpdates::POSTSEND
 		);
 	}
