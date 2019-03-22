@@ -29,17 +29,17 @@ class PopulateEntityDescriptionExistsTable extends Maintenance {
 	public function execute() {
 		$services = MediaWikiServices::getInstance();
 		$dbw = Utils::getDB( DB_MASTER, $services );
-		$dbr = Utils::getDB( DB_REPLICA, $services );
+		$dbr = Utils::getDB( DB_REPLICA, $services, [ 'vslow' ] );
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 
 		$batchSize = 10000;
 
-		$start = $dbw->selectField( 'wb_items_per_site', 'MIN(ips_item_id)', '', __METHOD__ );
-		if ( !$start ) {
+		$start = $dbw->selectField( 'wb_items_per_site', 'MIN(ips_row_id)', '', __METHOD__ );
+		$end = $dbw->selectField( 'wb_items_per_site', 'MAX(ips_row_id)', '', __METHOD__ );
+		if ( !$start || !$end ) {
 			$this->output( "Nothing to do.\n" );
-			return true;
+			return;
 		}
-		$end = $dbw->selectField( 'wb_items_per_site', 'MAX(ips_item_id)', '', __METHOD__ );
 
 		$blockStart = $start;
 		$blockEnd = $start + $batchSize - 1;

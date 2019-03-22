@@ -31,10 +31,11 @@ class Utils {
 	 * Get a database connection.
 	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
 	 * @param MediaWikiServices $services
+	 * @param array $groups Query groups [optional]
 	 * @return DBConnRef
 	 * @throws ConfigException
 	 */
-	public static function getDB( $db, $services ) {
+	public static function getDB( $db, $services, $groups = [] ) {
 		$wetServices = WikimediaEditorTasksServices::wrap( $services );
 		$database = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksDatabase' );
 		$cluster = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksCluster' );
@@ -43,7 +44,7 @@ class Utils {
 		$loadBalancer = $cluster
 			? $loadBalancerFactory->getExternalLB( $cluster )
 			: $loadBalancerFactory->getMainLB( $database );
-		return $loadBalancer->getLazyConnectionRef( $db, [], $database );
+		return $loadBalancer->getLazyConnectionRef( $db, $groups, $database );
 	}
 
 	/**
