@@ -31,15 +31,8 @@
 			"description": "Database to use for storing extension data. False means use the database of the current wiki. To use a table prefix, use '<database>-<prefix'>' format."
 		},
 		"WikimediaEditorTasksEnabledCounters": {
-			"value": [
-				{
-					"class": "MediaWiki\\Extension\\WikimediaEditorTasks\\WikipediaAppDescriptionEditCounter",
-					"counter_key": "app_description_edits",
-					"target_counts": [ 5, 50 ],
-					"delay": 172800
-				}
-			],
-			"description": "Counter classes to enable, with associated configuation. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\\n* target_counts: target counts associated with this counter\\n* delay: delay, in seconds, to apply before passing the counter target takes effect"
+			"value": [],
+			"description": "Counter classes to enable, with associated configuation. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\\n* target_counts: target counts associated with this counter\\n* delay: delay, in seconds, to apply before passing the counter target takes effect\n\nExample:\n{\n\t\"class\": \"MediaWiki\\Extension\\WikimediaEditorTasks\\WikipediaAppDescriptionEditCounter\",\n\t\"counter_key\": \"app_description_edits\",\n\t\"target_counts\": [ 5, 50 ],\n\t\"delay\": 172800\n\t}"
 		}
 	},
 	"APIListModules": {
