@@ -57,7 +57,7 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 
 		$this->getResult()->addValue( 'query', 'wikimediaeditortaskscounts', [
 			'counts' => $counts,
-			'targetsPassed' => $targetsPassed
+			'targets_passed' => $targetsPassed
 		] );
 	}
 
