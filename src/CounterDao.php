@@ -18,6 +18,7 @@
  */
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use DBAccessObjectUtils;
 use Wikimedia\Rdbms\DBConnRef;
 
 class CounterDao {
@@ -75,17 +76,22 @@ class CounterDao {
 	 * Get all counts by lang for a specific key for a user.
 	 * @param int $centralId central user ID
 	 * @param int $keyId counter key ID
+	 * @param int $flags IDBAccessObject flags
 	 * @return array counts for all langs for the specified key
 	 */
-	public function getAllCountsForKey( $centralId, $keyId ) {
-		$wrapper = $this->dbr->select(
+	public function getAllCountsForKey( $centralId, $keyId, $flags = 0 ) {
+		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
+		$db = ( $index === DB_MASTER ) ? $this->dbw : $this->dbr;
+
+		$wrapper = $db->select(
 			'wikimedia_editor_tasks_counts',
 			[ 'wetc_lang', 'wetc_count' ],
 			[
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
 			],
-			__METHOD__
+			__METHOD__,
+			$options
 		);
 		$result = [];
 		foreach ( $wrapper as $row ) {
