@@ -19,6 +19,7 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use IDBAccessObject;
 use WebRequest;
 
 /**
@@ -164,7 +165,8 @@ abstract class Counter {
 		if ( !$this->targetCounts ) {
 			return;
 		}
-		$counts = array_values( $this->dao->getAllCountsForKey( $centralId, $this->keyId ) );
+		$counts = array_values( $this->dao->getAllCountsForKey( $centralId, $this->keyId,
+			IDBAccessObject::READ_LOCKING ) );
 		$total = array_sum( $counts );
 		$targetsPassed = array_filter( $this->targetCounts, function ( $target ) use ( $total ) {
 			return $total >= $target;
