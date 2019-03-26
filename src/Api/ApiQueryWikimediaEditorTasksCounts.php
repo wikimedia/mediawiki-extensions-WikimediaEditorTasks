@@ -57,6 +57,7 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 
 		$this->getResult()->addValue( 'query', 'wikimediaeditortaskscounts', [
 			'counts' => $counts,
+			'targets' => $this->getConfiguredCounterTargets(),
 			'targets_passed' => $targetsPassed
 		] );
 	}
@@ -78,6 +79,13 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 	 */
 	public function isInternal() {
 		return true;
+	}
+
+	private function getConfiguredCounterTargets() {
+		return array_reduce( Utils::getEnabledCounters(), function ( $acc, $cur ) {
+			$acc[$cur['counter_key']] = $cur['target_counts'];
+			return $acc;
+		}, [] );
 	}
 
 }
