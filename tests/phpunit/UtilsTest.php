@@ -29,10 +29,18 @@ use Wikimedia\Rdbms\DBConnRef;
  */
 class UtilsTest extends MediaWikiTestCase {
 
-	public function testGetDB() {
+	public function testGetUserCountsDB() {
 		$services = MediaWikiServices::getInstance();
-		$dbw = Utils::getDB( DB_MASTER, $services );
-		$dbr = Utils::getDB( DB_REPLICA, $services );
+		$dbw = Utils::getUserCountsDB( DB_MASTER, $services );
+		$dbr = Utils::getUserCountsDB( DB_REPLICA, $services );
+		$this->assertInstanceOf( DBConnRef::class, $dbw );
+		$this->assertInstanceOf( DBConnRef::class, $dbr );
+	}
+
+	public function testGetTaskSuggestionsDB() {
+		$services = MediaWikiServices::getInstance();
+		$dbw = Utils::getTaskSuggestionsDB( DB_MASTER, $services );
+		$dbr = Utils::getTaskSuggestionsDB( DB_REPLICA, $services );
 		$this->assertInstanceOf( DBConnRef::class, $dbw );
 		$this->assertInstanceOf( DBConnRef::class, $dbr );
 	}
