@@ -24,16 +24,16 @@ return [
 
 	'WikimediaEditorTasksCounterDao' => function ( MediaWikiServices $services ): CounterDao {
 		return new CounterDao(
-			Utils::getDB( DB_MASTER, $services ),
-			Utils::getDB( DB_REPLICA, $services )
+			Utils::getUserCountsDB( DB_MASTER, $services ),
+			Utils::getUserCountsDB( DB_REPLICA, $services )
 		);
 	},
 
 	'WikimediaEditorTasksNameTableStore' => function ( MediaWikiServices $services ):
 		NameTableStore {
 		$wetServices = WikimediaEditorTasksServices::getInstance();
-		$database = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksDatabase' );
-		$cluster = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksCluster' );
+		$database = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsDatabase' );
+		$cluster = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsCluster' );
 
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 		$loadBalancer = $cluster
@@ -52,6 +52,6 @@ return [
 
 	'WikimediaEditorTasksSuggestionsDao' => function ( MediaWikiServices $services ):
 		SuggestionsDao {
-		return new SuggestionsDao( Utils::getDB( DB_REPLICA, $services ) );
+		return new SuggestionsDao( Utils::getTaskSuggestionsDB( DB_REPLICA, $services ) );
 	}
 ];

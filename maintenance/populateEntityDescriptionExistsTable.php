@@ -28,8 +28,8 @@ class PopulateEntityDescriptionExistsTable extends Maintenance {
 
 	public function execute() {
 		$services = MediaWikiServices::getInstance();
-		$dbw = Utils::getDB( DB_MASTER, $services );
-		$dbr = Utils::getDB( DB_REPLICA, $services, [ 'vslow' ] );
+		$dbw = Utils::getTaskSuggestionsDB( DB_MASTER, $services );
+		$dbr = Utils::getTaskSuggestionsDB( DB_REPLICA, $services, [ 'vslow' ] );
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 
 		$batchSize = 10000;
