@@ -46,7 +46,9 @@ return [
 			LoggerFactory::getInstance( 'WikimediaEditorTasks' ),
 			'wikimedia_editor_tasks_keys',
 			'wet_id',
-			'wet_key'
+			'wet_key',
+			null,
+			$database
 		);
 	},
 
