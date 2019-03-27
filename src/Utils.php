@@ -28,26 +28,6 @@ use Wikimedia\Rdbms\DBConnRef;
 class Utils {
 
 	/**
-	 * Get a database connection.
-	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
-	 * @param MediaWikiServices $services
-	 * @param array $groups Query groups [optional]
-	 * @return DBConnRef
-	 * @throws ConfigException
-	 */
-	public static function getDB( $db, $services, $groups = [] ) {
-		$wetServices = WikimediaEditorTasksServices::wrap( $services );
-		$database = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksDatabase' );
-		$cluster = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksCluster' );
-
-		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
-		$loadBalancer = $cluster
-			? $loadBalancerFactory->getExternalLB( $cluster )
-			: $loadBalancerFactory->getMainLB( $database );
-		return $loadBalancer->getLazyConnectionRef( $db, $groups, $database );
-	}
-
-	/**
 	 * Get the central user ID for $user
 	 * @param User $user local User
 	 * @return int central user ID
@@ -64,6 +44,56 @@ class Utils {
 	public static function getEnabledCounters() {
 		$config = WikimediaEditorTasksServices::getInstance()->getExtensionConfig();
 		return $config->get( 'WikimediaEditorTasksEnabledCounters' );
+	}
+
+	/**
+	 * Get a database connection to the user counts database.
+	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
+	 * @param MediaWikiServices $services
+	 * @param array $groups Query groups [optional]
+	 * @return DBConnRef
+	 * @throws ConfigException
+	 */
+	public static function getUserCountsDB( $db, $services, $groups = [] ) {
+		$wetServices = WikimediaEditorTasksServices::wrap( $services );
+		$database = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsDatabase' );
+		$cluster = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsCluster' );
+		return self::getDB( $db, $services, $database, $cluster, $groups );
+	}
+
+	/**
+	 * Get a database connection to the task suggestions database.
+	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
+	 * @param MediaWikiServices $services
+	 * @param array $groups Query groups [optional]
+	 * @return DBConnRef
+	 * @throws ConfigException
+	 */
+	public static function getTaskSuggestionsDB( $db, $services, $groups = [] ) {
+		$wetServices = WikimediaEditorTasksServices::wrap( $services );
+		$database = $wetServices->getExtensionConfig()
+			->get( 'WikimediaEditorTasksSuggestionDataDatabase' );
+		$cluster = $wetServices->getExtensionConfig()
+			->get( 'WikimediaEditorTasksSuggestionDataCluster' );
+		return self::getDB( $db, $services, $database, $cluster, $groups );
+	}
+
+	/**
+	 * Get a database connection.
+	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
+	 * @param MediaWikiServices $services
+	 * @param string $database DB name from extension config
+	 * @param string $cluster cluster name from extension config
+	 * @param array $groups Query groups [optional]
+	 * @return DBConnRef
+	 * @throws ConfigException
+	 */
+	private static function getDB( $db, $services, $database, $cluster, $groups = [] ) {
+		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
+		$loadBalancer = $cluster
+			? $loadBalancerFactory->getExternalLB( $cluster )
+			: $loadBalancerFactory->getMainLB( $database );
+		return $loadBalancer->getLazyConnectionRef( $db, $groups, $database );
 	}
 
 }

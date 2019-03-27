@@ -82,7 +82,7 @@ class Hooks {
 		$services = MediaWikiServices::getInstance();
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
-				Utils::getDB( DB_MASTER, $services ),
+				Utils::getUserCountsDB( DB_MASTER, $services ),
 				__METHOD__,
 				$cb,
 				[ wfGetDB( DB_MASTER ) ]
@@ -117,7 +117,7 @@ class Hooks {
 		$services = MediaWikiServices::getInstance();
 		DeferredUpdates::addUpdate(
 			new AutoCommitUpdate(
-				Utils::getDB( DB_MASTER, $services ),
+				Utils::getUserCountsDB( DB_MASTER, $services ),
 				__METHOD__,
 				$cb,
 				[ wfGetDB( DB_MASTER ) ]
