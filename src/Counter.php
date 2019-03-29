@@ -166,7 +166,7 @@ abstract class Counter {
 			return;
 		}
 		$counts = array_values( $this->dao->getAllCountsForKey( $centralId, $this->keyId,
-			IDBAccessObject::READ_LOCKING ) );
+			IDBAccessObject::READ_LATEST ) );
 		$total = array_sum( $counts );
 		$targetsPassed = array_filter( $this->targetCounts, function ( $target ) use ( $total ) {
 			return $total >= $target;
