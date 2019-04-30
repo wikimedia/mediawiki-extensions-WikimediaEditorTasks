@@ -20,11 +20,11 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 /**
- * Counter for Wikidata description edits from the official Wikipedia apps.
+ * Counter for Wikimedia Commons file caption edits from the official Wikipedia apps.
  */
-class WikipediaAppDescriptionEditCounter extends WikipediaAppCounter {
+class WikipediaAppCaptionEditCounter extends WikipediaAppCounter {
 
-	const ACTION = 'wbsetdescription';
+	const ACTION = 'wbsetlabel';
 
 	/**
 	 * @inheritDoc
