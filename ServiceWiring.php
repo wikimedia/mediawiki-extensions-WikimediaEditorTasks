@@ -10,6 +10,15 @@ use MediaWiki\Storage\NameTableStore;
 
 return [
 
+	'WikimediaEditorTasksCirrusSearch' => function ( MediaWikiServices $services ): SearchEngine {
+		$cirrusConfig = $services->getConfigFactory()->makeConfig( 'CirrusSearch' );
+		$searchSort = WikimediaEditorTasksServices::getInstance()->getExtensionConfig()
+			->get( 'WikimediaEditorTasksSuggestionSearchSort' );
+		$cirrus = new CirrusSearch( $cirrusConfig );
+		$cirrus->setSort( $searchSort );
+		return $cirrus;
+	},
+
 	'WikimediaEditorTasksConfig' => function ( MediaWikiServices $services ): Config {
 		return $services->getConfigFactory()->makeConfig( 'WikimediaEditorTasks' );
 	},

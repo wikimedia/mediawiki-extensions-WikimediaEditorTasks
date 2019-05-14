@@ -24,10 +24,17 @@ use ApiPageSet;
 use ApiQuery;
 use ApiQueryGeneratorBase;
 use ApiUsageException;
+use ConfigException;
 use LogicException;
+use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
+use SearchEngine;
+use Status;
 use Title;
 
 class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
+
+	/** @var SearchEngine */
+	private $cirrus;
 
 	/** @var string API module prefix */
 	private static $prefix = 'wets';
@@ -36,9 +43,11 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 	 * ApiQueryWikimediaEditorTasksSuggestions constructor.
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
+	 * @throws ConfigException
 	 */
 	public function __construct( ApiQuery $queryModule, $moduleName ) {
 		parent::__construct( $queryModule, $moduleName, static::$prefix );
+		$this->cirrus = WikimediaEditorTasksServices::getInstance()->getCirrusSearch();
 	}
 
 	/**
@@ -83,18 +92,17 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 				'task=descriptiontranslations', 'source' ], 'invalidparammix' );
 		}
 
-		$wikibaseIds = $this->prependQs( $this->getSuggestionsForTask( $task, $source, $target,
-			$limit ) );
+		$resultTitles = $this->getSuggestionsForTask( $task, $source, $target, $limit );
 
 		if ( $resultPageSet ) {
 			$resultPageSet->populateFromTitles( array_map( function ( $id ) {
 				// FIXME: either disable this API when not on the Wikibase repo, or return
 				// an external title pointing there
 				return Title::newFromText( $id );
-			}, $wikibaseIds ) );
+			}, $resultTitles ) );
 		} else {
-			$this->getResult()->addValue( 'query', 'wikimediaeditortaskssuggestions',
-				[ $task => $wikibaseIds ] );
+			$this->getResult()->addValue( [ 'query', 'wikimediaeditortaskssuggestions' ],
+				$task, $resultTitles );
 		}
 	}
 
@@ -121,9 +129,9 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 			'limit' => [
 				ApiBase::PARAM_TYPE => 'limit',
 				ApiBase::PARAM_MIN => 1,
-				ApiBase::PARAM_MAX => 10,
-				ApiBase::PARAM_MAX2 => 10,
-				ApiBase::PARAM_DFLT => 1,
+				ApiBase::PARAM_MAX => 500,
+				ApiBase::PARAM_MAX2 => 5000,
+				ApiBase::PARAM_DFLT => 10,
 			],
 		];
 	}
@@ -154,14 +162,55 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 	}
 
 	/**
+	 * @param string $term search term
+	 * @param int $limit max number of results to return
+	 * @return string[] result page titles
+	 * @throws ApiUsageException
+	 */
+	private function searchEntities( $term, $limit ) {
+		$result = [];
+
+		$this->cirrus->setLimitOffset( $limit );
+		$matches = $this->cirrus->searchText( $term );
+
+		if ( $matches instanceof Status ) {
+			$status = $matches;
+			$matches = $status->getValue();
+		} else {
+			$status = null;
+		}
+
+		if ( $status ) {
+			if ( $status->isOK() ) {
+				$this->getMain()->getErrorFormatter()->addMessagesFromStatus(
+					$this->getModuleName(),
+					$status
+				);
+			} else {
+				$this->dieStatus( $status );
+			}
+		} elseif ( is_null( $matches ) ) {
+			$this->dieWithError( [ 'apierror-searchdisabled', 'text' ], "search-text-disabled" );
+		}
+
+		foreach ( $matches as $match ) {
+			if ( !( $match->isBrokenTitle() || $match->isMissingRevision() ) ) {
+				$result[] = $match->getTitle()->getPrefixedText();
+			}
+		}
+
+		return $result;
+	}
+
+	/**
 	 * Get description addition suggestions.
 	 * @param string $target target lang
 	 * @param int $limit desired number of suggestions
-	 * @return string[]
-	 // * @throws ApiUsageException
+	 * @return string[] result page titles
+	 * @throws ApiUsageException
 	 */
 	private function getMissingDescriptionSuggestions( $target, $limit ) {
-		return [];
+		return $this->searchEntities( '-hasdescription:' . $target, $limit );
 	}
 
 	/**
@@ -170,10 +219,11 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 	 * @param string $target target lang
 	 * @param int $limit desired number of suggestions
 	 * @return string[]
-	 // * @throws ApiUsageException
+	 * @throws ApiUsageException
 	 */
 	private function getDescriptionTranslationSuggestions( $source, $target, $limit ) {
-		return [];
+		$term = 'hasdescription:' . $source . ' -hasdescription:' . $target;
+		return $this->searchEntities( $term, $limit );
 	}
 
 	/**
@@ -182,7 +232,7 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 	 * @param string $source source lang
 	 * @param string $target target lang
 	 * @param int $limit desired number of suggestions
-	 * @return string[]
+	 * @return string[] page titles
 	 * @throws ApiUsageException
 	 */
 	private function getSuggestionsForTask( $task, $source, $target, $limit ) {
@@ -197,14 +247,4 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 		}
 	}
 
-	/**
-	 * Prepends initial Qs to Wikibase IDs. The Qs are omitted as redundant in the DB to save space.
-	 * @param string[] $results Wikibase IDs from the DB, as integer strings
-	 * @return string[] Wikibase IDs with 'Q' prepended
-	 */
-	private function prependQs( $results ) {
-		return array_map( function ( $id ) {
-			return 'Q' . $id;
-		},  $results );
-	}
 }
