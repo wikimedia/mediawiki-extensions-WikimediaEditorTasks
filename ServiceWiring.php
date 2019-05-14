@@ -2,7 +2,6 @@
 
 use MediaWiki\Extension\WikimediaEditorTasks\CounterFactory;
 use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
-use MediaWiki\Extension\WikimediaEditorTasks\SuggestionsDao;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
 use MediaWiki\Logger\LoggerFactory;
@@ -52,8 +51,4 @@ return [
 		);
 	},
 
-	'WikimediaEditorTasksSuggestionsDao' => function ( MediaWikiServices $services ):
-		SuggestionsDao {
-		return new SuggestionsDao( Utils::getTaskSuggestionsDB( DB_REPLICA, $services ) );
-	}
 ];

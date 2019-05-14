@@ -78,11 +78,4 @@ class WikimediaEditorTasksServices {
 		return $this->services->getService( 'WikimediaEditorTasksNameTableStore' );
 	}
 
-	/**
-	 * @return SuggestionsDao
-	 */
-	public function getSuggestionsDao(): SuggestionsDao {
-		return $this->services->getService( 'WikimediaEditorTasksSuggestionsDao' );
-	}
-
 }

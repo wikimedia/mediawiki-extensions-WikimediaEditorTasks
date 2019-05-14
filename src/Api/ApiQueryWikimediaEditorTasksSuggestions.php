@@ -25,14 +25,9 @@ use ApiQuery;
 use ApiQueryGeneratorBase;
 use ApiUsageException;
 use LogicException;
-use MediaWiki\Extension\WikimediaEditorTasks\SuggestionsDao;
-use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
 use Title;
 
 class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
-
-	/** @var SuggestionsDao */
-	private $dao;
 
 	/** @var string API module prefix */
 	private static $prefix = 'wets';
@@ -44,7 +39,6 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 	 */
 	public function __construct( ApiQuery $queryModule, $moduleName ) {
 		parent::__construct( $queryModule, $moduleName, static::$prefix );
-		$this->dao = WikimediaEditorTasksServices::getInstance()->getSuggestionsDao();
 	}
 
 	/**
@@ -160,7 +154,30 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 	}
 
 	/**
-	 * Translates 'task' arguments to DAO methods and returns suggestions of the desired type.
+	 * Get description addition suggestions.
+	 * @param string $target target lang
+	 * @param int $limit desired number of suggestions
+	 * @return string[]
+	 // * @throws ApiUsageException
+	 */
+	private function getMissingDescriptionSuggestions( $target, $limit ) {
+		return [];
+	}
+
+	/**
+	 * Get description translation suggestions.
+	 * @param string $source source lang
+	 * @param string $target target lang
+	 * @param int $limit desired number of suggestions
+	 * @return string[]
+	 // * @throws ApiUsageException
+	 */
+	private function getDescriptionTranslationSuggestions( $source, $target, $limit ) {
+		return [];
+	}
+
+	/**
+	 * Get suggestions for the requested task type.
 	 * @param string $task task name
 	 * @param string $source source lang
 	 * @param string $target target lang
@@ -171,9 +188,9 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 	private function getSuggestionsForTask( $task, $source, $target, $limit ) {
 		switch ( $task ) {
 			case 'missingdescriptions':
-				return $this->dao->getMissingDescriptionSuggestions( $target, $limit );
+				return $this->getMissingDescriptionSuggestions( $target, $limit );
 			case 'descriptiontranslations':
-				return $this->dao->getDescriptionTranslationSuggestions( $source, $target, $limit );
+				return $this->getDescriptionTranslationSuggestions( $source, $target, $limit );
 			default:
 				// make static analyzers happy
 				throw new LogicException( 'API failed to validate task parameter' );
