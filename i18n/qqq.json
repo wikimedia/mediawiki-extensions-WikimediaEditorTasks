@@ -18,5 +18,6 @@
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|task}}",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|source}}",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|target}}",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|limit}}"
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|limit}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|namespace}}"
 }
