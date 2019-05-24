@@ -84,12 +84,20 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 		$target = $this->getParameter( 'target' );
 		$limit = $this->getParameter( 'limit' );
 
-		if ( $source && $task === 'missingdescriptions' ) {
+		if ( $source && (
+			$task === 'missingdescriptions'
+			|| $task === 'missinglabels'
+			|| $task === 'missingcaptions' )
+		) {
 			$this->dieWithError( [ 'apierror-invalidparammix-cannotusewith', 'source',
-				'task=missingdescriptions' ], 'invalidparammix' );
-		} elseif ( !$source && $task === 'descriptiontranslations' ) {
+				'task=' . $task ], 'invalidparammix' );
+		} elseif ( !$source && (
+			$task === 'descriptiontranslations'
+			|| $task === 'labeltranslations'
+			|| $task === 'captiontranslations' )
+		) {
 			$this->dieWithError( [ 'apierror-invalidparammix-mustusewith',
-				'task=descriptiontranslations', 'source' ], 'invalidparammix' );
+				'task=' . $task, 'source' ], 'invalidparammix' );
 		}
 
 		$resultTitles = $this->getSuggestionsForTask( $task, $source, $target, $limit );
@@ -116,6 +124,10 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 				ApiBase::PARAM_TYPE => [
 					'missingdescriptions',
 					'descriptiontranslations',
+					'missinglabels',
+					'labeltranslations',
+					'missingcaptions',
+					'captiontranslations',
 				],
 				ApiBase::PARAM_REQUIRED => true,
 			],
@@ -150,6 +162,20 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 			"action=query&formatversion=2&generator=wikimediaeditortaskssuggestions" .
 				"&g${prefix}task=missingdescriptions&g${prefix}target=it&g${prefix}limit=10"
 			=> 'apihelp-query+wikimediaeditortaskssuggestions-example-2',
+				"action=query&formatversion=2&list=wikimediaeditortaskssuggestions" .
+				"&${prefix}task=labeltranslations&${prefix}source=it&${prefix}target=ja" .
+				"&${prefix}limit=10"
+			=> 'apihelp-query+wikimediaeditortaskssuggestions-example-3',
+				"action=query&formatversion=2&generator=wikimediaeditortaskssuggestions" .
+				"&g${prefix}task=missinglabels&g${prefix}target=it&g${prefix}limit=10"
+			=> 'apihelp-query+wikimediaeditortaskssuggestions-example-4',
+				"action=query&formatversion=2&list=wikimediaeditortaskssuggestions" .
+				"&${prefix}task=captiontranslations&${prefix}source=it&${prefix}target=ja" .
+				"&${prefix}limit=10"
+			=> 'apihelp-query+wikimediaeditortaskssuggestions-example-5',
+				"action=query&formatversion=2&generator=wikimediaeditortaskssuggestions" .
+				"&g${prefix}task=missingcaptions&g${prefix}target=it&g${prefix}limit=10"
+			=> 'apihelp-query+wikimediaeditortaskssuggestions-example-6',
 		];
 	}
 
@@ -227,6 +253,30 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 	}
 
 	/**
+	 * Get label/caption addition suggestions.
+	 * @param string $target target lang
+	 * @param int $limit desired number of suggestions
+	 * @return string[] result page titles
+	 * @throws ApiUsageException
+	 */
+	private function getMissingLabelSuggestions( $target, $limit ) {
+		return $this->searchEntities( '-haslabel:' . $target, $limit );
+	}
+
+	/**
+	 * Get label/caption translation suggestions.
+	 * @param string $source source lang
+	 * @param string $target target lang
+	 * @param int $limit desired number of suggestions
+	 * @return string[]
+	 * @throws ApiUsageException
+	 */
+	private function getLabelTranslationSuggestions( $source, $target, $limit ) {
+		$term = 'haslabel:' . $source . ' -haslabel:' . $target;
+		return $this->searchEntities( $term, $limit );
+	}
+
+	/**
 	 * Get suggestions for the requested task type.
 	 * @param string $task task name
 	 * @param string $source source lang
@@ -241,6 +291,12 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 				return $this->getMissingDescriptionSuggestions( $target, $limit );
 			case 'descriptiontranslations':
 				return $this->getDescriptionTranslationSuggestions( $source, $target, $limit );
+			case 'missinglabels':
+			case 'missingcaptions':
+				return $this->getMissingLabelSuggestions( $target, $limit );
+			case 'labeltranslations':
+			case 'captiontranslations':
+				return $this->getLabelTranslationSuggestions( $source, $target, $limit );
 			default:
 				// make static analyzers happy
 				throw new LogicException( 'API failed to validate task parameter' );
