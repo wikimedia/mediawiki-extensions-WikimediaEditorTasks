@@ -43,7 +43,7 @@
 			"description": "Counter classes to enable, with associated configuation. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\\n* target_counts: target counts associated with this counter\\n* delay: delay, in seconds, to apply before passing the counter target takes effect\n\nExample:\n{\n\t\"class\": \"MediaWiki\\Extension\\WikimediaEditorTasks\\WikipediaAppDescriptionEditCounter\",\n\t\"counter_key\": \"app_description_edits\",\n\t\"target_counts\": [ 5, 50 ],\n\t\"delay\": 172800\n\t}"
 		},
 		"WikimediaEditorTasksSuggestionSearchSort": {
-			"value": "none",
+			"value": "incoming_links_desc",
 			"description": "CirrusSearch sort strategy to use when querying for suggestions. See https://www.mediawiki.org/wiki/Help:CirrusSearch#Explicit_sort_orders for possible values."
 		}
 	},
