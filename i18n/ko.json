@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ykhwong"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "이 이름공간 안에서만 검색합닌다."
+}
