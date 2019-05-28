@@ -13,5 +13,6 @@
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Tipo de sugestão de tarefa.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Para sugestões de tarefas do tipo tradução, o código da linguagem da wiki para o idioma em que o conteúdo deve existir para um determinado item.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Código de idioma da Wiki para o idioma em que o conteúdo está ausente para um determinado item.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Número desejado de resultados. Observe que menos resultados podem ser retornados, se menos do que o número desejado estiver disponível."
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Número desejado de resultados. Observe que menos resultados podem ser retornados, se menos do que o número desejado estiver disponível.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Procure apenas nesses espaços de nominais."
 }
