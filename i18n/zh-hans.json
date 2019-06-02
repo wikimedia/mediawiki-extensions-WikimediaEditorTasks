@@ -1,0 +1,8 @@
+{
+	"@metadata": {
+		"authors": [
+			"A Chinese Wikipedian"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "获取意大利语中缺少标签的项目的Wikidata实体ID，并将它们用作生成器。"
+}
