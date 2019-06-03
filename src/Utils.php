@@ -62,23 +62,6 @@ class Utils {
 	}
 
 	/**
-	 * Get a database connection to the task suggestions database.
-	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
-	 * @param MediaWikiServices $services
-	 * @param array $groups Query groups [optional]
-	 * @return DBConnRef
-	 * @throws ConfigException
-	 */
-	public static function getTaskSuggestionsDB( $db, $services, $groups = [] ) {
-		$wetServices = WikimediaEditorTasksServices::wrap( $services );
-		$database = $wetServices->getExtensionConfig()
-			->get( 'WikimediaEditorTasksSuggestionDataDatabase' );
-		$cluster = $wetServices->getExtensionConfig()
-			->get( 'WikimediaEditorTasksSuggestionDataCluster' );
-		return self::getDB( $db, $services, $database, $cluster, $groups );
-	}
-
-	/**
 	 * Get a database connection.
 	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
 	 * @param MediaWikiServices $services

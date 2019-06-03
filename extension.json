@@ -30,14 +30,6 @@
 			"value": false,
 			"description": "Database to use for storing user count data. False means use the database of the current wiki. To use a table prefix, use '<database>-<prefix'>' format."
 		},
-		"WikimediaEditorTasksSuggestionDataCluster": {
-			"value": false,
-			"description": "Database cluster to use for storing task suggestion data. False means the cluster of the current wiki will be used."
-		},
-		"WikimediaEditorTasksSuggestionDataDatabase": {
-			"value": false,
-			"description": "Database to use for storing task suggestion data. False means use the database of the current wiki. To use a table prefix, use '<database>-<prefix'>' format."
-		},
 		"WikimediaEditorTasksEnabledCounters": {
 			"value": [],
 			"description": "Counter classes to enable, with associated configuation. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\\n* target_counts: target counts associated with this counter\\n* delay: delay, in seconds, to apply before passing the counter target takes effect\n\nExample:\n{\n\t\"class\": \"MediaWiki\\Extension\\WikimediaEditorTasks\\WikipediaAppDescriptionEditCounter\",\n\t\"counter_key\": \"app_description_edits\",\n\t\"target_counts\": [ 5, 50 ],\n\t\"delay\": 172800\n\t}"

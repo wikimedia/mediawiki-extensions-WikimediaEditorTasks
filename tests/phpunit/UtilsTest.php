@@ -37,12 +37,4 @@ class UtilsTest extends MediaWikiTestCase {
 		$this->assertInstanceOf( DBConnRef::class, $dbr );
 	}
 
-	public function testGetTaskSuggestionsDB() {
-		$services = MediaWikiServices::getInstance();
-		$dbw = Utils::getTaskSuggestionsDB( DB_MASTER, $services );
-		$dbr = Utils::getTaskSuggestionsDB( DB_REPLICA, $services );
-		$this->assertInstanceOf( DBConnRef::class, $dbw );
-		$this->assertInstanceOf( DBConnRef::class, $dbr );
-	}
-
 }
