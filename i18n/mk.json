@@ -8,7 +8,7 @@
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Уредувачка статистика за најавениот корисник според поединечни можности.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Бројки и цели за поединечни задачи за најавениот корисник.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Предложени микропридонеси од предодредени видови.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Дава назнаки за предмети на Википодатоците со описи на италијански, но не и на јапонски (и поврзани статии на обете Википедии).",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Дава назнаки за предмети на Википодатоците со описи на италијански, но не и на јапонски.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Дава назнаки за предмети на Википодатоците со поврзани статии на италијанската Википедија, но без описи на италијански, и ги користи како создавач.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Вид на предложената задача.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "За предложени преведувачки задачи, викикод на јазикот на кој содржината треба да постои за даден предмет.",
