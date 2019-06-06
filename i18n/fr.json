@@ -14,7 +14,7 @@
 	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Obtenir les ID d’entité de Wikidata pour les éléments avec des libellés en italien mais pas en japonais.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Obtenir les ID d’entité de Wikidata pour les éléments n’ayant pas de libellé en italien, et les utilise comme un générateur.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Obtenir les ID d’entité de Wikidata pour les éléments dans l’espace de noms Fichier avec des libellés (alias légendes) en italien mais pas en japonais.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Obtenir les ID d’entité de Wikidata dans l’espace de noms n’ayant pas de libellés (alias légendes) en italien, et les utiliser comme générateur.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Obtenir les ID d’entité Wikidata pour les éléments n'ayant pas de libellés dans l’espace de noms File  (alias les légendes) en italien, et les utiliser comme générateur.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Type de suggestion de tâche.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Pour les suggestions de tâche de type traduction, le code de langue wiki pour la langue dans laquelle le contenu doit exister pour un élément donné.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Code de langue wiki pour la langue dans laquelle le contenu manque pour un élément donné.",
