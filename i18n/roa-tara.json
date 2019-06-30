@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Joetaras"
+		]
+	},
+	"wikimediaeditortasks-desc": "Generazione de attività, memorizzazione e module API pe le microcondrebbute.",
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Stetisteche de le cangiaminde specificamende dettagliate pe l'utende ca ave trasute.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Pigghie 'u condegge e le destinaziune passate pe 'n'attività specifeche pe l'utende trasute.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Conziglie sus a le microcondrebbute de tipe predefinite.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Pigghie l'ID de l'endità Uicchidate pe le vôsce cu descriziune jndr'à l'italiane ma non pu giapponese.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Pigghie l'ID de l'endità Uicchidate pe le vôsce cu descriziune ca mangane jndr'à l'italiane, e ausale cumme 'nu generatore.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Pigghie l'ID de l'endità Uicchidate pe le vôsce cu l'etichette in italiane ma non jndr'à 'u giapponese.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Pigghie l'ID de l'endità Uicchidate pe le vôsce cu l'etichette ca mangane jndr'à l'italiane, e ausale cumme 'nu generatore.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Pigghie l'ID de l'endità Uicchidate pe le vôsce jndr'à 'u namespace de le File cu l'etichette (a.k.a. 'ndestaziune) in italiane ma non jndr'à 'u giapponese.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Pigghie l'ID de l'endità Uicchidate pe le vôsce jndr'à 'u namespace de le File cu l'etichette (a.k.a. 'ndestaziune) ca mangane jndr'à l'italiane, e ausale cumme 'nu generatore.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Tipe de suggerimende de l'attività.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Pe suggereminde de attivitate de tipe de traduzione, codece d'a lènghe d'a uicchi pa lènghe addò 'u condenute avessa esistere pe 'nu date elemende.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "'U codece d'a lènghe d'a uicchi pa lènghe 'u quale condenute manghe pe 'na certa vôsce.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Numere desiderate de resultate. Note ca mene resultate ponne essere date, ce so de mene d'u numere de resultate desiderate.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Cirche sulamende jndr'à ste namespace."
+}
