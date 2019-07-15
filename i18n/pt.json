@@ -8,10 +8,15 @@
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Estatísticas de edição para funcionalidades  específicas, do utilizador autenticado.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Obter contagens e destinos de tarefas específicas passados para o utilizador autenticado.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Sugestões de microcontribuições, de tipos predefinidos.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obter identificadores das entidades Wikidata para os elementos que têm descrições em italiano mas não têm nenhuma em japonês (e têm artigos hiperligados na Wikipédia de italiano e japonês).",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Obter identificadores das entidades Wikidata para os elementos que têm artigos hiperligados na Wikipédia de italiano mas não têm nenhuma descrição em italiano, e usá-los como gerador.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obter identificadores das entidades Wikidata para os elementos que têm descrições em italiano mas não em japonês.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Obter identificadores das entidades Wikidata para os elementos que têm descrições em falta em italiano, e usá-los como um gerador.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Obter identificadores das entidades Wikidata para os elementos que têm rótulos em italiano mas não em japonês.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Obter identificadores das entidades Wikidata para os elementos que têm rótulos em falta em italiano, e usá-los como um gerador.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Obter identificadores das entidades Wikidata para os elementos do espaço nominal Ficheiro com rótulos (isto é, legendas) em italiano mas não em japonês.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Obter identificadores das entidades Wikidata para os elementos do espaço nominal Ficheiro com rótulos (isto é, legendas) em falta, e usá-los como um gerador.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Tipo de sugestão de tarefa.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Para sugestões de tarefas do tipo tradução, o código de língua da wiki para a língua em que o conteúdo deve existir para um determinado elemento.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Código de língua da wiki para a língua em que o conteúdo não existe para um determinado elemento.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Número desejado de resultados. Note que podem ser devolvidos menos resultados, se só estiverem disponíveis menos resultados do que o número desejado."
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Número desejado de resultados. Note que podem ser devolvidos menos resultados, se só estiverem disponíveis menos resultados do que o número desejado.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Pesquisar só nestes espaços nominais."
 }
