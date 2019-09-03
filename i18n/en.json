@@ -4,19 +4,5 @@
 			"Michael Holloway"
 		]
 	},
-	"wikimediaeditortasks-desc": "Task generation, storage, and API modules for microcontributions.",
-	"apihelp-query+wikimediaeditortaskscounts-summary": "Feature-specific editing statistics for the logged-in user.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Get task-specific counts and targets passed for the logged-in user.",
-	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Microcontribution suggestions of predefined types.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Get Wikidata entity IDs for items with descriptions in Italian but not Japanese.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Get Wikidata entity IDs for items missing descriptions in Italian, and use them as a generator.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Get Wikidata entity IDs for items with labels in Italian but not Japanese.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Get Wikidata entity IDs for items missing labels in Italian, and use them as a generator.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Get Wikidata entity IDs for items in the File namespace with labels (a.k.a. captions) in Italian but not Japanese.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Get Wikidata entity IDs for items in the File namespace missing labels (a.k.a. captions) in Italian, and use them as a generator.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Task suggestion type.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "For translation-type task suggestions, wiki language code for the language in which the content should exist for a given item.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Wiki language code for the language in which the content is missing for a given item.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Desired number of results. Note that fewer results may be returned, if fewer than the desired number are available.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Search only within these namespaces."
+	"wikimediaeditortasks-desc": "Task generation, storage, and API modules for microcontributions."
 }

@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Michael Holloway",
+			"Umherirrender"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "{{doc-apihelp-summary|query+wikimediaeditortaskscounts}}",
+	"apihelp-query+wikimediaeditortaskscounts-example": "{{doc-apihelp-example|query+wikimediaeditortaskscounts}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "{{doc-apihelp-summary|query+wikimediaeditortaskssuggestions}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "{{doc-apihelp-example|query+wikimediaeditortaskssuggestions}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "{{doc-apihelp-example|query+wikimediaeditortaskssuggestions}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "{{doc-apihelp-example|query+wikimediaeditortaskssuggestions}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "{{doc-apihelp-example|query+wikimediaeditortaskssuggestions}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "{{doc-apihelp-example|query+wikimediaeditortaskssuggestions}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "{{doc-apihelp-example|query+wikimediaeditortaskssuggestions}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|task}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|source}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|target}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|limit}}",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "{{doc-apihelp-param|query+wikimediaeditortaskssuggestions|namespace}}"
+}
