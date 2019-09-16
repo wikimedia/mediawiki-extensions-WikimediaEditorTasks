@@ -1,0 +1,13 @@
+{
+	"@metadata": {
+		"authors": [
+			"Metalhead64",
+			"Mirzali"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Abrufen von Wikidata-Entitäts-IDs für Elemente mit Bezeichnungen auf Italienisch, jedoch nicht auf Japanisch (und verknüpften Artikeln sowohl im italienischen als auch im japanischen Wikipedias).",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Abrufen von Wikidata-Entitäts-IDs für Elemente mit verknüpften italienischen Wikipedia-Artikeln, denen jedoch italienische Bezeichnungen fehlen. Verwenden Sie diese als Generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Abrufen von Wikidata-Entitäts-IDs für Elemente mit Bezeichnungen (a.k.a.-Beschriftungen) auf Italienisch, jedoch nicht auf Japanisch (und verknüpften Artikeln sowohl im italienischen als auch im japanischen Wikipedias).",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Abrufen von Wikidata-Entitäts-IDs für Elemente mit verknüpften italienischen Wikipedia-Artikeln, aber fehlenden Bezeichnungen (a.k.a.-Beschriftungen) auf Italienisch und Verwenden dieser Bezeichnungen als Generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Aufgabenvorschlagstyp."
+}

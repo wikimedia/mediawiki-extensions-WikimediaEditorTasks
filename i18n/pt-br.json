@@ -4,19 +4,5 @@
 			"Eduardo Addad de Oliveira"
 		]
 	},
-	"wikimediaeditortasks-desc": "Geração de tarefas, armazenamento e módulos API para microcontribuições.",
-	"apihelp-query+wikimediaeditortaskscounts-summary": "Estatísticas de edição específicas do recurso para o usuário conectado.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Obter contagens e destinos específicos da tarefa passados para o usuário conectado.",
-	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Sugestões de microconferência de tipos pré-definidos.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obtenha IDs de entidade do Wikidata para itens com descrições em italiano, mas não em japonês.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Obtenha IDs de entidade do Wikidata para itens que não tenham descrições em italiano e use-os como um gerador.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Obtenha IDs de entidade do Wikidata para itens com rótulos em italiano, mas não em japonês.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Obtenha IDs de entidade do Wikidata para itens que não tenham rótulos em italiano e use-os como um gerador.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Obtenha IDs de entidade Wikidata para itens no espaço nominal de arquivos com rótulos (legendas a.k.a) em italiano, mas não em japonês.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Obtenha IDs de entidade do Wikidata para itens nos rótulos ausentes do espaço nominais de arquivos (legendas a.k.a) em italiano e use-os como um gerador.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Tipo de sugestão de tarefa.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Para sugestões de tarefas do tipo tradução, o código da linguagem da wiki para o idioma em que o conteúdo deve existir para um determinado item.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Código de idioma da Wiki para o idioma em que o conteúdo está ausente para um determinado item.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Número desejado de resultados. Observe que menos resultados podem ser retornados, se menos do que o número desejado estiver disponível.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Procure apenas nesses espaços de nominais."
+	"wikimediaeditortasks-desc": "Geração de tarefas, armazenamento e módulos API para microcontribuições."
 }

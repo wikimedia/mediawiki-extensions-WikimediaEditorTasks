@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Fitoschido"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Sugerencias de microcontribuciones de tipos predefinidos.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Tipo de sugerencia de tarea."
+}

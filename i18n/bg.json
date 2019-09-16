@@ -4,14 +4,5 @@
 			"Vlad5250"
 		]
 	},
-	"wikimediaeditortasks-desc": "Създаване, складиране на и приложник за микроприноси. Поддържа проекта [[:mw:Android_editing_features|Задачи за приложни редакции]] на екипа [[:mw:Wikimedia_Apps|Уикимедийни приложения]].",
-	"apihelp-query+wikimediaeditortaskscounts-summary": "Редакционна статистика за регистрирания потребител според отделни опции.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Числа и цели за отделни задачи за регистрирания потребител.",
-	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Предлагани микроприноси от предопределени видове.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Дава идентификации на обекти на Уикиданните с описания на италиански, но не и на японски (и свързани с тях статии в двете Уикипедии).",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Дава идентификации за обекти на Уикиданните със сродни статии в италианската Уикипедия, но без описания на италиански и ги използва като създател.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Вид предлаганата задача.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "За предлагани преводачки задачи, уикикод на езика, на който съдържанието трябва да съществува за даден обект.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Уикикод на езика, на който липсва съдържанието за даден обект.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Желаният брой елементи в резултата. Можете да получите по-малко, ако няма достатъчно."
+	"wikimediaeditortasks-desc": "Създаване, складиране на и приложник за микроприноси. Поддържа проекта [[:mw:Android_editing_features|Задачи за приложни редакции]] на екипа [[:mw:Wikimedia_Apps|Уикимедийни приложения]]."
 }

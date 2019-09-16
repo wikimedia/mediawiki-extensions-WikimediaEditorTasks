@@ -4,19 +4,5 @@
 			"Bjankuloski06"
 		]
 	},
-	"wikimediaeditortasks-desc": "Создавање, складирање на и приложник за микропридонеси.",
-	"apihelp-query+wikimediaeditortaskscounts-summary": "Уредувачка статистика за најавениот корисник според поединечни можности.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Бројки и цели за поединечни задачи за најавениот корисник.",
-	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Предложени микропридонеси од предодредени видови.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Дава назнаки за предмети на Википодатоците со описи на италијански, но не и на јапонски.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Дава назнаки за предмети на Википодатоците без описи на италијански, и ги користи како создавач.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Дава натписи за предмети на Википодатоците со описи на италијански, но не и на јапонски.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Дава назнаки за предмети на Википодатоците без натписи на италијански, и ги користи како создавач.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Дава назнаки на единици на Википодатоците во именскиот простор Податотека (File) со натписи италијански, но не и на јапонски.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Дава назнаки на единици на Википодатоците во именскиот простор Податотека (File) без натписи италијански, и ги користи како создавач.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Вид на предложената задача.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "За предложени преведувачки задачи, викикод на јазикот на кој содржината треба да постои за даден предмет.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Викикод на јазикот на кој отсуствува содрината за даден предмет.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Посакуван број на ставки во исходот. Може да добиете и помалку, доколку нема доволно.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Пребарување само во овие именски простори."
+	"wikimediaeditortasks-desc": "Создавање, складирање на и приложник за микропридонеси."
 }

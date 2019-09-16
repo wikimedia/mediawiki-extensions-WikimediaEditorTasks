@@ -5,7 +5,5 @@
 			"Marcelo9987"
 		]
 	},
-	"wikimediaeditortasks-desc": "Generación de tarea, almacenamiento, y API módulos para microcontributions.",
-	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Sugerencias de microcontribuciones de tipos predefinidos.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Tipo de sugerencia de tarea."
+	"wikimediaeditortasks-desc": "Generación de tarea, almacenamiento, y API módulos para microcontributions."
 }

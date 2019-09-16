@@ -1,0 +1,22 @@
+{
+	"@metadata": {
+		"authors": [
+			"Meno25",
+			"ديفيد"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "إحصاءات التعديل حسب الخاصية للمستخدمين المسجلين.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "الحصول على عدادات حسب المهمة والأهداف المرسلة للمستخدمين المسجلين.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "اقتراحات المساهمات المصغرة لأنواع معرفة مسبقا.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "الحصول على معرفات كيانات ويكي بيانات للعناصر بأوصاف بالإيطالية لكن ليس باليابانية.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "الحصول على معرفات كيانات ويكي بيانات للعناصر لكن تفقد الوصف بالإيطالية، واستخدامها كمولد.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "الحصول على معرفات كيانات ويكي بيانات للعناصر ذات التسميات بالإيطالية ولكن ليس اليابانية.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "الحصول على معرفات كيانات ويكي بيانات للعناصر مع عدم وجود تسميات باللغة الإيطالية، واستخدمها كمولد",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "الحصول على معرفات كيانات ويكي بيانات للعناصر في نطاق الملف ذات التسميات (المعروفة أيضا بالتعليقات التوضيحية) بالإيطالية ولكن ليس اليابانية.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "الحصول على معرفات كيانات ويكي بيانات للعناصر في نطاق الملف مع عدم وجود تسميات (المعروفة أيضا بالتعليقات التوضيحية)، واستخدمها كمولد.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "نوع اقتراح المهمة.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "لاقتراحات المهام المتعلقة بالترجمة، كود لغة الويكي للغة التي المحتوى ينبغي أن يكون موجودا بها لعنصر معطى.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "كود لغة الويكي للغة التي المحتوى بها مفقود لعنصر معطى.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "عدد النتائج المرغوب. لاحظ أن النتائج الأقل ربما يتم إرجاعها، لو أن عددا أقل من الرقم المرغوب متوفر.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "ابحث فقط ضمن النطاقات المحددة"
+}

@@ -4,14 +4,5 @@
 			"Vlad5250"
 		]
 	},
-	"wikimediaeditortasks-desc": "Stvaranje, spremište na i priložnik za mikro-doprinose.",
-	"apihelp-query+wikimediaeditortaskscounts-summary": "Uredničke statistike za prijavljenog korisnika prema pojedinim mogućnosti.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Brojevi i ciljevi za pojedinačne zadatke prijavljenog korisnika.",
-	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Predloženi mikro-doprinosi predodređenih vrsta.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Daje naznake za predmete Wikipodataka s opisima na talijanskom, ali ne na japanskom (i srodne članke na obje Wikipedije).",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Daje naznake za predmete Wikipodataka s povezanim člancima na talijanskoj Wikipediji, ali bez opisa na talijanskom, te ih koristi kao generator.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Vrsta predloženog zadatka.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Za predložene zadatke prijevoda, wikikod jezika na kojem bi sadržaj trebao postojati za određeni predmet.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Wikikod jezika na kojem nedostaje sadržaj za određeni predmet.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Željeni broj stavki u ishodu. Možete dobiti i manje, ukoliko nema dovoljno."
+	"wikimediaeditortasks-desc": "Stvaranje, spremište na i priložnik za mikro-doprinose."
 }
