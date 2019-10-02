@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"Vlad5250",
-			"StanProg"
+			"StanProg",
+			"Ted Masters"
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Редакционна статистика за влезлия потребител според за отделни възможности.",
@@ -11,7 +12,7 @@
 	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Дава идентификации на обекти на Уикиданните с описания на италиански, но не и на японски (и свързани с тях статии в двете Уикипедии).",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Дава идентификации за обекти на Уикиданните със сродни статии в италианската Уикипедия, но без описания на италиански и ги използва като създател.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Тип на предложената задача.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "За предлагани преподачески задачи, езиковият код за уики на езика на който съдържанието трябва да съществува за даден обект.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Езиковият код на езика за езика, на който липсва съдържанието за даден обект.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "За предлагани преводачески задачи, езиковият код за уики на езика на който съдържанието трябва да съществува за даден обект.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Езиковият код на езика, за който липсва съдържанието за даден обект.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Желаният брой резултати. Забележете, че може да получите по-малко резултати, ако са налични по-малко от желаните."
 }
