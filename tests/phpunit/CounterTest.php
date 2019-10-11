@@ -40,7 +40,7 @@ class CounterTest extends MediaWikiTestCase {
 	/** @var int */
 	private $userId;
 
-	public function setUp() {
+	public function setUp() : void {
 		parent::setUp();
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'wikimedia_editor_tasks_keys',
