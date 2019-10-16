@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bjankuloski06"
+			"Bjankuloski06",
+			"Vlad5250"
 		]
 	},
-	"wikimediaeditortasks-desc": "Создавање, складирање на и приложник за микропридонеси."
+	"wikimediaeditortasks-desc": "Создавање на задачи, складирање и API-модули за микропридонеси."
 }

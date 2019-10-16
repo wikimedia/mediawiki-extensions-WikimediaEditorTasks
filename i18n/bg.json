@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vlad5250"
+			"Vlad5250",
+			"StanProg"
 		]
 	},
-	"wikimediaeditortasks-desc": "Създаване, складиране на и приложник за микроприноси. Поддържа проекта [[:mw:Android_editing_features|Задачи за приложни редакции]] на екипа [[:mw:Wikimedia_Apps|Уикимедийни приложения]]."
+	"wikimediaeditortasks-desc": "Създаване на задачи, съхраняване и API-модули за микроприноси."
 }
