@@ -32,7 +32,7 @@ use Wikimedia\TestingAccessWrapper;
 class CounterTest extends MediaWikiTestCase {
 
 	const LANG = 'test';
-	const TARGET_COUNT = 2;
+	const TEST_EDIT_COUNT = 2;
 
 	/** @var Counter[] */
 	private $counters;
@@ -44,8 +44,7 @@ class CounterTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'wikimedia_editor_tasks_keys',
-			'wikimedia_editor_tasks_counts',
-			'wikimedia_editor_tasks_targets_passed'
+			'wikimedia_editor_tasks_counts'
 		] );
 
 		$counterFactory = WikimediaEditorTasksServices::getInstance()->getCounterFactory();
@@ -56,16 +55,12 @@ class CounterTest extends MediaWikiTestCase {
 			[
 				"class" => "MediaWiki\\Extension\\WikimediaEditorTasks\\Test\\"
 						   . "DecrementOnRevertTestCounter",
-				"counter_key" => "decrement_on_revert",
-				"target_counts" => self::TARGET_COUNT,
-				"delay" => null
+				"counter_key" => "decrement_on_revert"
 			],
 			[
 				"class" => "MediaWiki\\Extension\\WikimediaEditorTasks\\Test\\"
 						   . "ResetOnRevertTestCounter",
-				"counter_key" => "reset_on_revert",
-				"target_counts" => self::TARGET_COUNT,
-				"delay" => 86400
+				"counter_key" => "reset_on_revert"
 			]
 		] ) );
 
@@ -108,21 +103,11 @@ class CounterTest extends MediaWikiTestCase {
 		$resetOnRevertCounter = $this->counters[1];
 
 		foreach ( $this->counters as $counter ) {
-			for ( $i = 0; $i < self::TARGET_COUNT; $i++ ) {
+			for ( $i = 0; $i < self::TEST_EDIT_COUNT; $i++ ) {
 				$counter->onEditSuccess( $this->userId, null );
 			}
 			$this->assertEquals( 2, $counter->getCountForLang( $this->userId, self::LANG ) );
 		}
-
-		$this->assertTrue( $decrementOnRevertCounter->getTargetPassed( $this->userId,
-			self::TARGET_COUNT ) );
-		$this->assertFalse( $decrementOnRevertCounter->getPendingTargetPassed( $this->userId,
-			self::TARGET_COUNT ) );
-
-		$this->assertFalse( $resetOnRevertCounter->getTargetPassed( $this->userId,
-			self::TARGET_COUNT ) );
-		$this->assertTrue( $resetOnRevertCounter->getPendingTargetPassed( $this->userId,
-			self::TARGET_COUNT ) );
 
 		foreach ( $this->counters as $counter ) {
 			$counter->onRevert( $this->userId );
@@ -130,13 +115,8 @@ class CounterTest extends MediaWikiTestCase {
 
 		$this->assertEquals( 1, $decrementOnRevertCounter->getCountForLang( $this->userId,
 			self::LANG ) );
-		$this->assertTrue( $decrementOnRevertCounter->getTargetPassed( $this->userId,
-			self::TARGET_COUNT ) );
 
 		$this->assertEquals( 0, $resetOnRevertCounter->getCountForLang( $this->userId,
 			self::LANG ) );
-		$this->assertFalse( $resetOnRevertCounter->getPendingTargetPassed( $this->userId,
-			self::TARGET_COUNT ) );
 	}
-
 }

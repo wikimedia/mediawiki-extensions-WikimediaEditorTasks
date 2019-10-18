@@ -5,7 +5,7 @@
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Feature-specific editing statistics for the logged-in user.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Get task-specific counts and targets passed for the logged-in user.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Get task-specific counts for the logged-in user.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Microcontribution suggestions of predefined types.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Get Wikidata entity IDs for items with descriptions in Italian but not Japanese.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Get Wikidata entity IDs for items missing descriptions in Italian, and use them as a generator.",

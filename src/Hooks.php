@@ -133,11 +133,13 @@ class Hooks {
 		$baseDir = dirname( __DIR__ );
 		$updater->addExtensionTable( 'wikimedia_editor_tasks_keys', "$baseDir/sql/keys.sql" );
 		$updater->addExtensionTable( 'wikimedia_editor_tasks_counts', "$baseDir/sql/counts.sql" );
-		$updater->addExtensionTable( 'wikimedia_editor_tasks_targets_passed',
-			"$baseDir/sql/targets_passed.sql" );
 		$updater->dropExtensionTable(
 			'wikimedia_editor_tasks_entity_description_exists',
 			"$baseDir/sql/drop-wikimedia_editor_tasks_entity_description_exists.sql"
+		);
+		$updater->dropExtensionTable(
+			'wikimedia_editor_tasks_targets_passed',
+			"$baseDir/sql/drop-wikimedia_editor_tasks_targets_passed.sql"
 		);
 	}
 

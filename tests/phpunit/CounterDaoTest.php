@@ -42,8 +42,7 @@ class CounterDaoTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'wikimedia_editor_tasks_keys',
-			'wikimedia_editor_tasks_counts',
-			'wikimedia_editor_tasks_targets_passed'
+			'wikimedia_editor_tasks_counts'
 		] );
 		$this->dao = WikimediaEditorTasksServices::getInstance()->getCounterDao();
 		$this->userId = $this::getTestUser()->getUser()->getId();
@@ -51,7 +50,6 @@ class CounterDaoTest extends MediaWikiTestCase {
 
 	public function testEmpty() {
 		$this->assertEquals( [], $this->dao->getAllCounts( $this->userId ) );
-		$this->assertEquals( [], $this->dao->getAllTargetsPassed( $this->userId ) );
 	}
 
 	public function testCounts() {
@@ -62,18 +60,5 @@ class CounterDaoTest extends MediaWikiTestCase {
 		$this->dao->decrementCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG );
 		$this->assertEquals( 0, $this->dao->getCountForKeyAndLang( $this->userId, self::KEY_ID,
 			self::LANG ) );
-	}
-
-	public function testTargetsPassed() {
-		$this->assertFalse( $this->dao->getTargetPassed( $this->userId, self::KEY_ID ) );
-		$this->dao->updateTargetsPassed( $this->userId, self::KEY_ID, [ 1 ] );
-		$this->assertTrue( $this->dao->getTargetPassed( $this->userId, self::KEY_ID ) );
-	}
-
-	public function testDeletePendingTargetsPassed() {
-		$this->assertFalse( $this->dao->getTargetPassed( $this->userId, self::KEY_ID ) );
-		$this->dao->updateTargetsPassed( $this->userId, self::KEY_ID, [ 1 ], 86400 );
-		$this->dao->deletePendingTargetsPassed( $this->userId, self::KEY_ID );
-		$this->assertFalse( $this->dao->getTargetPassed( $this->userId, self::KEY_ID ) );
 	}
 }

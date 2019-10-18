@@ -19,7 +19,6 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use IDBAccessObject;
 use WebRequest;
 
 /**
@@ -37,22 +36,12 @@ abstract class Counter {
 	/** @var int */
 	private $keyId;
 
-	/** @var int[]|null */
-	private $targetCounts;
-
-	/** @var int|null */
-	private $delay;
-
 	/**
 	 * @param int $keyId edit counter key ID
-	 * @param int|int[]|null $targetCounts target count(s) for the counter (if any)
-	 * @param int|null $delay delay to apply before passing the target takes effect
 	 * @param CounterDao $dao
 	 */
-	public function __construct( $keyId, $targetCounts, $delay, CounterDao $dao ) {
+	public function __construct( $keyId, CounterDao $dao ) {
 		$this->keyId = $keyId;
-		$this->targetCounts = is_int( $targetCounts ) ? [ $targetCounts ] : $targetCounts;
-		$this->delay = $delay;
 		$this->dao = $dao;
 	}
 
@@ -110,8 +99,6 @@ abstract class Counter {
 		} else {
 			$this->setCountForLang( $centralId, $lang, 1 );
 		}
-
-		$this->updateTargetsPassed( $centralId );
 	}
 
 	/**
@@ -121,8 +108,6 @@ abstract class Counter {
 	 */
 	protected function decrementForLang( $centralId, $lang ) {
 		$this->dao->decrementCountForKeyAndLang( $centralId, $this->keyId, $lang );
-
-		$this->deletePendingTargetsPassed( $centralId );
 	}
 
 	/**
@@ -131,60 +116,6 @@ abstract class Counter {
 	 */
 	protected function reset( $centralId ) {
 		$this->dao->deleteAllCountsForKey( $centralId, $this->keyId );
-
-		$this->deletePendingTargetsPassed( $centralId );
 	}
 
-	/**
-	 * Get whether the user has passed a target count for this counter.
-	 * @param int $centralId central user ID
-	 * @param int|null $count target count to check, or null to see if any target count is passed
-	 * @return bool true if there is a target and the user passed it
-	 */
-	public function getTargetPassed( $centralId, $count ) {
-		return $this->dao->getTargetPassed( $centralId, $this->keyId, $count );
-	}
-
-	/**
-	 * Get whether the user has a pending target passed flag for this counter.
-	 * @param int $centralId central user ID
-	 * @param int|null $count target count to check, or null to see if any target passed flag is
-	 * pending
-	 * @return bool true if there is a target passed flag pending
-	 */
-	public function getPendingTargetPassed( $centralId, $count ) {
-		return $this->dao->getPendingTargetPassed( $centralId, $this->keyId, $count );
-	}
-
-	/**
-	 * Mark the target passed for this counter if the total of all per-language counts is greater
-	 * than or equal to the target count.
-	 * @param int $centralId central ID of this user
-	 */
-	private function updateTargetsPassed( $centralId ) {
-		if ( !$this->targetCounts ) {
-			return;
-		}
-		$counts = array_values( $this->dao->getAllCountsForKey( $centralId, $this->keyId,
-			IDBAccessObject::READ_LATEST ) );
-		$total = array_sum( $counts );
-		$targetsPassed = array_filter( $this->targetCounts, function ( $target ) use ( $total ) {
-			return $total >= $target;
-		} );
-		if ( !$targetsPassed ) {
-			return;
-		}
-		$this->dao->updateTargetsPassed( $centralId, $this->keyId, $targetsPassed, $this->delay );
-	}
-
-	/**
-	 * Delete pending targets passed for this user (e.g., on revert).
-	 * @param int $centralId central ID of this user
-	 */
-	private function deletePendingTargetsPassed( $centralId ) {
-		if ( !$this->targetCounts ) {
-			return;
-		}
-		$this->dao->deletePendingTargetsPassed( $centralId, $this->keyId );
-	}
 }
