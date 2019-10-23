@@ -36,6 +36,7 @@ abstract class WikipediaAppCounter extends Counter {
 		$params = $this->getRequestParams( $request );
 		if ( $params['action'] === $action ) {
 			$this->incrementForLang( $centralId, $params['language'] );
+			$this->updateEditStreak( $centralId );
 		}
 	}
 

@@ -19,7 +19,7 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 
-use MediaWiki\Extension\WikimediaEditorTasks\Dao;
+use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
 use MediaWikiTestCase;
 
@@ -32,7 +32,7 @@ class CounterDaoTest extends MediaWikiTestCase {
 	const KEY_ID = 0;
 	const LANG = 'test';
 
-	/** @var Dao */
+	/** @var CounterDao */
 	private $dao;
 
 	/** @var int */
@@ -42,7 +42,8 @@ class CounterDaoTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'wikimedia_editor_tasks_keys',
-			'wikimedia_editor_tasks_counts'
+			'wikimedia_editor_tasks_counts',
+			'wikimedia_editor_tasks_edit_streak'
 		] );
 		$this->dao = WikimediaEditorTasksServices::getInstance()->getCounterDao();
 		$this->userId = $this::getTestUser()->getUser()->getId();
@@ -60,5 +61,11 @@ class CounterDaoTest extends MediaWikiTestCase {
 		$this->dao->decrementCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG );
 		$this->assertEquals( 0, $this->dao->getCountForKeyAndLang( $this->userId, self::KEY_ID,
 			self::LANG ) );
+	}
+
+	public function testEditStreak() {
+		$this->dao->setEditStreak( $this->userId );
+		$this->assertCount( 2, $this->dao->getEditStreak( $this->userId ) );
+		$this->assertEquals( 1, $this->dao->getEditStreak( $this->userId )['length'] );
 	}
 }

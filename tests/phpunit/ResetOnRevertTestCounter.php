@@ -31,13 +31,14 @@ class ResetOnRevertTestCounter extends Counter {
 	 */
 	public function onEditSuccess( $centralId, $request ) {
 		$this->incrementForLang( $centralId, 'test' );
+		$this->updateEditStreak( $centralId );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
 	public function onRevert( $centralId ) {
-		$this->reset( $centralId, 'test' );
+		$this->reset( $centralId );
 	}
 
 }

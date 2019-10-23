@@ -53,9 +53,11 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 		$centralId = Utils::getCentralId( $this->getUser() );
 
 		$counts = $dao->getAllCounts( $centralId );
+		$editStreak = $dao->getEditStreak( $centralId );
 
 		$this->getResult()->addValue( 'query', 'wikimediaeditortaskscounts', [
 			'counts' => $counts,
+			'edit_streak' => $editStreak
 		] );
 	}
 

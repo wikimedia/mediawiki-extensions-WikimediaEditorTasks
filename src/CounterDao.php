@@ -200,4 +200,56 @@ class CounterDao {
 			__METHOD__
 		);
 	}
+
+	/**
+	 * Get the edit streak length and last edit time for the user
+	 * @param int $centralId central user ID
+	 * @return array[] An array contains current streak length and last edit time
+	 */
+	public function getEditStreak( $centralId ) {
+		$wrapper = $this->dbr->selectRow(
+			[ 'wikimedia_editor_tasks_edit_streak' ],
+			[ 'wetes_streak_length', 'wetes_last_edit_time' ],
+			[ 'wetes_user' => $centralId ],
+			__METHOD__
+		);
+		$result = [];
+		if ( $wrapper != false ) {
+			$result['length'] = (int)$wrapper->wetes_streak_length;
+			$result['last_edit_time'] = $wrapper->wetes_last_edit_time;
+		}
+		return $result;
+	}
+
+	/**
+	 * Set the edit streak for a user.
+	 * Increase the edit streak length if the user makes an edit within 2 days.
+	 * @param int $centralId central user ID
+	 * @return bool true if no exception was thrown
+	 */
+	public function setEditStreak( $centralId ) {
+		$currentTime = $this->dbw->timestamp( time() );
+		return $this->dbw->upsert(
+			'wikimedia_editor_tasks_edit_streak',
+			[
+				'wetes_user' => $centralId,
+				'wetes_streak_length' => 1,
+				'wetes_last_edit_time' => $currentTime,
+			],
+			'wetes_user',
+			[
+				'wetes_streak_length = IF (
+					DATEDIFF ( ' . $currentTime . ', wetes_last_edit_time ) >= 2,
+					1,
+					IF (
+						DATEDIFF ( ' . $currentTime . ', wetes_last_edit_time ) = 1,
+						wetes_streak_length + 1,
+						wetes_streak_length
+					)
+				)',
+				'wetes_last_edit_time = ' . $currentTime
+			],
+			__METHOD__
+		);
+	}
 }

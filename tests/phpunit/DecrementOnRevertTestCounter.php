@@ -31,6 +31,7 @@ class DecrementOnRevertTestCounter extends Counter {
 	 */
 	public function onEditSuccess( $centralId, $request ) {
 		$this->incrementForLang( $centralId, 'test' );
+		$this->updateEditStreak( $centralId );
 	}
 
 	/**

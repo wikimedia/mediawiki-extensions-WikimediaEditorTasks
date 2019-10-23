@@ -118,4 +118,20 @@ abstract class Counter {
 		$this->dao->deleteAllCountsForKey( $centralId, $this->keyId );
 	}
 
+	/**
+	 * Update the edit streak length and last edit time for user
+	 * @param int $centralId central ID of the user
+	 */
+	protected function updateEditStreak( $centralId ) {
+		$this->dao->setEditStreak( $centralId );
+	}
+
+	/**
+	 * Get the edit streak length and last edit time for user
+	 * @param int $centralId central ID of the user
+	 * @return array[] An array contains current streak length and last edit time
+	 */
+	protected function getEditStreak( $centralId ) {
+		return $this->dao->getEditStreak( $centralId );
+	}
 }

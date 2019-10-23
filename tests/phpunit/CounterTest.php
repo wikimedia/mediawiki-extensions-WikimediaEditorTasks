@@ -44,7 +44,8 @@ class CounterTest extends MediaWikiTestCase {
 		parent::setUp();
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'wikimedia_editor_tasks_keys',
-			'wikimedia_editor_tasks_counts'
+			'wikimedia_editor_tasks_counts',
+			'wikimedia_editor_tasks_edit_streak'
 		] );
 
 		$counterFactory = WikimediaEditorTasksServices::getInstance()->getCounterFactory();
@@ -95,6 +96,8 @@ class CounterTest extends MediaWikiTestCase {
 		foreach ( $this->counters as $counter ) {
 			$counter->onEditSuccess( $this->userId, null );
 			$this->assertEquals( 1, $counter->getCountForLang( $this->userId, self::LANG ) );
+			$this->assertEquals( 1, $counter->getEditStreak( $this->userId )['length'] );
+			$this->assertCount( 2, $counter->getEditStreak( $this->userId ) );
 		}
 	}
 
