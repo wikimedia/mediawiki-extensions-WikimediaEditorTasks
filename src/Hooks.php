@@ -71,7 +71,7 @@ class Hooks {
 	) {
 		$cb = function () use ( $revision, $status, $user, $undidRevId, $wikiPage ) {
 			if ( $revision && $status->isGood() && $user && $user->isLoggedIn() ) {
-				self::countersOnEditSuccess( $user, $revision );
+				self::countersOnEditSuccess( $user, $revision->getId() );
 			}
 
 			if ( $undidRevId ) {
@@ -101,7 +101,7 @@ class Hooks {
 	 * @param Revision $oldRev The revision of the top edit that was reverted
 	 */
 	public static function onArticleRollbackComplete( WikiPage $wikiPage, $agent, $newRev, $oldRev ) {
-		$cb = function () use ( $oldRev, $newRev ) {
+		$cb = function () use ( $wikiPage, $oldRev, $newRev ) {
 			$victimId = $oldRev->getUser();
 			if (
 				// Ignore anonymous users and null rollbacks
@@ -109,7 +109,7 @@ class Hooks {
 			) {
 				$victim = User::newFromId( $victimId );
 				foreach ( self::getCounters() as $counter ) {
-					$counter->onRevert( Utils::getCentralId( $victim ) );
+					$counter->onRevert( Utils::getCentralId( $victim ), $oldRev->getId(), $oldRev );
 				}
 			}
 		};
@@ -153,20 +153,25 @@ class Hooks {
 			'wikimedia_editor_tasks_targets_passed',
 			"$baseDir/sql/drop-wikimedia_editor_tasks_targets_passed.sql"
 		);
+		$updater->addExtensionField(
+			'wikimedia_editor_tasks_counts',
+			'wetc_revert_count',
+			"$baseDir/sql/alter-wikimedia_editor_tasks_counts.sql"
+		);
 	}
 
 	/**
 	 * @param User $user user who succeeded in editing
-	 * @param Revision $revision
+	 * @param int $revisionId revisionId of the successful edit
 	 */
-	private static function countersOnEditSuccess( $user, $revision ) {
+	private static function countersOnEditSuccess( $user, $revisionId ) {
 		$centralId = Utils::getCentralId( $user );
 
 		// We need to check the underlying request headers to determine if this is an app edit
 		$request = RequestContext::getMain()->getRequest();
 
 		foreach ( self::getCounters() as $counter ) {
-			$counter->onEditSuccess( $centralId, $request, $revision );
+			$counter->onEditSuccess( $centralId, $request, $revisionId );
 		}
 	}
 
@@ -195,7 +200,7 @@ class Hooks {
 
 		$undidUser = User::newFromId( $undidUserId );
 		foreach ( self::getCounters() as $counter ) {
-			$counter->onRevert( Utils::getCentralId( $undidUser ) );
+			$counter->onRevert( Utils::getCentralId( $undidUser ), $undidRevId, $undidRev );
 		}
 	}
 

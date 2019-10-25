@@ -51,7 +51,7 @@ class CounterDao {
 	 * 	...
 	 * ]
 	 */
-	public function getAllCounts( $centralId ) {
+	public function getAllEditCounts( $centralId ) {
 		$wrapper = $this->dbr->select(
 			[ 'wikimedia_editor_tasks_counts', 'wikimedia_editor_tasks_keys' ],
 			[ 'wet_key', 'wetc_lang', 'wetc_count' ],
@@ -79,7 +79,7 @@ class CounterDao {
 	 * @param int $flags IDBAccessObject flags
 	 * @return array counts for all langs for the specified key
 	 */
-	public function getAllCountsForKey( $centralId, $keyId, $flags = 0 ) {
+	public function getAllEditCountsForKey( $centralId, $keyId, $flags = 0 ) {
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
 		$db = ( $index === DB_MASTER ) ? $this->dbw : $this->dbr;
 
@@ -107,7 +107,7 @@ class CounterDao {
 	 * @param string $lang language code
 	 * @return int count for the specified key (returns 0 if not found)
 	 */
-	public function getCountForKeyAndLang( $centralId, $keyId, $lang ) {
+	public function getEditCountForKeyAndLang( $centralId, $keyId, $lang ) {
 		return (int)$this->dbr->selectField(
 			'wikimedia_editor_tasks_counts',
 			'wetc_count',
@@ -144,7 +144,7 @@ class CounterDao {
 	 * @param string $lang language code for this count
 	 * @return bool true if no exception was thrown
 	 */
-	public function incrementCountForKeyAndLang( $centralId, $keyId, $lang ) {
+	public function incrementEditCountForKeyAndLang( $centralId, $keyId, $lang ) {
 		return $this->dbw->update(
 			'wikimedia_editor_tasks_counts',
 			[ 'wetc_count = wetc_count + 1' ],
@@ -164,7 +164,7 @@ class CounterDao {
 	 * @param string $lang language code for this count
 	 * @return bool true if no exception was thrown
 	 */
-	public function decrementCountForKeyAndLang( $centralId, $keyId, $lang ) {
+	public function decrementEditCountForKeyAndLang( $centralId, $keyId, $lang ) {
 		return $this->dbw->update(
 			'wikimedia_editor_tasks_counts',
 			[ 'wetc_count = wetc_count - 1' ],
@@ -186,7 +186,7 @@ class CounterDao {
 	 * @param int $count new count
 	 * @return bool true if no exception was thrown
 	 */
-	public function setCountForKeyAndLang( $centralId, $keyId, $lang, $count ) {
+	public function setEditCountForKeyAndLang( $centralId, $keyId, $lang, $count ) {
 		return $this->dbw->upsert(
 			'wikimedia_editor_tasks_counts',
 			[
@@ -248,6 +248,79 @@ class CounterDao {
 					)
 				)',
 				'wetes_last_edit_time = ' . $currentTime
+			],
+			__METHOD__
+		);
+	}
+
+	/**
+	 * Increment a user's revert count for a key and language.
+	 * @param int $centralId central user ID
+	 * @param int $keyId
+	 * @param string $lang language code for this count
+	 * @return bool true if no exception was thrown
+	 */
+	public function incrementRevertCountForKeyAndLang( $centralId, $keyId, $lang ) {
+		return $this->dbw->update(
+			'wikimedia_editor_tasks_counts',
+			[ 'wetc_revert_count = wetc_revert_count + 1' ],
+			[
+				'wetc_user' => $centralId,
+				'wetc_key_id' => $keyId,
+				'wetc_lang' => $lang,
+			],
+			__METHOD__
+		);
+	}
+
+	/**
+	 * Get all stored reverts counts by lang for the user.
+	 * @param int $centralId central user ID
+	 * @return array[] All counts in the form:
+	 * [
+	 * 	<counter key> => [
+	 * 		<language code> => <count>,
+	 * 		...
+	 * 	],
+	 * 	...
+	 * ]
+	 */
+	public function getAllRevertCounts( $centralId ) {
+		$wrapper = $this->dbr->select(
+			[ 'wikimedia_editor_tasks_counts', 'wikimedia_editor_tasks_keys' ],
+			[ 'wet_key', 'wetc_lang', 'wetc_revert_count' ],
+			[ 'wetc_user' => $centralId ],
+			__METHOD__,
+			[],
+			[
+				'wikimedia_editor_tasks_keys' => [
+					'LEFT JOIN',
+					'wet_id=wetc_key_id',
+				],
+			]
+		);
+		$result = [];
+		foreach ( $wrapper as $row ) {
+			$result[$row->wet_key][$row->wetc_lang] = (int)$row->wetc_revert_count;
+		}
+		return $result;
+	}
+
+	/**
+	 * Get a single revert count by key and lang for a user.
+	 * @param int $centralId central user ID
+	 * @param int $keyId counter key ID
+	 * @param string $lang language code
+	 * @return int revert count for the specified key (returns 0 if not found)
+	 */
+	public function getRevertCountForKeyAndLang( $centralId, $keyId, $lang ) {
+		return (int)$this->dbr->selectField(
+			'wikimedia_editor_tasks_counts',
+			'wetc_revert_count',
+			[
+				'wetc_user' => $centralId,
+				'wetc_key_id' => $keyId,
+				'wetc_lang' => $lang,
 			],
 			__METHOD__
 		);

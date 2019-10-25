@@ -29,7 +29,8 @@ return [
 		return new CounterFactory(
 			$wmetServices->getCounterDao(),
 			$wmetServices->getNameTableStore(),
-			$wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksEnableEditStreaks' )
+			$wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksEnableEditStreaks' ),
+			$wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksEnableRevertCounts' )
 		);
 	},
 

@@ -19,25 +19,30 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use MediaWiki\Revision\RevisionRecord;
+
 /**
  * Counter for Wikimedia Commons file caption edits from the official Wikipedia apps.
  */
 class WikipediaAppCaptionEditCounter extends WikipediaAppCounter {
 
-	const ACTION = 'wbsetlabel';
-
-	/**
-	 * @inheritDoc
-	 */
-	public function onEditSuccess( $centralId, $request, $revision ) {
-		$this->conditionallyIncrementForAction( $centralId, $request, $revision, self::ACTION );
+	/** @inheritDoc */
+	public function onEditSuccess( $centralId, $request, $revisionId ) {
+		$this->conditionallyIncrementEditCount( $centralId, $request, $revisionId );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	public function onRevert( $centralId ) {
-		$this->reset( $centralId );
+	/** @inheritDoc */
+	public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ): void {
+		if ( $this->isRevertCountingEnabled() ) {
+			$this->conditionallyIncrementRevertCount( $centralId, $revisionId, $revision );
+		} else {
+			$this->reset( $centralId );
+		}
+	}
+
+	/** @inheritDoc */
+	protected function getAction(): string {
+		return 'wbsetlabel';
 	}
 
 }

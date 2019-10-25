@@ -20,29 +20,75 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 use ChangeTags;
-use Revision;
+use MediaWiki\Revision\RevisionRecord;
 use WebRequest;
 
 abstract class WikipediaAppCounter extends Counter {
 
 	/**
+	 * @return string Wikibase edit action associated with the counter
+	 */
+	abstract protected function getAction(): string;
+
+	/**
 	 * Increment the counter corresponding to the provided MW API action
 	 * @param int $centralId central ID of the editing user
 	 * @param WebRequest $request
-	 * @param Revision $revision
-	 * @param string $action the MW API action the counter corresponds to, e.g., 'wbsetlabel'
+	 * @param int $revisionId revisionId of the successful edit
 	 */
-	protected function conditionallyIncrementForAction( $centralId, WebRequest $request,
-		Revision $revision, $action ) {
+	protected function conditionallyIncrementEditCount( int $centralId, WebRequest $request,
+		int $revisionId ): void {
 		if ( !$this->isWikipediaAppMwApiRequest( $request ) ) {
 			return;
 		}
 		$params = $this->getRequestParams( $request );
-		if ( $params['action'] === $action ) {
-			$this->incrementForLang( $centralId, $params['language'] );
+		if ( $params['action'] === $this->getAction() ) {
+			$this->incrementEditCountForLang( $centralId, $params['language'] );
 			$this->updateEditStreak( $centralId );
-			ChangeTags::addTags( 'apps-suggested-edits', null, $revision->getId() );
+			ChangeTags::addTags( 'apps-suggested-edits', null, $revisionId );
 		}
+	}
+
+	/**
+	 * Increment the revert counter
+	 * @param int $centralId central ID of the editing user
+	 * @param int $revisionId revision ID of the reverted edit
+	 * @param RevisionRecord $revision the RevisionRecord corresponding with $revisionId
+	 */
+	protected function conditionallyIncrementRevertCount( int $centralId, int $revisionId,
+		RevisionRecord $revision ): void {
+		$lang = $this->getLanguageFromWikibaseComment( $revision->getComment()->text );
+		if ( $lang && $this->hasSuggestedEditsChangeTag( $revisionId ) ) {
+			$this->incrementRevertCountForLang( $centralId, $lang );
+		}
+	}
+
+	/**
+	 * Get the language code from the semi-structured Wikibase edit summary text, if the comment
+	 *  matches the corresponding pattern.
+	 * Examples:
+	 *  \/* wbsetdescription-add:1|en *\/ 19th century French painter
+	 *  \/* wbsetlabel-add:1|en *\/ A chicken in the snow
+	 * See docs at mediawiki-extensions-Wikibase/docs/summaries.md.
+	 * TODO: Update to use structured comment data when that's implemented (T215422)
+	 * @param string $comment
+	 * @return string|null language code, if found
+	 */
+	private function getLanguageFromWikibaseComment( string $comment ): ?string {
+		if ( !$comment ) {
+			return null;
+		}
+		$matches = [];
+		$result = preg_match( $this->getMagicCommentPattern(), $comment, $matches );
+		if ( $result ) {
+			return $matches[1];
+		}
+		return null;
+	}
+
+	private function hasSuggestedEditsChangeTag( $revisionId ) {
+		$tags = ChangeTags::getTags( wfGetDB( DB_REPLICA ), null, $revisionId );
+		return in_array( 'apps-suggested-edits', $tags, true );
 	}
 
 	private function getRequestParams( WebRequest $request ) {
@@ -62,6 +108,13 @@ abstract class WikipediaAppCounter extends Counter {
 			return strpos( $ua, 'WikipediaApp/' ) === 0;
 		}
 		return false;
+	}
+
+	/**
+	 * @return string pattern matching Wikibase magic comments associated with this counter.
+	 */
+	private function getMagicCommentPattern(): string {
+		return '/^\/\* ' . $this->getAction() . '-[a-z]{3}:[0-9]\|([a-z-]+) \*\//';
 	}
 
 }

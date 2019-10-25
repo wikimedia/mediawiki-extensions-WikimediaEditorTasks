@@ -44,6 +44,10 @@
 		"WikimediaEditorTasksEnableEditStreaks": {
 			"value": false,
 			"description": "Whether to track and report edit streaks."
+		},
+		"WikimediaEditorTasksEnableRevertCounts": {
+			"value": false,
+			"description": "Whether to track and report revert counts."
 		}
 	},
 	"APIListModules": {
