@@ -36,13 +36,21 @@ class CounterFactory {
 	/** @var NameTableStore */
 	private $nameTableStore;
 
+	/** @var bool */
+	private $editStreaksEnabled;
+
 	/**
 	 * @param CounterDao $dao
 	 * @param NameTableStore $nameTableStore store for the wikimedia_editor_tasks_keys table
+	 * @param bool $editStreaksEnabled
 	 */
-	public function __construct( CounterDao $dao, NameTableStore $nameTableStore ) {
+	public function __construct(
+		CounterDao $dao,
+		NameTableStore $nameTableStore,
+		bool $editStreaksEnabled ) {
 		$this->dao = $dao;
 		$this->nameTableStore = $nameTableStore;
+		$this->editStreaksEnabled = $editStreaksEnabled;
 	}
 
 	/**
@@ -62,7 +70,8 @@ class CounterFactory {
 	public function create( $definition ) {
 		return new $definition['class'](
 			$this->nameTableStore->acquireId( $definition['counter_key'] ),
-			$this->dao
+			$this->dao,
+			$this->editStreaksEnabled
 		);
 	}
 

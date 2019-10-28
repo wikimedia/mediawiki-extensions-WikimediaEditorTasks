@@ -40,13 +40,20 @@
 		"WikimediaEditorTasksSuggestionSearchSort": {
 			"value": "incoming_links_desc",
 			"description": "CirrusSearch sort strategy to use when querying for suggestions. See https://www.mediawiki.org/wiki/Help:CirrusSearch#Explicit_sort_orders for possible values."
+		},
+		"WikimediaEditorTasksEnableEditStreaks": {
+			"value": false,
+			"description": "Whether to track and report edit streaks."
 		}
 	},
 	"APIListModules": {
 		"wikimediaeditortaskssuggestions": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksSuggestions"
 	},
 	"APIMetaModules": {
-		"wikimediaeditortaskscounts": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksCounts"
+		"wikimediaeditortaskscounts": {
+			"class": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksCounts",
+			"factory": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksCounts::factory"
+		}
 	},
 	"Hooks": {
 		"ArticleRollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onArticleRollbackComplete",

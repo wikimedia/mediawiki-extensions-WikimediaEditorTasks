@@ -36,13 +36,18 @@ abstract class Counter {
 	/** @var int */
 	private $keyId;
 
+	/** @var bool */
+	private $editStreaksEnabled;
+
 	/**
 	 * @param int $keyId edit counter key ID
 	 * @param CounterDao $dao
+	 * @param bool $editStreaksEnabled
 	 */
-	public function __construct( $keyId, CounterDao $dao ) {
+	public function __construct( int $keyId, CounterDao $dao, bool $editStreaksEnabled ) {
 		$this->keyId = $keyId;
 		$this->dao = $dao;
+		$this->editStreaksEnabled = $editStreaksEnabled;
 	}
 
 	/**
@@ -123,15 +128,21 @@ abstract class Counter {
 	 * @param int $centralId central ID of the user
 	 */
 	protected function updateEditStreak( $centralId ) {
+		if ( !$this->editStreaksEnabled ) {
+			return;
+		}
 		$this->dao->setEditStreak( $centralId );
 	}
 
 	/**
 	 * Get the edit streak length and last edit time for user
 	 * @param int $centralId central ID of the user
-	 * @return array[] An array contains current streak length and last edit time
+	 * @return array[]|false An array contains current streak length and last edit time
 	 */
 	protected function getEditStreak( $centralId ) {
+		if ( !$this->editStreaksEnabled ) {
+			return false;
+		}
 		return $this->dao->getEditStreak( $centralId );
 	}
 }

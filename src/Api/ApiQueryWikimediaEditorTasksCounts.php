@@ -19,46 +19,68 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks\Api;
 
+use ApiQuery;
 use ApiQueryBase;
-use ApiUsageException;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
+use MediaWiki\MediaWikiServices;
 
 class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
+
+	/** @var bool */
+	private $editStreaksEnabled;
+
+	/**
+	 * @param ApiQuery $main
+	 * @param string $moduleName
+	 * @return self
+	 */
+	public static function factory( ApiQuery $main, $moduleName ) {
+		$services = MediaWikiServices::getInstance();
+		$extensionServices = new WikimediaEditorTasksServices( $services );
+		$extensionConfig = $extensionServices->getExtensionConfig();
+		return new self(
+			$main,
+			$moduleName,
+			$extensionConfig->get( 'WikimediaEditorTasksEnableEditStreaks' )
+		);
+	}
+
+	/**
+	 * ApiQueryWikimediaEditorTasksCounts constructor.
+	 * @param ApiQuery $queryModule
+	 * @param string $moduleName
+	 * @param bool $editStreaksEnabled
+	 */
+	public function __construct(
+		ApiQuery $queryModule,
+		string $moduleName,
+		bool $editStreaksEnabled
+	) {
+		parent::__construct( $queryModule, $moduleName, 'wmetc' );
+		$this->editStreaksEnabled = $editStreaksEnabled;
+	}
 
 	/**
 	 * Entry point for executing the module
 	 * @inheritDoc
 	 */
 	public function execute() {
-		try {
-			$this->run();
-		} catch ( ApiUsageException $e ) {
-			$this->dieWithException( $e );
-		}
-	}
-
-	/**
-	 * Performs the DB query and returns results.
-	 * @throws ApiUsageException
-	 */
-	private function run() {
 		if ( $this->getUser()->isAnon() ) {
 			$this->dieWithError( [ 'apierror-mustbeloggedin',
-			   $this->msg( 'action-viewmyprivateinfo' ) ], 'notloggedin' );
+				$this->msg( 'action-viewmyprivateinfo' ) ], 'notloggedin' );
 		}
 		$this->checkUserRightsAny( 'viewmyprivateinfo' );
 
 		$dao = WikimediaEditorTasksServices::getInstance()->getCounterDao();
 		$centralId = Utils::getCentralId( $this->getUser() );
 
-		$counts = $dao->getAllCounts( $centralId );
-		$editStreak = $dao->getEditStreak( $centralId );
+		$result = [ 'counts' => $dao->getAllCounts( $centralId ) ];
+		if ( $this->editStreaksEnabled ) {
+			$result['edit_streak'] = $dao->getEditStreak( $centralId );
+		}
 
-		$this->getResult()->addValue( 'query', 'wikimediaeditortaskscounts', [
-			'counts' => $counts,
-			'edit_streak' => $editStreak
-		] );
+		$this->getResult()->addValue( 'query', 'wikimediaeditortaskscounts', $result );
 	}
 
 	/**

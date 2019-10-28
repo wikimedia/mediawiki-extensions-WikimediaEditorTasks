@@ -25,9 +25,12 @@ return [
 
 	'WikimediaEditorTasksCounterFactory' => function ( MediaWikiServices $services ):
 		CounterFactory {
-		$wmeServices = WikimediaEditorTasksServices::wrap( $services );
-		return new CounterFactory( $wmeServices->getCounterDao(),
-			$wmeServices->getNameTableStore() );
+		$wmetServices = WikimediaEditorTasksServices::wrap( $services );
+		return new CounterFactory(
+			$wmetServices->getCounterDao(),
+			$wmetServices->getNameTableStore(),
+			$wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksEnableEditStreaks' )
+		);
 	},
 
 	'WikimediaEditorTasksCounterDao' => function ( MediaWikiServices $services ): CounterDao {
@@ -39,9 +42,9 @@ return [
 
 	'WikimediaEditorTasksNameTableStore' => function ( MediaWikiServices $services ):
 		NameTableStore {
-		$wetServices = WikimediaEditorTasksServices::getInstance();
-		$database = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsDatabase' );
-		$cluster = $wetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsCluster' );
+		$wmetServices = WikimediaEditorTasksServices::getInstance();
+		$database = $wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsDatabase' );
+		$cluster = $wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsCluster' );
 
 		$loadBalancerFactory = $services->getDBLoadBalancerFactory();
 		$loadBalancer = $cluster
