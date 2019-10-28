@@ -5,7 +5,7 @@
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Estatísticas de edição específicas do recurso para o usuário conectado.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Obter contagens e destinos específicos da tarefa passados para o usuário conectado.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Obtenha contagens específicas de tarefas para o usuário conectado.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Sugestões de microconferência de tipos pré-definidos.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obtenha IDs de entidade do Wikidata para itens com descrições em italiano, mas não em japonês.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Obtenha IDs de entidade do Wikidata para itens que não tenham descrições em italiano e use-os como um gerador.",

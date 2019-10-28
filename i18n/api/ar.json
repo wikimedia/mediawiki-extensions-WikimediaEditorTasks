@@ -6,7 +6,7 @@
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "إحصاءات التعديل حسب الخاصية للمستخدمين المسجلين.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "الحصول على عدادات حسب المهمة والأهداف المرسلة للمستخدمين المسجلين.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "الحصول على عدادات مهمات محددة للمستخدمين المسجلين.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "اقتراحات المساهمات المصغرة لأنواع معرفة مسبقا.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "الحصول على معرفات كيانات ويكي بيانات للعناصر بأوصاف بالإيطالية لكن ليس باليابانية.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "الحصول على معرفات كيانات ويكي بيانات للعناصر لكن تفقد الوصف بالإيطالية، واستخدامها كمولد.",
