@@ -29,8 +29,8 @@ class WikipediaAppCaptionEditCounter extends WikipediaAppCounter {
 	/**
 	 * @inheritDoc
 	 */
-	public function onEditSuccess( $centralId, $request ) {
-		$this->conditionallyIncrementForAction( $centralId, $request, self::ACTION );
+	public function onEditSuccess( $centralId, $request, $revision ) {
+		$this->conditionallyIncrementForAction( $centralId, $request, $revision, self::ACTION );
 	}
 
 	/**

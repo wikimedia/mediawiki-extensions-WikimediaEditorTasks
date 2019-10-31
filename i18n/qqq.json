@@ -5,5 +5,7 @@
 			"Umherirrender"
 		]
 	},
-	"wikimediaeditortasks-desc": "{{desc|name=WikimediaEditorTasks|url=https://www.mediawiki.org/wiki/Extension:WikimediaEditorTasks}}"
+	"wikimediaeditortasks-desc": "{{desc|name=WikimediaEditorTasks|url=https://www.mediawiki.org/wiki/Extension:WikimediaEditorTasks}}",
+	"tag-apps-suggested-edits": "Change tag for edits made with the Wikimedia apps Suggested Edits feature",
+	"tag-apps-suggested-edits-description": "Description of change tag for edits made with the Wikimedia apps Suggested Edits feature"
 }

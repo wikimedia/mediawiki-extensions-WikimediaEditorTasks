@@ -97,7 +97,7 @@ class CounterTest extends MediaWikiTestCase {
 
 	public function testOnEditSuccess() {
 		foreach ( $this->counters as $counter ) {
-			$counter->onEditSuccess( $this->userId, null );
+			$counter->onEditSuccess( $this->userId, null, null );
 			$this->assertEquals( 1, $counter->getCountForLang( $this->userId, self::LANG ) );
 			$this->assertEquals( 1, $counter->getEditStreak( $this->userId )['length'] );
 			$this->assertCount( 2, $counter->getEditStreak( $this->userId ) );
@@ -110,7 +110,7 @@ class CounterTest extends MediaWikiTestCase {
 
 		foreach ( $this->counters as $counter ) {
 			for ( $i = 0; $i < self::TEST_EDIT_COUNT; $i++ ) {
-				$counter->onEditSuccess( $this->userId, null );
+				$counter->onEditSuccess( $this->userId, null, null );
 			}
 			$this->assertEquals( 2, $counter->getCountForLang( $this->userId, self::LANG ) );
 		}

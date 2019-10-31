@@ -71,7 +71,7 @@ class Hooks {
 	) {
 		$cb = function () use ( $revision, $status, $user, $undidRevId, $wikiPage ) {
 			if ( $revision && $status->isGood() && $user && $user->isLoggedIn() ) {
-				self::countersOnEditSuccess( $user );
+				self::countersOnEditSuccess( $user, $revision );
 			}
 
 			if ( $undidRevId ) {
@@ -127,6 +127,16 @@ class Hooks {
 	}
 
 	/**
+	 * @param array &$tags
+	 * @return bool true
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ListDefinedTags
+	 */
+	public static function onRegisterTags( array &$tags ) {
+		$tags[] = 'apps-suggested-edits';
+		return true;
+	}
+
+	/**
 	 * @param DatabaseUpdater $updater
 	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
@@ -147,15 +157,16 @@ class Hooks {
 
 	/**
 	 * @param User $user user who succeeded in editing
+	 * @param Revision $revision
 	 */
-	private static function countersOnEditSuccess( $user ) {
+	private static function countersOnEditSuccess( $user, $revision ) {
 		$centralId = Utils::getCentralId( $user );
 
 		// We need to check the underlying request headers to determine if this is an app edit
 		$request = RequestContext::getMain()->getRequest();
 
 		foreach ( self::getCounters() as $counter ) {
-			$counter->onEditSuccess( $centralId, $request );
+			$counter->onEditSuccess( $centralId, $request, $revision );
 		}
 	}
 

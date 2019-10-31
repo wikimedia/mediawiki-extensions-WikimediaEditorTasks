@@ -19,6 +19,7 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use Revision;
 use WebRequest;
 
 /**
@@ -55,8 +56,9 @@ abstract class Counter {
 	 * E.g., increment a counter if the edit is an in-app Wikidata description edit.
 	 * @param int $centralId central ID user who edited
 	 * @param WebRequest $request the request object
+	 * @param Revision $revision
 	 */
-	abstract public function onEditSuccess( $centralId, $request );
+	abstract public function onEditSuccess( $centralId, $request, $revision );
 
 	/**
 	 * Specifies the action to take when a revert is performed.

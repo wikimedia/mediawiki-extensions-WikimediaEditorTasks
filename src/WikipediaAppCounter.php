@@ -19,6 +19,8 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use ChangeTags;
+use Revision;
 use WebRequest;
 
 abstract class WikipediaAppCounter extends Counter {
@@ -27,9 +29,11 @@ abstract class WikipediaAppCounter extends Counter {
 	 * Increment the counter corresponding to the provided MW API action
 	 * @param int $centralId central ID of the editing user
 	 * @param WebRequest $request
+	 * @param Revision $revision
 	 * @param string $action the MW API action the counter corresponds to, e.g., 'wbsetlabel'
 	 */
-	protected function conditionallyIncrementForAction( $centralId, WebRequest $request, $action ) {
+	protected function conditionallyIncrementForAction( $centralId, WebRequest $request,
+		Revision $revision, $action ) {
 		if ( !$this->isWikipediaAppMwApiRequest( $request ) ) {
 			return;
 		}
@@ -37,6 +41,7 @@ abstract class WikipediaAppCounter extends Counter {
 		if ( $params['action'] === $action ) {
 			$this->incrementForLang( $centralId, $params['language'] );
 			$this->updateEditStreak( $centralId );
+			ChangeTags::addTags( 'apps-suggested-edits', null, $revision->getId() );
 		}
 	}
 

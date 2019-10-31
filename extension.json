@@ -58,7 +58,9 @@
 	"Hooks": {
 		"ArticleRollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onArticleRollbackComplete",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates",
-		"PageContentSaveComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onPageContentSaveComplete"
+		"PageContentSaveComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onPageContentSaveComplete",
+		"ListDefinedTags": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRegisterTags",
+		"ChangeTagsListActive": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRegisterTags"
 	},
 	"MessagesDirs": {
 		"WikimediaEditorTasks": [
