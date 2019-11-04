@@ -50,16 +50,16 @@ class CounterDaoTest extends MediaWikiTestCase {
 	}
 
 	public function testEmpty() {
-		$this->assertEquals( [], $this->dao->getAllCounts( $this->userId ) );
+		$this->assertEquals( [], $this->dao->getAllEditCounts( $this->userId ) );
 	}
 
 	public function testCounts() {
-		$this->dao->setCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG, 0 );
-		$this->dao->incrementCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG );
-		$this->assertEquals( 1, $this->dao->getCountForKeyAndLang( $this->userId, self::KEY_ID,
+		$this->dao->setEditCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG, 0 );
+		$this->dao->incrementEditCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG );
+		$this->assertEquals( 1, $this->dao->getEditCountForKeyAndLang( $this->userId, self::KEY_ID,
 			self::LANG ) );
-		$this->dao->decrementCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG );
-		$this->assertEquals( 0, $this->dao->getCountForKeyAndLang( $this->userId, self::KEY_ID,
+		$this->dao->decrementEditCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG );
+		$this->assertEquals( 0, $this->dao->getEditCountForKeyAndLang( $this->userId, self::KEY_ID,
 			self::LANG ) );
 	}
 
@@ -67,5 +67,9 @@ class CounterDaoTest extends MediaWikiTestCase {
 		$this->dao->setEditStreak( $this->userId );
 		$this->assertCount( 2, $this->dao->getEditStreak( $this->userId ) );
 		$this->assertEquals( 1, $this->dao->getEditStreak( $this->userId )['length'] );
+	}
+
+	public function testRevertsEmpty() {
+		$this->assertEquals( [], $this->dao->getAllRevertCounts( $this->userId ) );
 	}
 }

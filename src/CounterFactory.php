@@ -39,18 +39,25 @@ class CounterFactory {
 	/** @var bool */
 	private $editStreaksEnabled;
 
+	/** @var bool */
+	private $revertCountsEnabled;
+
 	/**
 	 * @param CounterDao $dao
 	 * @param NameTableStore $nameTableStore store for the wikimedia_editor_tasks_keys table
 	 * @param bool $editStreaksEnabled
+	 * @param bool $revertCountsEnabled
 	 */
 	public function __construct(
 		CounterDao $dao,
 		NameTableStore $nameTableStore,
-		bool $editStreaksEnabled ) {
+		bool $editStreaksEnabled,
+		bool $revertCountsEnabled
+	) {
 		$this->dao = $dao;
 		$this->nameTableStore = $nameTableStore;
 		$this->editStreaksEnabled = $editStreaksEnabled;
+		$this->revertCountsEnabled = $revertCountsEnabled;
 	}
 
 	/**
@@ -71,7 +78,8 @@ class CounterFactory {
 		return new $definition['class'](
 			$this->nameTableStore->acquireId( $definition['counter_key'] ),
 			$this->dao,
-			$this->editStreaksEnabled
+			$this->editStreaksEnabled,
+			$this->revertCountsEnabled
 		);
 	}
 

@@ -19,7 +19,7 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use Revision;
+use MediaWiki\Revision\RevisionRecord;
 use WebRequest;
 
 /**
@@ -40,15 +40,25 @@ abstract class Counter {
 	/** @var bool */
 	private $editStreaksEnabled;
 
+	/** @var bool */
+	private $revertCountsEnabled;
+
 	/**
 	 * @param int $keyId edit counter key ID
 	 * @param CounterDao $dao
 	 * @param bool $editStreaksEnabled
+	 * @param bool $revertCountsEnabled
 	 */
-	public function __construct( int $keyId, CounterDao $dao, bool $editStreaksEnabled ) {
+	public function __construct(
+		int $keyId,
+		CounterDao $dao,
+		bool $editStreaksEnabled,
+		bool $revertCountsEnabled
+	) {
 		$this->keyId = $keyId;
 		$this->dao = $dao;
 		$this->editStreaksEnabled = $editStreaksEnabled;
+		$this->revertCountsEnabled = $revertCountsEnabled;
 	}
 
 	/**
@@ -56,19 +66,27 @@ abstract class Counter {
 	 * E.g., increment a counter if the edit is an in-app Wikidata description edit.
 	 * @param int $centralId central ID user who edited
 	 * @param WebRequest $request the request object
-	 * @param Revision $revision
+	 * @param int $revisionId revisionId of the successful edit
 	 */
-	abstract public function onEditSuccess( $centralId, $request, $revision );
+	abstract public function onEditSuccess( $centralId, $request, $revisionId );
 
 	/**
 	 * Specifies the action to take when a revert is performed.
-	 * E.g., decrement or reset the counter.
+	 * E.g., increment revert counter.
 	 * Note: this is currently called specifically in response to undo and rollback actions,
 	 * although in principle this class is agnostic with respect to the definition of "revert"
 	 * used.
 	 * @param int $centralId central ID of the user who was reverted
+	 * @param int $revisionId revision ID of the reverted edit
+	 * @param RevisionRecord $revision RevisionRecord corresponding with $revisionID
 	 */
-	abstract public function onRevert( $centralId );
+	abstract public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ):
+		void;
+
+	/** @return bool */
+	protected function isRevertCountingEnabled(): bool {
+		return $this->revertCountsEnabled;
+	}
 
 	/**
 	 * Get count for lang for user
@@ -76,8 +94,8 @@ abstract class Counter {
 	 * @param string $lang language code
 	 * @return int|bool value of counter, or false if row does not exist
 	 */
-	protected function getCountForLang( $centralId, $lang ) {
-		$count = $this->dao->getCountForKeyAndLang( $centralId, $this->keyId, $lang );
+	protected function getEditCountForLang( $centralId, $lang ) {
+		$count = $this->dao->getEditCountForKeyAndLang( $centralId, $this->keyId, $lang );
 		if ( $count ) {
 			return (int)$count;
 		}
@@ -91,8 +109,8 @@ abstract class Counter {
 	 * @param int $count value to set
 	 * @return bool true if no exception was thrown
 	 */
-	protected function setCountForLang( $centralId, $lang, $count ) {
-		return $this->dao->setCountForKeyAndLang( $centralId, $this->keyId, $lang, $count );
+	protected function setEditCountForLang( $centralId, $lang, $count ) {
+		return $this->dao->setEditCountForKeyAndLang( $centralId, $this->keyId, $lang, $count );
 	}
 
 	/**
@@ -100,11 +118,11 @@ abstract class Counter {
 	 * @param int $centralId central ID of the user
 	 * @param string $lang language code
 	 */
-	protected function incrementForLang( $centralId, $lang ) {
-		if ( $this->getCountForLang( $centralId, $lang ) ) {
-			$this->dao->incrementCountForKeyAndLang( $centralId, $this->keyId, $lang );
+	protected function incrementEditCountForLang( $centralId, $lang ) {
+		if ( $this->getEditCountForLang( $centralId, $lang ) ) {
+			$this->dao->incrementEditCountForKeyAndLang( $centralId, $this->keyId, $lang );
 		} else {
-			$this->setCountForLang( $centralId, $lang, 1 );
+			$this->setEditCountForLang( $centralId, $lang, 1 );
 		}
 	}
 
@@ -113,8 +131,8 @@ abstract class Counter {
 	 * @param int $centralId central ID of the user
 	 * @param string $lang language code
 	 */
-	protected function decrementForLang( $centralId, $lang ) {
-		$this->dao->decrementCountForKeyAndLang( $centralId, $this->keyId, $lang );
+	protected function decrementEditCountForLang( $centralId, $lang ) {
+		$this->dao->decrementEditCountForKeyAndLang( $centralId, $this->keyId, $lang );
 	}
 
 	/**
@@ -146,5 +164,27 @@ abstract class Counter {
 			return false;
 		}
 		return $this->dao->getEditStreak( $centralId );
+	}
+
+	/** Increment revert count for lang and user
+	 * @param int $centralId central ID of the user
+	 * @param string $lang language code
+	 */
+	protected function incrementRevertCountForLang( $centralId, $lang ) {
+		$this->dao->incrementRevertCountForKeyAndLang( $centralId, $this->keyId, $lang );
+	}
+
+	/**
+	 * Get revert count for lang for user
+	 * @param int $centralId central ID of the user
+	 * @param string $lang language code
+	 * @return int|bool value of revert counter, or false if row does not exist
+	 */
+	protected function getRevertCountForLang( $centralId, $lang ) {
+		$count = $this->dao->getRevertCountForKeyAndLang( $centralId, $this->keyId, $lang );
+		if ( $count ) {
+			return (int)$count;
+		}
+		return false;
 	}
 }

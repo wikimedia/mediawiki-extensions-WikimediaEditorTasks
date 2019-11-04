@@ -30,6 +30,9 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 	/** @var bool */
 	private $editStreaksEnabled;
 
+	/** @var bool */
+	private $revertCountsEnabled;
+
 	/**
 	 * @param ApiQuery $main
 	 * @param string $moduleName
@@ -42,7 +45,8 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 		return new self(
 			$main,
 			$moduleName,
-			$extensionConfig->get( 'WikimediaEditorTasksEnableEditStreaks' )
+			$extensionConfig->get( 'WikimediaEditorTasksEnableEditStreaks' ),
+			$extensionConfig->get( 'WikimediaEditorTasksEnableRevertCounts' )
 		);
 	}
 
@@ -51,14 +55,17 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
 	 * @param bool $editStreaksEnabled
+	 * @param bool $revertCountsEnabled
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
 		string $moduleName,
-		bool $editStreaksEnabled
+		bool $editStreaksEnabled,
+		bool $revertCountsEnabled
 	) {
 		parent::__construct( $queryModule, $moduleName, 'wmetc' );
 		$this->editStreaksEnabled = $editStreaksEnabled;
+		$this->revertCountsEnabled = $revertCountsEnabled;
 	}
 
 	/**
@@ -75,11 +82,13 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 		$dao = WikimediaEditorTasksServices::getInstance()->getCounterDao();
 		$centralId = Utils::getCentralId( $this->getUser() );
 
-		$result = [ 'counts' => $dao->getAllCounts( $centralId ) ];
+		$result = [ 'counts' => $dao->getAllEditCounts( $centralId ) ];
 		if ( $this->editStreaksEnabled ) {
 			$result['edit_streak'] = $dao->getEditStreak( $centralId );
 		}
-
+		if ( $this->revertCountsEnabled ) {
+			$result['revert_counts'] = $dao->getAllRevertCounts( $centralId );
+		}
 		$this->getResult()->addValue( 'query', 'wikimediaeditortaskscounts', $result );
 	}
 

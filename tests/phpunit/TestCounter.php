@@ -19,26 +19,25 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 
-use MediaWiki\Extension\WikimediaEditorTasks\Counter;
+use MediaWiki\Extension\WikimediaEditorTasks\WikipediaAppCounter;
+use MediaWiki\Revision\RevisionRecord;
 
-/**
- * Counter for unit testing.
- */
-class ResetOnRevertTestCounter extends Counter {
+class TestCounter extends WikipediaAppCounter {
 
-	/**
-	 * @inheritDoc
-	 */
-	public function onEditSuccess( $centralId, $request, $revision ) {
-		$this->incrementForLang( $centralId, 'test' );
+	/** @inheritDoc */
+	public function getAction(): string {
+		return 'wmettestedit';
+	}
+
+	/** @inheritDoc */
+	public function onEditSuccess( $centralId, $request, $revisionId ) {
+		$this->incrementEditCountForLang( $centralId, 'test' );
 		$this->updateEditStreak( $centralId );
 	}
 
-	/**
-	 * @inheritDoc
-	 */
-	public function onRevert( $centralId ) {
-		$this->reset( $centralId );
+	/** @inheritDoc */
+	public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ): void {
+		$this->incrementRevertCountForLang( $centralId, 'test' );
 	}
 
 }
