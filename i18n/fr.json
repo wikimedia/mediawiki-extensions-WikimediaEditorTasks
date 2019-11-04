@@ -2,8 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Wladek92"
+			"Wladek92",
+			"Verdy p"
 		]
 	},
-	"wikimediaeditortasks-desc": "Génération de tâches, stockage, et services d’API pour les micro-contributions."
+	"wikimediaeditortasks-desc": "Génération de tâches, stockage et services d’API pour les micro-contributions.",
+	"tag-apps-suggested-edits": "modification des Modifications suggérées",
+	"tag-apps-suggested-edits-description": "Modifications réalisées avec la fonctionnalité des applis Wikimedia pour les Modifications suggérées"
 }

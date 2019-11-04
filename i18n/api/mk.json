@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
-			"Bjankuloski06"
+			"Bjankuloski06",
+			"Vlad5250"
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Уредувачка статистика за најавениот корисник според поединечни можности.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Бројки и цели за поединечни задачи за најавениот корисник.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Добиј бројки за поединечни задачи за најавениот корисник.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Предложени микропридонеси од предодредени видови.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Дава назнаки за предмети на Википодатоците со описи на италијански, но не и на јапонски.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Дава назнаки за предмети на Википодатоците без описи на италијански, и ги користи како создавач.",

@@ -4,5 +4,7 @@
 			"Eduardo Addad de Oliveira"
 		]
 	},
-	"wikimediaeditortasks-desc": "Geração de tarefas, armazenamento e módulos API para microcontribuições."
+	"wikimediaeditortasks-desc": "Geração de tarefas, armazenamento e módulos API para microcontribuições.",
+	"tag-apps-suggested-edits": "Edições sugeridas ao editar",
+	"tag-apps-suggested-edits-description": "Edições feitas com o recurso de edições sugeridas dos aplicativos da Wikimedia"
 }

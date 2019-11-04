@@ -4,5 +4,7 @@
 			"Kly"
 		]
 	},
-	"wikimediaeditortasks-desc": "用於微量貢獻的任務生成、存儲，以及 API 模組。"
+	"wikimediaeditortasks-desc": "用於微量貢獻的任務生成、存儲，以及 API 模組。",
+	"tag-apps-suggested-edits": "做出「建議編輯」的編輯",
+	"tag-apps-suggested-edits-description": "以維基媒體應用程式之建議編輯功能所做出的編輯"
 }

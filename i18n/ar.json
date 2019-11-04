@@ -5,5 +5,7 @@
 			"ديفيد"
 		]
 	},
-	"wikimediaeditortasks-desc": "توليد المهام، التخزين، وخدمة API للمساهمات المصغرة."
+	"wikimediaeditortasks-desc": "توليد المهام، التخزين، وخدمة API للمساهمات المصغرة.",
+	"tag-apps-suggested-edits": "تعديل التعديلات المقترحة",
+	"tag-apps-suggested-edits-description": "تعديلات تم إجراؤها باستخدام ميزة التعديلات المقترحة في تطبيقات ويكيميديا"
 }

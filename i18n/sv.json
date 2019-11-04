@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sturban"
+			"Sturban",
+			"WikiPhoenix"
 		]
 	},
-	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Önskat antal resultat. Observera att färre resultat kan returneras, om färre än det önskade antalet är tillgängligt."
+	"tag-apps-suggested-edits": "\"Förslag på redigeringar\"-redigering",
+	"tag-apps-suggested-edits-description": "Redigeringar gjorde med Wikimedia-appens funktion \"Förslag på redigeringar\""
 }
