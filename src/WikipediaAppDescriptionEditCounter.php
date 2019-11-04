@@ -20,6 +20,7 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 use MediaWiki\Revision\RevisionRecord;
+use WebRequest;
 
 /**
  * Counter for Wikidata description edits from the official Wikipedia apps.
@@ -27,8 +28,9 @@ use MediaWiki\Revision\RevisionRecord;
 class WikipediaAppDescriptionEditCounter extends WikipediaAppCounter {
 
 	/** @inheritDoc */
-	public function onEditSuccess( $centralId, $request, $revisionId ) {
-		$this->conditionallyIncrementEditCount( $centralId, $request, $revisionId );
+	public function onEditSuccess( int $centralId, WebRequest $request, RevisionRecord $revision ):
+		void {
+		$this->conditionallyIncrementEditCount( $centralId, $request, $revision );
 	}
 
 	/** @inheritDoc */

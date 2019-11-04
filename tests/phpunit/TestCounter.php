@@ -21,6 +21,7 @@ namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 
 use MediaWiki\Extension\WikimediaEditorTasks\WikipediaAppCounter;
 use MediaWiki\Revision\RevisionRecord;
+use WebRequest;
 
 class TestCounter extends WikipediaAppCounter {
 
@@ -30,7 +31,8 @@ class TestCounter extends WikipediaAppCounter {
 	}
 
 	/** @inheritDoc */
-	public function onEditSuccess( $centralId, $request, $revisionId ) {
+	public function onEditSuccess( int $centralId, WebRequest $request, RevisionRecord $revision ):
+		void {
 		$this->incrementEditCountForLang( $centralId, 'test' );
 		$this->updateEditStreak( $centralId );
 	}

@@ -34,19 +34,20 @@ abstract class WikipediaAppCounter extends Counter {
 	 * Increment the counter corresponding to the provided MW API action
 	 * @param int $centralId central ID of the editing user
 	 * @param WebRequest $request
-	 * @param int $revisionId revisionId of the successful edit
+	 * @param RevisionRecord $revision revision representing the successful edit
 	 */
 	protected function conditionallyIncrementEditCount( int $centralId, WebRequest $request,
-		int $revisionId ): void {
+		RevisionRecord $revision ): void {
 		if ( !$this->isWikipediaAppMwApiRequest( $request ) ) {
 			return;
 		}
-		$params = $this->getRequestParams( $request );
-		if ( $params['action'] === $this->getAction() ) {
-			$this->incrementEditCountForLang( $centralId, $params['language'] );
-			$this->updateEditStreak( $centralId );
-			ChangeTags::addTags( 'apps-suggested-edits', null, $revisionId );
+		$lang = $this->getLanguageFromWikibaseComment( $revision->getComment()->text );
+		if ( !$lang ) {
+			return;
 		}
+		$this->incrementEditCountForLang( $centralId, $lang );
+		$this->updateEditStreak( $centralId );
+		ChangeTags::addTags( 'apps-suggested-edits', null, $revision->getId() );
 	}
 
 	/**
@@ -91,11 +92,6 @@ abstract class WikipediaAppCounter extends Counter {
 		return in_array( 'apps-suggested-edits', $tags, true );
 	}
 
-	private function getRequestParams( WebRequest $request ) {
-		// If the query string and post body contain duplicate keys, the post body value wins
-		return array_merge( $request->getQueryValues(), $request->getPostValues() );
-	}
-
 	private function isWikipediaAppMwApiRequest( $request ) {
 		return $request instanceof WebRequest
 			   && $this->isRequestFromApp( $request )
@@ -114,7 +110,7 @@ abstract class WikipediaAppCounter extends Counter {
 	 * @return string pattern matching Wikibase magic comments associated with this counter.
 	 */
 	private function getMagicCommentPattern(): string {
-		return '/^\/\* ' . $this->getAction() . '-[a-z]{3}:[0-9]\|([a-z-]+) \*\//';
+		return '/^\/\* ' . $this->getAction() . '-[a-z]{3}:[0-9]\|([a-z-]+) \*\/.*?#suggestededit/';
 	}
 
 }

@@ -71,7 +71,11 @@ class Hooks {
 	) {
 		$cb = function () use ( $revision, $status, $user, $undidRevId, $wikiPage ) {
 			if ( $revision && $status->isGood() && $user && $user->isLoggedIn() ) {
-				self::countersOnEditSuccess( $user, $revision->getId() );
+				// Convert the revision object from a deprecated Revision object to a RevisionRecord
+				// for consistency
+				$revStore = MediaWikiServices::getInstance()->getRevisionStore();
+				$revision = $revStore->getRevisionById( $revision->getId() );
+				self::countersOnEditSuccess( $user, $revision );
 			}
 
 			if ( $undidRevId ) {
@@ -162,16 +166,16 @@ class Hooks {
 
 	/**
 	 * @param User $user user who succeeded in editing
-	 * @param int $revisionId revisionId of the successful edit
+	 * @param RevisionRecord $revision revision representing the successful edit
 	 */
-	private static function countersOnEditSuccess( $user, $revisionId ) {
+	private static function countersOnEditSuccess( User $user, RevisionRecord $revision ) {
 		$centralId = Utils::getCentralId( $user );
 
 		// We need to check the underlying request headers to determine if this is an app edit
 		$request = RequestContext::getMain()->getRequest();
 
 		foreach ( self::getCounters() as $counter ) {
-			$counter->onEditSuccess( $centralId, $request, $revisionId );
+			$counter->onEditSuccess( $centralId, $request, $revision );
 		}
 	}
 

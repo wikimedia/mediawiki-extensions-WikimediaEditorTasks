@@ -21,13 +21,19 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 		] ) );
 	}
 
-	public function testGetLanguageFromQualifyingEditComment() {
-		$comment = '/* wmettestedit-add:1|zh-hant */ 韓國高速鐵道';
+	public function testGetLanguageFromQualifyingComment() {
+		$comment = '/* wmettestedit-add:1|zh-hant */ 韓國高速鐵道, #suggestededit-add 1.0';
 		$lang = $this->counter->getLanguageFromWikibaseComment( $comment );
 		$this->assertSame( 'zh-hant', $lang );
 	}
 
-	public function testGetLanguageFromNonQualifyingComment() {
+	public function testGetLanguageFromNonQualifyingWikibaseComment() {
+		$comment = '/* wmettestedit-add:1|zh-hant */ 韓國高速鐵道';
+		$lang = $this->counter->getLanguageFromWikibaseComment( $comment );
+		$this->assertSame( null, $lang );
+	}
+
+	public function testGetLanguageFromNonQualifyingNonWikibaseComment() {
 		$comment = 'Foo';
 		$lang = $this->counter->getLanguageFromWikibaseComment( $comment );
 		$this->assertSame( null, $lang );
