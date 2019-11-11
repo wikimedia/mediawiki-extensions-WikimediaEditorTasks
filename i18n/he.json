@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Steeve815"
+			"Steeve815",
+			"Amire80"
 		]
 	},
-	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "חיפוש רק במרחבי שם אלה."
+	"wikimediaeditortasks-desc": "יצירת משימות, אחסון, ומודולים של API לתרומות זעירות.",
+	"tag-apps-suggested-edits": "עריכה מעריכות מוצעות",
+	"tag-apps-suggested-edits-description": "עריכות שנעשו באמצות האפשרות עריכות מוצעות של יישום ויקיפדיה"
 }

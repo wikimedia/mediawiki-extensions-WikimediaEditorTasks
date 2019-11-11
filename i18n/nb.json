@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"wikimediaeditortasks-desc": "Oppgavegenerering, lagring og API-moduler for mikrobidrag.",
+	"tag-apps-suggested-edits": "Redigering via Foreslåtte redigeringer",
+	"tag-apps-suggested-edits-description": "Redigeringer gjort med Wikimedia-appenes funksjon for foreslåtte redigeringer"
+}

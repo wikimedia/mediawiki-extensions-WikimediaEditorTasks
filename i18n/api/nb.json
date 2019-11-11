@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Jon Harald Søby"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Funksjonsspesifikk redigeringsstatistikk for den innloggede brukeren.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Hent oppgave-spesifikke antall for den innloggede brukeren.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Mikrobidragsforslag av forhåndsdefinerte typer.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Hent Wikidata-entitets-ID for elementer med beskrivelse på italiensk men ikke japansk.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Hent Wikidata-entitets-ID-er for elementer som mangler beskrivelse på italiensk, og bruk dem som generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Hent Wikidata-entitets-ID-er for elementer med etiketter på italiensk men ikke japansk.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Hent Wikidata-entitets-ID-er for elementer som mangler etiketter på italiensk, og bruk dem som generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Hent Wikidata-entitets-ID-er for elementer i filnavnerommet med etiketter (også kjent som bildebeskrivelser) på italiensk men ikke japansk.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Hent Wikidata-entitets-ID-er for elementer i filnavnerommet som mangler etiketter (også kjent som bildebeskrivelser) på italiensk, og bruk dem som generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Type oppgaveforslag.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "For opgpaveforslag av typen oversettelse, wikispråkkode for språket innholdet bør eksistere på for et gitt element.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Wikispråkkode for språket innholdet mangler på for et gitt element.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Ønsket antall resultater. Merk at færre resultater kan returneres hvis det ikke er flere som er tilgjengelige.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Søk kun i disse navnerommene."
+}
