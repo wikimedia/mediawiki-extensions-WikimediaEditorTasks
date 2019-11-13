@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Steeve815"
+			"Steeve815",
+			"Amire80"
 		]
 	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "סטטיסטיקות עריכה ייחודיות לאפשרות עבור המשתמש שבחשבון.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "חיפוש רק במרחבי שם אלה."
 }
