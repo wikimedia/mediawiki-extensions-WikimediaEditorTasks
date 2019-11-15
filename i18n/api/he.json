@@ -6,5 +6,17 @@
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "סטטיסטיקות עריכה ייחודיות לאפשרות עבור המשתמש שבחשבון.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "קבלת ספירה ייחודית למשיה עבור המשתמש שנכנס לחשבון.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "הצעות לתרומות זעירות מסוגים מוגדרים מראש.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "לקבל מזני ישות של ויקינתונים עבור פריטים עם תיאורים באיטלקית, אבל לא ביפנית.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "לקבל מזהה ישות של ויקינתונים עבור פריטים שחסרים להם תיאורים באיטלקית, ולהשתמש בהם בתו מחולל.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "לקבל מזהי ישות של ויקינתונים עם תוויות באיטלקית, אבל לא ביפנית.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "לקבל מזהי ישות של ויקינתונים עבור פריטים שחסרות להם תוויות באיטלקית, ולהשתמש בהם בתור מחולל.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "לקבל מזהי ישות של ויקינתונים עבור פריטים במרחב השם File (קובץ) עם תוויות (הידועות גם בתור כיתובים) באיטלקית, אבל לא ביפנית.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "לקבל מזהי ישות של ויקינתונים עבור פריטים במרחב השם File (קובץ) עם תוויות (הידועות גם בתור כיתובים) באיטלקית, ולהשתמש בהם בתור מחולל.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "סוג הצעת משימה.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "עבור הצעת משימה מסוג תרגום, קוד השפה של הוויקי עבור השפה שבה התוכן אמור להיות קיים עבור הפריט הנתון.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "קוד השפה של הוויקי עבור השפה שבה התוכן חסר עבור הפריט הנתון.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "מספר מבוקש של תוצאות. נא לשים לב לכך שתוחזרנה פחות תוצאות, אם יש פחות מכמה שמבוקש.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "חיפוש רק במרחבי שם אלה."
 }

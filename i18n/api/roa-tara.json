@@ -5,7 +5,7 @@
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Stetisteche de le cangiaminde specificamende dettagliate pe l'utende ca ave trasute.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Pigghie 'u condegge e le destinaziune passate pe 'n'attività specifeche pe l'utende trasute.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Pigghie 'u condegge pe 'n'attività specifeche pe l'utende trasute.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Conziglie sus a le microcondrebbute de tipe predefinite.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Pigghie l'ID de l'endità Uicchidate pe le vôsce cu descriziune jndr'à l'italiane ma non pu giapponese.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Pigghie l'ID de l'endità Uicchidate pe le vôsce cu descriziune ca mangane jndr'à l'italiane, e ausale cumme 'nu generatore.",
