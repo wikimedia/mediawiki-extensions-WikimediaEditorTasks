@@ -42,8 +42,8 @@ class Hooks {
 	 * Handler for PageContentSaveComplete hook
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/PageContentSaveComplete
 	 *
-	 * @param WikiPage &$wikiPage modified WikiPage
-	 * @param User &$user User who edited
+	 * @param WikiPage $wikiPage modified WikiPage
+	 * @param User $user User who edited
 	 * @param Content $content New article text
 	 * @param string $summary Edit summary
 	 * @param bool $minoredit Minor edit or not
@@ -51,26 +51,26 @@ class Hooks {
 	 * @param string $sectionanchor Section that was edited
 	 * @param int &$flags Edit flags
 	 * @param Revision $revision Revision that was created
-	 * @param Status &$status
+	 * @param Status $status
 	 * @param int $baseRevId
 	 * @param int $undidRevId
 	 */
 	public static function onPageContentSaveComplete(
-		&$wikiPage,
-		&$user,
+		WikiPage $wikiPage,
+		User $user,
 		$content,
 		$summary,
 		$minoredit,
 		$watchthis,
 		$sectionanchor,
 		&$flags,
-		$revision,
-		Status &$status,
+		Revision $revision,
+		Status $status,
 		$baseRevId,
 		$undidRevId = 0
 	) {
 		$cb = function () use ( $revision, $status, $user, $undidRevId, $wikiPage ) {
-			if ( $revision && $status->isGood() && $user && $user->isLoggedIn() ) {
+			if ( $status->isGood() && $user->isLoggedIn() ) {
 				// Convert the revision object from a deprecated Revision object to a RevisionRecord
 				// for consistency
 				$revStore = MediaWikiServices::getInstance()->getRevisionStore();
