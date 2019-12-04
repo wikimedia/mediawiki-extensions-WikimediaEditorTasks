@@ -1,11 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mirzali"
+			"Mirzali",
+			"BaRaN6161 TURK"
 		]
 	},
-	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "İtalyanca etiketli, ancak Japonca olmayan (ve hem İtalyan hem de Japon Vikipedi'lerinde bağlantılı makaleler) bulunan öğeler için Wikidata varlık kimliklerini edinin.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Bağlantılı İtalyanca Vikipedi makaleleri, ancak İtalyanca'da eksik etiketleri olan öğeler için Wikidata varlık kimliklerini alın ve bunları bir jeneratör olarak kullanın.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "İtalyanca dilinde etiketleri olan (a.k.a. başlıkları), ancak Japonca olmayan (ve hem İtalyanca hem de Japonca Vikipedi'lerdeki ilgili makaleler) Wikidata Varlık Kimliklerini alın.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Bağlantılı İtalyanca Vikipedi makaleleri, ancak İtalyanca'da eksik etiketleri (a.k.a. başlıkları) bulunan öğeler için Wikidata varlık kimliklerini alın ve bunları bir jeneratör olarak kullanın."
+	"wikimediaeditortasks-desc": "Mikro sözleşmeler için görev oluşturma, depolama ve API modülleri.",
+	"tag-apps-suggested-edits": "Önerilen Düzenlemeler düzenlemesi",
+	"tag-apps-suggested-edits-description": "Wikimedia uygulamaları Önerilen Düzenleme özelliği ile yapılan düzenlemeler"
 }

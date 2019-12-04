@@ -1,8 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Base"
+			"Base",
+			"Ата"
 		]
 	},
-	"wikimediaeditortasks-desc": "Генерація завдань, збереження та API-модулі для мікровнеску."
+	"wikimediaeditortasks-desc": "Генерація завдань, збереження та API-модулі для мікровнеску.",
+	"tag-apps-suggested-edits": "Редагування через Пропоновані редагування",
+	"tag-apps-suggested-edits-description": "Редагування, зроблені через функцію Пропонованих редагувань у застосунках Вікімедіа"
 }

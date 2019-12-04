@@ -1,11 +1,17 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mirzali"
+			"Mirzali",
+			"BaRaN6161 TURK"
 		]
 	},
-	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "İtalyanca etiketli, ancak Japonca olmayan (ve hem İtalyan hem de Japon Vikipedi'lerinde bağlantılı makaleler) bulunan öğeler için Wikidata varlık kimliklerini edinin.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Bağlantılı İtalyanca Vikipedi makaleleri, ancak İtalyanca'da eksik etiketleri olan öğeler için Wikidata varlık kimliklerini alın ve bunları bir jeneratör olarak kullanın.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "İtalyanca dilinde etiketleri olan (a.k.a. başlıkları), ancak Japonca olmayan (ve hem İtalyanca hem de Japonca Vikipedi'lerdeki ilgili makaleler) Wikidata Varlık Kimliklerini alın.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Bağlantılı İtalyanca Vikipedi makaleleri, ancak İtalyanca'da eksik etiketleri (a.k.a. başlıkları) bulunan öğeler için Wikidata varlık kimliklerini alın ve bunları bir jeneratör olarak kullanın."
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Oturum açan kullanıcı için özelliğe özgü düzenleme istatistikleri.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Oturum açan kullanıcı için göreve özgü sayımlar alın.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Önceden tanımlanmış türlerin mikro sözleşme önerileri.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "İtalyanca olmayan ancak Japonca olmayan açıklamalara sahip öğelere ilişkin Vikiveri varlık kimliklerini alın.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "İtalyanca'da açıklamaları eksik olan öğeler için Vikiveri varlık kimliklerini alın ve bunları bir jeneratör olarak kullanın.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Japonca değil, İtalyanca dilinde etiketli öğeler için Vikiveri varlık kimliklerini alın.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "İtalyanca etiketleri eksik olan öğeler için Vikiveri varlık kimliklerini alın ve bunları bir jeneratör olarak kullanın.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Dosya ad alanındaki öğeler için Vikveri varlık kimliklerini, İtalyanca'da ancak Japonca olmayan etiketlerle (resim yazıları olarak bilinir) alın.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "İtalyanca'da Dosya ad alanı eksik etiketleri (başlıkları olarak bilinir) içindeki öğeler için Vikiveri varlık kimliklerini alın ve bunları bir jeneratör olarak kullanın."
 }
