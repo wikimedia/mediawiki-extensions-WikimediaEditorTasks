@@ -1,0 +1,15 @@
+{
+	"@metadata": {
+		"authors": [
+			"Xuacu"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Suxerencies de microcontribuciones de tipos predefiníos.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Recibir los IDs d'entidá de Wikidata de los elementos con descripciones n'italianu pero non en xaponés.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Recibir los IDs d'entidá de Wikidata de los elementos que nun tienen descripciones n'italianu, y usalos como xenerador.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Recibir los IDs d'entidá de Wikidata de los elementos con etiquetes n'italianu pero non en xaponés.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Recibir los IDs d'entidá de Wikidata de los elementos que nun tienen etiquetes n'italianu, y usalos como xenerador.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Recibir los IDs d'entidá de Wikidata de los elementos del espaciu de nomes Ficheru con etiquetes (a.k.a. pies) n'italianu pero non en xaponés.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Recibir los IDs d'entidá de Wikidata de los elementos del espaciu de nomes Ficheru que nun tienen etiquetes (a.k.a. pies)  n'italianu, y usalos como xenerador.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Tipu de suxerencia de xera."
+}
