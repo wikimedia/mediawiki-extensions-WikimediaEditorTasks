@@ -113,7 +113,8 @@ class Hooks {
 			) {
 				$victim = User::newFromId( $victimId );
 				foreach ( self::getCounters() as $counter ) {
-					$counter->onRevert( Utils::getCentralId( $victim ), $oldRev->getId(), $oldRev );
+					$counter->onRevert( Utils::getCentralId( $victim ), $oldRev->getId(),
+						$oldRev->getRevisionRecord() );
 				}
 			}
 		};
