@@ -71,11 +71,7 @@ class Hooks {
 	) {
 		$cb = function () use ( $revision, $status, $user, $undidRevId, $wikiPage ) {
 			if ( $status->isGood() && $user->isLoggedIn() ) {
-				// Convert the revision object from a deprecated Revision object to a RevisionRecord
-				// for consistency
-				$revStore = MediaWikiServices::getInstance()->getRevisionStore();
-				$revision = $revStore->getRevisionById( $revision->getId() );
-				self::countersOnEditSuccess( $user, $revision );
+				self::countersOnEditSuccess( $user, $revision->getRevisionRecord() );
 			}
 
 			if ( $undidRevId ) {
