@@ -15,7 +15,9 @@
 		}
 	},
 	"AutoloadNamespaces": {
-		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/",
+		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/"
+	},
+	"TestAutoloadNamespaces": {
 		"MediaWiki\\Extension\\WikimediaEditorTasks\\Test\\": "tests/phpunit/"
 	},
 	"ServiceWiringFiles": [
