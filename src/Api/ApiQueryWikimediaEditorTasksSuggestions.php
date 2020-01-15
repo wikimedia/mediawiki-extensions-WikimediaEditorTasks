@@ -226,7 +226,7 @@ class ApiQueryWikimediaEditorTasksSuggestions extends ApiQueryGeneratorBase {
 			} else {
 				$this->dieStatus( $status );
 			}
-		} elseif ( is_null( $matches ) ) {
+		} elseif ( $matches === null ) {
 			$this->dieWithError( [ 'apierror-searchdisabled', 'text' ], "search-text-disabled" );
 		}
 

@@ -1,7 +1,7 @@
 <?php
 
-use MediaWiki\Extension\WikimediaEditorTasks\CounterFactory;
 use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
+use MediaWiki\Extension\WikimediaEditorTasks\CounterFactory;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
 use MediaWiki\Logger\LoggerFactory;

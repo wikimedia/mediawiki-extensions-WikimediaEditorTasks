@@ -19,6 +19,7 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use AutoCommitUpdate;
 use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
@@ -31,7 +32,6 @@ use Status;
 use Title;
 use User;
 use WikiPage;
-use AutoCommitUpdate;
 
 /**
  * Hooks for WikimediaEditorTasks extension

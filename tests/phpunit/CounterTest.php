@@ -75,7 +75,7 @@ class CounterTest extends MediaWikiTestCase {
 
 	public function testInitialState() {
 		foreach ( $this->counters as $counter ) {
-			$this->assertEquals( 0, $counter->getEditCountForLang( $this->userId, self::LANG ) );
+			$this->assertFalse( $counter->getEditCountForLang( $this->userId, self::LANG ) );
 		}
 	}
 
@@ -84,7 +84,7 @@ class CounterTest extends MediaWikiTestCase {
 			$counter->incrementEditCountForLang( $this->userId, self::LANG );
 			$this->assertEquals( 1, $counter->getEditCountForLang( $this->userId, self::LANG ) );
 			$counter->decrementEditCountForLang( $this->userId, self::LANG );
-			$this->assertEquals( 0, $counter->getEditCountForLang( $this->userId, self::LANG ) );
+			$this->assertFalse( $counter->getEditCountForLang( $this->userId, self::LANG ) );
 		}
 	}
 

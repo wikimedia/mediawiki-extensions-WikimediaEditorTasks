@@ -59,7 +59,7 @@ class CounterDaoTest extends MediaWikiTestCase {
 		$this->assertEquals( 1, $this->dao->getEditCountForKeyAndLang( $this->userId, self::KEY_ID,
 			self::LANG ) );
 		$this->dao->decrementEditCountForKeyAndLang( $this->userId, self::KEY_ID, self::LANG );
-		$this->assertEquals( 0, $this->dao->getEditCountForKeyAndLang( $this->userId, self::KEY_ID,
+		$this->assertSame( 0, $this->dao->getEditCountForKeyAndLang( $this->userId, self::KEY_ID,
 			self::LANG ) );
 	}
 
