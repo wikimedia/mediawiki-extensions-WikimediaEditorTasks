@@ -30,13 +30,13 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 	public function testGetLanguageFromNonQualifyingWikibaseComment() {
 		$comment = '/* wmettestedit-add:1|zh-hant */ 韓國高速鐵道';
 		$lang = $this->counter->getLanguageFromWikibaseComment( $comment );
-		$this->assertSame( null, $lang );
+		$this->assertNull( $lang );
 	}
 
 	public function testGetLanguageFromNonQualifyingNonWikibaseComment() {
 		$comment = 'Foo';
 		$lang = $this->counter->getLanguageFromWikibaseComment( $comment );
-		$this->assertSame( null, $lang );
+		$this->assertNull( $lang );
 	}
 
 }
