@@ -84,6 +84,12 @@ abstract class Counter {
 	abstract public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ):
 		void;
 
+	/**
+	 * Return true if this counter is language-specific, false if language-independent.
+	 * @return bool
+	 */
+	abstract protected function isLanguageSpecific();
+
 	/** @return bool */
 	protected function isRevertCountingEnabled(): bool {
 		return $this->revertCountsEnabled;

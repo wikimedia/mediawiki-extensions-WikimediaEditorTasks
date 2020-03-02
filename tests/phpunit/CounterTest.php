@@ -34,7 +34,7 @@ use Wikimedia\TestingAccessWrapper;
  */
 class CounterTest extends MediaWikiTestCase {
 
-	const LANG = 'test';
+	const LANG = '*';
 	const TEST_EDIT_COUNT = 2;
 	const REV_ID = 1;
 

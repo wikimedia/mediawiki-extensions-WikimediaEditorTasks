@@ -47,4 +47,9 @@ class WikipediaAppDescriptionEditCounter extends WikipediaAppCounter {
 		return 'wbsetdescription';
 	}
 
+	/** @inheritDoc */
+	protected function isLanguageSpecific() {
+		return true;
+	}
+
 }

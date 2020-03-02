@@ -41,7 +41,17 @@ abstract class WikipediaAppCounter extends Counter {
 		if ( !$this->isWikipediaAppMwApiRequest( $request ) ) {
 			return;
 		}
-		$lang = $this->getLanguageFromWikibaseComment( $revision->getComment()->text );
+		$params = $this->getRequestParams( $request );
+		if ( $params['action'] !== $this->getAction() ) {
+			return;
+		}
+		$comment = $revision->getComment()->text;
+		if ( stripos( $comment, '#suggestededit' ) === false ) {
+			return;
+		}
+		$lang = $this->isLanguageSpecific() ?
+			$this->getLanguageFromWikibaseComment( $comment ) :
+			'*';
 		if ( !$lang ) {
 			return;
 		}
@@ -90,6 +100,11 @@ abstract class WikipediaAppCounter extends Counter {
 	private function hasSuggestedEditsChangeTag( $revisionId ) {
 		$tags = ChangeTags::getTags( wfGetDB( DB_REPLICA ), null, $revisionId );
 		return in_array( 'apps-suggested-edits', $tags, true );
+	}
+
+	private function getRequestParams( WebRequest $request ) {
+		// If the query string and post body contain duplicate keys, the post body value wins
+		return array_merge( $request->getQueryValues(), $request->getPostValues() );
 	}
 
 	private function isWikipediaAppMwApiRequest( $request ) {

@@ -33,13 +33,17 @@ class TestCounter extends WikipediaAppCounter {
 	/** @inheritDoc */
 	public function onEditSuccess( int $centralId, WebRequest $request, RevisionRecord $revision ):
 		void {
-		$this->incrementEditCountForLang( $centralId, 'test' );
+		$this->incrementEditCountForLang( $centralId, '*' );
 		$this->updateEditStreak( $centralId );
 	}
 
 	/** @inheritDoc */
 	public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ): void {
-		$this->incrementRevertCountForLang( $centralId, 'test' );
+		$this->incrementRevertCountForLang( $centralId, '*' );
+	}
+
+	protected function isLanguageSpecific() {
+		return false;
 	}
 
 }

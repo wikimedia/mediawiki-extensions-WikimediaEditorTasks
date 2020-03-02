@@ -47,4 +47,9 @@ class WikipediaAppCaptionEditCounter extends WikipediaAppCounter {
 		return 'wbsetlabel';
 	}
 
+	/** @inheritDoc */
+	protected function isLanguageSpecific() {
+		return true;
+	}
+
 }
