@@ -16,7 +16,7 @@
 	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "İtalyanca'da Dosya ad alanı eksik etiketleri (başlıkları olarak bilinir) içindeki öğeler için Vikiveri varlık kimliklerini alın ve bunları bir jeneratör olarak kullanın.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Görev önerisi türü.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Çeviri türü görev önerileri için, belirli bir öğe için içeriğin bulunması gereken dilin wiki dili kodu.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Belirli bir öğe için içeriğin eksik olduğu dilin wiki dili kodu.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Belirli bir öğe için içeriğin eksik olduğu dilin viki dili kodu.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "İstenilen sonuç sayısı. İstenilen sayıdan daha az sayıda sonuç varsa, daha az sonuç alınabileceğini unutmayın.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Yalnızca bu ad alanlarında arama yapın."
 }
