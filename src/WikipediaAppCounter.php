@@ -38,13 +38,10 @@ abstract class WikipediaAppCounter extends Counter {
 	 */
 	protected function conditionallyIncrementEditCount( int $centralId, WebRequest $request,
 		RevisionRecord $revision ): void {
-		if ( !$this->isWikipediaAppRequest( $request ) ) {
+		if ( !$this->isWikipediaAppMwApiRequest( $request ) ) {
 			return;
 		}
 		$params = $this->getRequestParams( $request );
-		if ( !$params['action'] ) {
-			return;
-		}
 		if ( $params['action'] !== $this->getAction() ) {
 			return;
 		}
@@ -60,42 +57,26 @@ abstract class WikipediaAppCounter extends Counter {
 		}
 		$this->incrementEditCountForLang( $centralId, $lang );
 		$this->updateEditStreak( $centralId );
+		ChangeTags::addTags( 'apps-suggested-edits', null, $revision->getId() );
 	}
 
 	/**
 	 * Increment the revert counter
 	 * @param int $centralId central ID of the editing user
+	 * @param int $revisionId revision ID of the reverted edit
 	 * @param RevisionRecord $revision the RevisionRecord corresponding with $revisionId
 	 */
-	protected function conditionallyIncrementRevertCount(
-		int $centralId,
-		RevisionRecord $revision
-	): void {
-		$comment = $revision->getComment()->text;
-		if ( stripos( $comment, '#suggestededit' ) === false ||
-			stripos( $comment, $this->getAction() ) === false ) {
-			return;
-		}
-		$lang = $this->isLanguageSpecific() ?
-			$this->getLanguageFromWikibaseComment( $comment ) :
-			'*';
-		if ( $lang ) {
+	protected function conditionallyIncrementRevertCount( int $centralId, int $revisionId,
+		RevisionRecord $revision ): void {
+		$lang = $this->getLanguageFromWikibaseComment( $revision->getComment()->text );
+		if ( $lang && $this->hasSuggestedEditsChangeTag( $revisionId ) ) {
 			$this->incrementRevertCountForLang( $centralId, $lang );
 		}
 	}
 
 	/**
-	 * Return true if the suggested edits change tag is associated with the revision.
-	 * @param int $revisionId
-	 * @return bool
-	 */
-	protected function hasSuggestedEditsChangeTag( int $revisionId ): bool {
-		$tags = ChangeTags::getTags( wfGetDB( DB_REPLICA ), null, $revisionId );
-		return in_array( 'apps-suggested-edits', $tags, true );
-	}
-
-	/**
-	 * Get the language code from the semi-structured Wikibase edit summary text.
+	 * Get the language code from the semi-structured Wikibase edit summary text, if the comment
+	 *  matches the corresponding pattern.
 	 * Examples:
 	 *  \/* wbsetdescription-add:1|en *\/ 19th century French painter
 	 *  \/* wbsetlabel-add:1|en *\/ A chicken in the snow
@@ -116,12 +97,23 @@ abstract class WikipediaAppCounter extends Counter {
 		return null;
 	}
 
+	private function hasSuggestedEditsChangeTag( $revisionId ) {
+		$tags = ChangeTags::getTags( wfGetDB( DB_REPLICA ), null, $revisionId );
+		return in_array( 'apps-suggested-edits', $tags, true );
+	}
+
 	private function getRequestParams( WebRequest $request ) {
 		// If the query string and post body contain duplicate keys, the post body value wins
 		return array_merge( $request->getQueryValues(), $request->getPostValues() );
 	}
 
-	private function isWikipediaAppRequest( WebRequest $request ) {
+	private function isWikipediaAppMwApiRequest( $request ) {
+		return $request instanceof WebRequest
+			   && $this->isRequestFromApp( $request )
+			   && defined( 'MW_API' );
+	}
+
+	private function isRequestFromApp( WebRequest $request ) {
 		$ua = $request->getHeader( 'User-agent' );
 		if ( $ua ) {
 			return strpos( $ua, 'WikipediaApp/' ) === 0;
