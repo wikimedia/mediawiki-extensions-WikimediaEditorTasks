@@ -19,7 +19,6 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use ChangeTags;
 use MediaWiki\Revision\RevisionRecord;
 use WebRequest;
 
@@ -32,16 +31,12 @@ class WikipediaAppCaptionEditCounter extends WikipediaAppCounter {
 	public function onEditSuccess( int $centralId, WebRequest $request, RevisionRecord $revision ):
 		void {
 		$this->conditionallyIncrementEditCount( $centralId, $request, $revision );
-		ChangeTags::addTags( 'apps-suggested-edits', null, $revision->getId() );
 	}
 
 	/** @inheritDoc */
 	public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ): void {
-		if ( !$this->hasSuggestedEditsChangeTag( $revisionId ) ) {
-			return;
-		}
 		if ( $this->isRevertCountingEnabled() ) {
-			$this->conditionallyIncrementRevertCount( $centralId, $revision );
+			$this->conditionallyIncrementRevertCount( $centralId, $revisionId, $revision );
 		} else {
 			$this->reset( $centralId );
 		}
