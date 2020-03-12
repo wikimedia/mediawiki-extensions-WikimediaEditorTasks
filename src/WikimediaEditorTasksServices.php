@@ -22,7 +22,6 @@ namespace MediaWiki\Extension\WikimediaEditorTasks;
 use Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
-use SearchEngine;
 
 class WikimediaEditorTasksServices {
 
@@ -49,13 +48,6 @@ class WikimediaEditorTasksServices {
 	 */
 	public function __construct( MediaWikiServices $services ) {
 		$this->services = $services;
-	}
-
-	/**
-	 * @return SearchEngine
-	 */
-	public function getCirrusSearch(): SearchEngine {
-		return $this->services->getService( 'WikimediaEditorTasksCirrusSearch' );
 	}
 
 	/**
