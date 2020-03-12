@@ -9,10 +9,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.33",
-		"extensions": {
-			"WikibaseCirrusSearch": "*"
-		}
+		"MediaWiki": ">= 1.33"
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/"
@@ -37,11 +34,7 @@
 		},
 		"WikimediaEditorTasksEnabledCounters": {
 			"value": [],
-			"description": "Counter classes to enable, with associated configuation. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\n\nExample:\n{\n\t\"class\": \"MediaWiki\\Extension\\WikimediaEditorTasks\\WikipediaAppDescriptionEditCounter\",\n\t\"counter_key\": \"app_description_edits\",\n\t}"
-		},
-		"WikimediaEditorTasksSuggestionSearchSort": {
-			"value": "incoming_links_desc",
-			"description": "CirrusSearch sort strategy to use when querying for suggestions. See https://www.mediawiki.org/wiki/Help:CirrusSearch#Explicit_sort_orders for possible values."
+			"description": "Counter classes to enable, with associated configuration. Fields:\\n* class: the fully qualified class name\\n* counter_key: the count property name associated with the counter, for storing in the DB and surfacing in the MediaWiki API\n\nExample:\n{\n\t\"class\": \"MediaWiki\\Extension\\WikimediaEditorTasks\\WikipediaAppDescriptionEditCounter\",\n\t\"counter_key\": \"app_description_edits\",\n\t}"
 		},
 		"WikimediaEditorTasksEnableEditStreaks": {
 			"value": false,
@@ -51,9 +44,6 @@
 			"value": false,
 			"description": "Whether to track and report revert counts."
 		}
-	},
-	"APIListModules": {
-		"wikimediaeditortaskssuggestions": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksSuggestions"
 	},
 	"APIMetaModules": {
 		"wikimediaeditortaskscounts": {
