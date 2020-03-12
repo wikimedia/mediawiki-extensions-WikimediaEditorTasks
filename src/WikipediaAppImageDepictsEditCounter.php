@@ -35,8 +35,11 @@ class WikipediaAppImageDepictsEditCounter extends WikipediaAppCounter {
 
 	/** @inheritDoc */
 	public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ): void {
+		if ( !$this->hasSuggestedEditsChangeTag( $revisionId ) ) {
+			return;
+		}
 		if ( $this->isRevertCountingEnabled() ) {
-			$this->conditionallyIncrementRevertCount( $centralId, $revisionId, $revision );
+			$this->conditionallyIncrementRevertCount( $centralId, $revision );
 		} else {
 			$this->reset( $centralId );
 		}
