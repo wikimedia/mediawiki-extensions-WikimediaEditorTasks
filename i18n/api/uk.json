@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Piramidion"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Статистика редагувань зареєстрованого користувача для окремої функції.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Отримати статистику для окремих завдань для зареєстрованого користувача.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Пропозиції мікроредагувань попередньо визначених типів.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Отримати ідентифікатори сутностей Вікіданих для елементів з описами італійською, але не японською мовами.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Отримати ідентифікатори сутностей Вікіданих для елементів, які не мають описів італійською, і використати їх як генератор.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Отримати ідентифікатори сутностей Вікіданих для елементів із назвами італійською, але не японською мовами.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Отримати ідентифікатори сутностей Вікіданих для елементів, які не мають назв італійською, і використати їх як генератор.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Отримати ідентифікатори сутностей для елементів у просторі назв файлів із назвами (також відомими як підписи) італійською, але не японською.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Отримати ідентифікатори сутностей Вікіданих для елементів у просторі назв файлів, які не мають назв (також відомих як підписи) італійською, і використати їх як генератор.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Тип пропозиції завдання.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Для пропозицій завдань перекладацького типу, код мови у вікі для тієї мови, якою повинен існувати контент для заданого елемента.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Код мови у вікі для тієї мови, якою немає контенту для заданого елемента.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Бажана кількість результатів. Зверніть увагу, що може бути повернуто менше результатів, якщо доступно менше, ніж зазначена бажана кількість.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Шукати лише в межах цих просторів назв."
+}
