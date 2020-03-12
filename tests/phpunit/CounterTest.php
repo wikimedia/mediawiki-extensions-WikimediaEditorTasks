@@ -49,8 +49,9 @@ class CounterTest extends MediaWikiTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		global $wgWikimediaEditorTasksEnableEditStreaks;
+		global $wgWikimediaEditorTasksEnableEditStreaks, $wgWikimediaEditorTasksEnableRevertCounts;
 		$wgWikimediaEditorTasksEnableEditStreaks = true;
+		$wgWikimediaEditorTasksEnableRevertCounts = true;
 
 		$this->tablesUsed = array_merge( $this->tablesUsed, [
 			'wikimedia_editor_tasks_keys',
