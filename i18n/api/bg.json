@@ -1,9 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Vlad5250",
 			"StanProg",
-			"Ted Masters"
+			"Ted Masters",
+			"Vlad5250"
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Редакционна статистика за влезлия потребител според за отделни възможности.",
