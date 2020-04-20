@@ -92,25 +92,32 @@ class Hooks {
 	}
 
 	/**
-	 * Handler for ArticleRollbackComplete hook.
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ArticleRollbackComplete
+	 * Handler for RollbackComplete hook.
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/RollbackComplete
 	 *
 	 * @param WikiPage $wikiPage The article that was edited
 	 * @param User $agent The user who did the rollback
-	 * @param Revision $newRev The revision the page was reverted back to
-	 * @param Revision $oldRev The revision of the top edit that was reverted
+	 * @param RevisionRecord $newRev The revision the page was reverted back to
+	 * @param RevisionRecord $oldRev The revision of the top edit that was reverted
 	 */
-	public static function onArticleRollbackComplete( WikiPage $wikiPage, $agent, $newRev, $oldRev ) {
+	public static function onRollbackComplete( WikiPage $wikiPage, $agent, $newRev, $oldRev ) {
 		$cb = function () use ( $wikiPage, $oldRev, $newRev ) {
-			$victimId = $oldRev->getUser();
-			if (
-				// Ignore anonymous users and null rollbacks
-				$victimId && !$oldRev->getContent()->equals( $newRev->getContent() )
-			) {
-				$victim = User::newFromId( $victimId );
+			$victim = $oldRev->getUser();
+			$isRegistered = $victim ? $victim->isRegistered() : false;
+
+			// Ignore anonymous users and null rollbacks
+			if ( $isRegistered && !$oldRev->hasSameContent( $newRev ) ) {
+				// Is getUser returned null, the if condition fails
+				// Need the full name because of T250765
+				'@phan-var \MediaWiki\User\UserIdentity $victim';
+				$victim = User::newFromIdentity( $victim );
+
 				foreach ( self::getCounters() as $counter ) {
-					$counter->onRevert( Utils::getCentralId( $victim ), $oldRev->getId(),
-						$oldRev->getRevisionRecord() );
+					$counter->onRevert(
+						Utils::getCentralId( $victim ),
+						$oldRev->getId(),
+						$oldRev
+					);
 				}
 			}
 		};

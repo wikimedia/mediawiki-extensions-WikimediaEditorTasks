@@ -9,7 +9,7 @@
 	"license-name": "GPL-2.0-or-later",
 	"type": "other",
 	"requires": {
-		"MediaWiki": ">= 1.33"
+		"MediaWiki": ">= 1.35"
 	},
 	"AutoloadNamespaces": {
 		"MediaWiki\\Extension\\WikimediaEditorTasks\\": "src/"
@@ -52,7 +52,7 @@
 		}
 	},
 	"Hooks": {
-		"ArticleRollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onArticleRollbackComplete",
+		"RollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRollbackComplete",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates",
 		"PageContentSaveComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onPageContentSaveComplete",
 		"ListDefinedTags": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRegisterTags",
