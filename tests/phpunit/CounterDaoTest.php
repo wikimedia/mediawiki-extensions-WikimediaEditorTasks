@@ -29,8 +29,8 @@ use MediaWikiTestCase;
  */
 class CounterDaoTest extends MediaWikiTestCase {
 
-	const KEY_ID = 0;
-	const LANG = 'test';
+	private const KEY_ID = 0;
+	private const LANG = 'test';
 
 	/** @var CounterDao */
 	private $dao;

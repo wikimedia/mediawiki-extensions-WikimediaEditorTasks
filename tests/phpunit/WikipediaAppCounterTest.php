@@ -26,9 +26,10 @@ use Wikimedia\TestingAccessWrapper;
  */
 class WikipediaAppCounterTest extends MediaWikiTestCase {
 
-	const DESCRIPTION_COMMENT = '/* wbsetdescription-add:1|zh */ 韓國高速鐵道, #suggestededit-add 1.0';
-	const CAPTION_COMMENT = '/* wbsetlabel-add:1|zh-hant */ 韓國高速鐵道, #suggestededit-add 1.0';
-	const DEPICTS_COMMENT = '/* wbsetclaim-create:2||1 */ [[d:Special:EntityPage/P180]]: ' .
+	private const DESCRIPTION_COMMENT =
+		'/* wbsetdescription-add:1|zh */ 韓國高速鐵道, #suggestededit-add 1.0';
+	private const CAPTION_COMMENT = '/* wbsetlabel-add:1|zh-hant */ 韓國高速鐵道, #suggestededit-add 1.0';
+	private const DEPICTS_COMMENT = '/* wbsetclaim-create:2||1 */ [[d:Special:EntityPage/P180]]: ' .
 		'[[d:Special:EntityPage/Q42]], #suggestededit-add 1.0';
 
 	/** @var User */

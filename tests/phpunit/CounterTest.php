@@ -34,9 +34,9 @@ use Wikimedia\TestingAccessWrapper;
  */
 class CounterTest extends MediaWikiTestCase {
 
-	const LANG = '*';
-	const TEST_EDIT_COUNT = 2;
-	const REV_ID = 1;
+	private const LANG = '*';
+	private const TEST_EDIT_COUNT = 2;
+	private const REV_ID = 1;
 
 	/** @var Counter[] */
 	private $counters;
