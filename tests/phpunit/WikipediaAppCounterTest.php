@@ -89,11 +89,11 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 		foreach ( $this->counters as $counter ) {
 			$counter->conditionallyIncrementEditCount( $id, $request, $revision );
 		}
-		$this->assertEquals( 1, $this->getEditCountForCounter( $id, 'app_description_edits' ) );
+		$this->assertSame( 1, $this->getEditCountForCounter( $id, 'app_description_edits' ) );
 		foreach ( $this->counters as $counter ) {
 			$counter->conditionallyIncrementRevertCount( $id, $revision );
 		}
-		$this->assertEquals( 1, $this->getRevertCountForCounter( $id, 'app_description_edits' ) );
+		$this->assertSame( 1, $this->getRevertCountForCounter( $id, 'app_description_edits' ) );
 	}
 
 	public function testIncrementCaptionEditCount() {
@@ -103,11 +103,11 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 		foreach ( $this->counters as $counter ) {
 			$counter->conditionallyIncrementEditCount( $id, $request, $revision );
 		}
-		$this->assertEquals( 1, $this->getEditCountForCounter( $id, 'app_caption_edits' ) );
+		$this->assertSame( 1, $this->getEditCountForCounter( $id, 'app_caption_edits' ) );
 		foreach ( $this->counters as $counter ) {
 			$counter->conditionallyIncrementRevertCount( $id, $revision );
 		}
-		$this->assertEquals( 1, $this->getRevertCountForCounter( $id, 'app_caption_edits' ) );
+		$this->assertSame( 1, $this->getRevertCountForCounter( $id, 'app_caption_edits' ) );
 	}
 
 	public function testIncrementDepictsEditCount() {
@@ -117,11 +117,11 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 		foreach ( $this->counters as $counter ) {
 			$counter->conditionallyIncrementEditCount( $id, $request, $revision );
 		}
-		$this->assertEquals( 1, $this->getEditCountForCounter( $id, 'app_depicts_edits' ) );
+		$this->assertSame( 1, $this->getEditCountForCounter( $id, 'app_depicts_edits' ) );
 		foreach ( $this->counters as $counter ) {
 			$counter->conditionallyIncrementRevertCount( $id, $revision );
 		}
-		$this->assertEquals( 1, $this->getRevertCountForCounter( $id, 'app_depicts_edits' ) );
+		$this->assertSame( 1, $this->getRevertCountForCounter( $id, 'app_depicts_edits' ) );
 	}
 
 	public function testIsWikipediaAppRequest() {

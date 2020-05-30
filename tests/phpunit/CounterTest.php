@@ -83,7 +83,7 @@ class CounterTest extends MediaWikiTestCase {
 	public function testIncrementDecrement() {
 		foreach ( $this->counters as $counter ) {
 			$counter->incrementEditCountForLang( $this->userId, self::LANG );
-			$this->assertEquals( 1, $counter->getEditCountForLang( $this->userId, self::LANG ) );
+			$this->assertSame( 1, $counter->getEditCountForLang( $this->userId, self::LANG ) );
 			$counter->decrementEditCountForLang( $this->userId, self::LANG );
 			$this->assertFalse( $counter->getEditCountForLang( $this->userId, self::LANG ) );
 		}
@@ -93,8 +93,8 @@ class CounterTest extends MediaWikiTestCase {
 		foreach ( $this->counters as $counter ) {
 			$counter->onEditSuccess( $this->userId, new WebRequest(),
 				$this->revisionStore->getRevisionById( self::REV_ID ) );
-			$this->assertEquals( 1, $counter->getEditCountForLang( $this->userId, self::LANG ) );
-			$this->assertEquals( 1, $counter->getEditStreak( $this->userId )['length'] );
+			$this->assertSame( 1, $counter->getEditCountForLang( $this->userId, self::LANG ) );
+			$this->assertSame( 1, $counter->getEditStreak( $this->userId )['length'] );
 			$this->assertCount( 2, $counter->getEditStreak( $this->userId ) );
 		}
 	}
@@ -114,6 +114,6 @@ class CounterTest extends MediaWikiTestCase {
 			$counter->onRevert( $this->userId, self::REV_ID,
 				$this->revisionStore->getRevisionById( self::REV_ID ) );
 		}
-		$this->assertEquals( 1, $testCounter->getRevertCountForLang( $this->userId, self::LANG ) );
+		$this->assertSame( 1, $testCounter->getRevertCountForLang( $this->userId, self::LANG ) );
 	}
 }
