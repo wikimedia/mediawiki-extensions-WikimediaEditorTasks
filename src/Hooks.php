@@ -20,15 +20,14 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 use AutoCommitUpdate;
-use Content;
 use DatabaseUpdater;
 use DeferredUpdates;
 use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
+use MediaWiki\Storage\EditResult;
+use MediaWiki\User\USerIdentity;
 use RequestContext;
-use Revision;
-use Status;
 use Title;
 use User;
 use WikiPage;
@@ -39,39 +38,30 @@ use WikiPage;
 class Hooks {
 
 	/**
-	 * Handler for PageContentSaveComplete hook
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/PageContentSaveComplete
+	 * Handler for PageSaveComplete hook
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/PageSaveComplete
 	 *
-	 * @param WikiPage $wikiPage modified WikiPage
-	 * @param User $user User who edited
-	 * @param Content $content New article text
-	 * @param string $summary Edit summary
-	 * @param bool $minoredit Minor edit or not
-	 * @param bool $watchthis Watch this article?
-	 * @param string $sectionanchor Section that was edited
-	 * @param int &$flags Edit flags
-	 * @param Revision $revision Revision that was created
-	 * @param Status $status
-	 * @param int $baseRevId
-	 * @param int $undidRevId
+	 * @param WikiPage $wikiPage
+	 * @param UserIdentity $userIdentity
+	 * @param string $summary
+	 * @param int $flags
+	 * @param RevisionRecord $revisionRecord
+	 * @param EditResult $editResult
 	 */
-	public static function onPageContentSaveComplete(
+	public static function onPageSaveComplete(
 		WikiPage $wikiPage,
-		User $user,
-		$content,
-		$summary,
-		$minoredit,
-		$watchthis,
-		$sectionanchor,
-		&$flags,
-		Revision $revision,
-		Status $status,
-		$baseRevId,
-		$undidRevId = 0
+		UserIdentity $userIdentity,
+		string $summary,
+		int $flags,
+		RevisionRecord $revisionRecord,
+		EditResult $editResult
 	) {
-		$cb = function () use ( $revision, $status, $user, $undidRevId, $wikiPage ) {
-			if ( $status->isGood() && $user->isLoggedIn() ) {
-				self::countersOnEditSuccess( $user, $revision->getRevisionRecord() );
+		$undidRevId = $editResult->getUndidRevId();
+
+		$cb = function () use ( $revisionRecord, $userIdentity, $undidRevId, $wikiPage ) {
+			if ( $userIdentity->isRegistered() ) {
+				$user = User::newFromIdentity( $userIdentity );
+				self::countersOnEditSuccess( $user, $revisionRecord );
 			}
 
 			if ( $undidRevId ) {

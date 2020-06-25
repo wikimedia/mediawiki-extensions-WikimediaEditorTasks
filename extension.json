@@ -54,7 +54,7 @@
 	"Hooks": {
 		"RollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRollbackComplete",
 		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates",
-		"PageContentSaveComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onPageContentSaveComplete",
+		"PageSaveComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onPageSaveComplete",
 		"ListDefinedTags": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRegisterTags",
 		"ChangeTagsListActive": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRegisterTags"
 	},
