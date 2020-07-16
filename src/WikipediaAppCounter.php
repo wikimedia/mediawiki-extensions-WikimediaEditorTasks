@@ -26,9 +26,33 @@ use WebRequest;
 abstract class WikipediaAppCounter extends Counter {
 
 	/**
-	 * @return string Wikibase edit action associated with the counter
+	 * @param string $comment Revision comment to be validated for whether to include this revision in the count.
+	 * @return bool Whether this revision should be counted by this counter.
 	 */
-	abstract protected function getAction(): string;
+	abstract protected function validateComment( string $comment ): bool;
+
+	/**
+	 * @param string $comment Revision comment from which the language may be extracted.
+	 * @return string|null ?string Language parsed from the given comment, or a constant overridden language.
+	 */
+	abstract protected function getLanguageFromComment( string $comment ): ?string;
+
+	/** @inheritDoc */
+	public function onEditSuccess( int $centralId, WebRequest $request, RevisionRecord $revision ): void {
+		$this->conditionallyIncrementEditCount( $centralId, $request, $revision );
+	}
+
+	/** @inheritDoc */
+	public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ): void {
+		if ( !$this->hasSuggestedEditsChangeTag( $revisionId ) ) {
+			return;
+		}
+		if ( $this->isRevertCountingEnabled() ) {
+			$this->conditionallyIncrementRevertCount( $centralId, $revision );
+		} else {
+			$this->reset( $centralId );
+		}
+	}
 
 	/**
 	 * Increment the counter corresponding to the provided MW API action
@@ -41,20 +65,11 @@ abstract class WikipediaAppCounter extends Counter {
 		if ( !$this->isWikipediaAppRequest( $request ) ) {
 			return;
 		}
-		$params = $this->getRequestParams( $request );
-		if ( !$params['action'] ) {
-			return;
-		}
-		if ( $params['action'] !== $this->getAction() ) {
-			return;
-		}
 		$comment = $revision->getComment()->text;
-		if ( stripos( $comment, '#suggestededit' ) === false ) {
+		if ( !$this->validateComment( $comment ) ) {
 			return;
 		}
-		$lang = $this->isLanguageSpecific() ?
-			$this->getLanguageFromWikibaseComment( $comment ) :
-			'*';
+		$lang = $this->getLanguageFromComment( $comment );
 		if ( !$lang ) {
 			return;
 		}
@@ -73,13 +88,10 @@ abstract class WikipediaAppCounter extends Counter {
 		RevisionRecord $revision
 	): void {
 		$comment = $revision->getComment()->text;
-		if ( stripos( $comment, '#suggestededit' ) === false ||
-			stripos( $comment, $this->getAction() ) === false ) {
+		if ( !$this->validateComment( $comment ) ) {
 			return;
 		}
-		$lang = $this->isLanguageSpecific() ?
-			$this->getLanguageFromWikibaseComment( $comment ) :
-			'*';
+		$lang = $this->getLanguageFromComment( $comment );
 		if ( $lang ) {
 			$this->incrementRevertCountForLang( $centralId, $lang );
 		}
@@ -102,24 +114,20 @@ abstract class WikipediaAppCounter extends Counter {
 	 *  \/* wbsetlabel-add:1|en *\/ A chicken in the snow
 	 * See docs at mediawiki-extensions-Wikibase/docs/summaries.md.
 	 * TODO: Update to use structured comment data when that's implemented (T215422)
+	 * @param string $action
 	 * @param string $comment
 	 * @return string|null language code, if found
 	 */
-	private function getLanguageFromWikibaseComment( string $comment ): ?string {
+	protected function getLanguageFromWikibaseComment( string $action, string $comment ): ?string {
 		if ( !$comment ) {
 			return null;
 		}
 		$matches = [];
-		$result = preg_match( $this->getMagicCommentPattern(), $comment, $matches );
+		$result = preg_match( $this->getMagicCommentPattern( $action ), $comment, $matches );
 		if ( $result ) {
 			return $matches[1];
 		}
 		return null;
-	}
-
-	private function getRequestParams( WebRequest $request ) {
-		// If the query string and post body contain duplicate keys, the post body value wins
-		return array_merge( $request->getQueryValues(), $request->getPostValues() );
 	}
 
 	private function isWikipediaAppRequest( WebRequest $request ) {
@@ -131,10 +139,11 @@ abstract class WikipediaAppCounter extends Counter {
 	}
 
 	/**
+	 * @param string $action Wikibase action to which this pattern will apply.
 	 * @return string pattern matching Wikibase magic comments associated with this counter.
 	 */
-	private function getMagicCommentPattern(): string {
-		return '/^\/\* ' . $this->getAction() . '-[a-z]{3}:[0-9]\|([a-z-]+) \*\/.*?#suggestededit/';
+	protected function getMagicCommentPattern( string $action ): string {
+		return '/^\/\* ' . $action . '-[a-z]{3}:[0-9]\|([a-z-]+) /';
 	}
 
 }

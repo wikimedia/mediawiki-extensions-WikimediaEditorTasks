@@ -29,8 +29,9 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 	private const DESCRIPTION_COMMENT =
 		'/* wbsetdescription-add:1|zh */ 韓國高速鐵道, #suggestededit-add 1.0';
 	private const CAPTION_COMMENT = '/* wbsetlabel-add:1|zh-hant */ 韓國高速鐵道, #suggestededit-add 1.0';
-	private const DEPICTS_COMMENT = '/* wbsetclaim-create:2||1 */ [[d:Special:EntityPage/P180]]: ' .
-		'[[d:Special:EntityPage/Q42]], #suggestededit-add 1.0';
+	private const DEPICTS_COMMENT = '/* wbeditentity-update:0| */ /* add-depicts: Q123|Test */';
+	private const DEPICTS_COMMENT_OLD = '/* wbsetclaim-create:2||1 */ [[d:Special:EntityPage/P180]]: ' .
+	'[[d:Special:EntityPage/Q42]], #suggestededit-add 1.0';
 
 	/** @var User */
 	private $user;
@@ -112,8 +113,22 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 
 	public function testIncrementDepictsEditCount() {
 		$id = Utils::getCentralId( $this->user );
-		$request = $this->getRequest( 'wbsetclaim' );
+		$request = $this->getRequest( 'wbeditentity' );
 		$revision = $this->getRevision( self::DEPICTS_COMMENT );
+		foreach ( $this->counters as $counter ) {
+			$counter->conditionallyIncrementEditCount( $id, $request, $revision );
+		}
+		$this->assertSame( 1, $this->getEditCountForCounter( $id, 'app_depicts_edits' ) );
+		foreach ( $this->counters as $counter ) {
+			$counter->conditionallyIncrementRevertCount( $id, $revision );
+		}
+		$this->assertSame( 1, $this->getRevertCountForCounter( $id, 'app_depicts_edits' ) );
+	}
+
+	public function testIncrementDepictsEditCountOld() {
+		$id = Utils::getCentralId( $this->user );
+		$request = $this->getRequest( 'wbsetclaim' );
+		$revision = $this->getRevision( self::DEPICTS_COMMENT_OLD );
 		foreach ( $this->counters as $counter ) {
 			$counter->conditionallyIncrementEditCount( $id, $request, $revision );
 		}
@@ -130,19 +145,13 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 	}
 
 	public function testGetLanguageFromQualifyingComment() {
-		$lang = $this->counters[0]->getLanguageFromWikibaseComment( self::DESCRIPTION_COMMENT );
+		$lang = $this->counters[0]->getLanguageFromWikibaseComment( "wbsetdescription", self::DESCRIPTION_COMMENT );
 		$this->assertSame( 'zh', $lang );
-	}
-
-	public function testGetLanguageFromNonQualifyingWikibaseComment() {
-		$comment = '/* wbsetdescription-add:1|zh-hant */ 韓國高速鐵道';
-		$lang = $this->counters[0]->getLanguageFromWikibaseComment( $comment );
-		$this->assertNull( $lang );
 	}
 
 	public function testGetLanguageFromNonQualifyingNonWikibaseComment() {
 		$comment = 'Foo';
-		$lang = $this->counters[0]->getLanguageFromWikibaseComment( $comment );
+		$lang = $this->counters[0]->getLanguageFromWikibaseComment( "wbsetdescription", $comment );
 		$this->assertNull( $lang );
 	}
 
