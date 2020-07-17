@@ -19,40 +19,26 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use MediaWiki\Revision\RevisionRecord;
-use WebRequest;
-
 /**
  * Counter for Wikimedia Commons file caption edits from the official Wikipedia apps.
  */
 class WikipediaAppCaptionEditCounter extends WikipediaAppCounter {
 
-	/** @inheritDoc */
-	public function onEditSuccess( int $centralId, WebRequest $request, RevisionRecord $revision ):
-		void {
-		$this->conditionallyIncrementEditCount( $centralId, $request, $revision );
-	}
-
-	/** @inheritDoc */
-	public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ): void {
-		if ( !$this->hasSuggestedEditsChangeTag( $revisionId ) ) {
-			return;
+	/**
+	 * @inheritDoc
+	 */
+	protected function validateComment( string $comment ): bool {
+		if ( stripos( $comment, 'wbsetlabel-' ) !== false ) {
+			return true;
 		}
-		if ( $this->isRevertCountingEnabled() ) {
-			$this->conditionallyIncrementRevertCount( $centralId, $revision );
-		} else {
-			$this->reset( $centralId );
-		}
+		return false;
 	}
 
-	/** @inheritDoc */
-	protected function getAction(): string {
-		return 'wbsetlabel';
-	}
-
-	/** @inheritDoc */
-	protected function isLanguageSpecific() {
-		return true;
+	/**
+	 * @inheritDoc
+	 */
+	protected function getLanguageFromComment( string $comment ): ?string {
+		return $this->getLanguageFromWikibaseComment( "wbsetlabel", $comment );
 	}
 
 }

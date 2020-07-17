@@ -26,11 +26,6 @@ use WebRequest;
 class TestCounter extends WikipediaAppCounter {
 
 	/** @inheritDoc */
-	public function getAction(): string {
-		return 'wmettestedit';
-	}
-
-	/** @inheritDoc */
 	public function onEditSuccess( int $centralId, WebRequest $request, RevisionRecord $revision ):
 		void {
 		$this->incrementEditCountForLang( $centralId, '*' );
@@ -42,8 +37,17 @@ class TestCounter extends WikipediaAppCounter {
 		$this->incrementRevertCountForLang( $centralId, '*' );
 	}
 
-	protected function isLanguageSpecific() {
-		return false;
+	/**
+	 * @inheritDoc
+	 */
+	protected function validateComment( string $comment ): bool {
+		return true;
 	}
 
+	/**
+	 * @inheritDoc
+	 */
+	protected function getLanguageFromComment( string $comment ): ?string {
+		return "*";
+	}
 }
