@@ -2,8 +2,11 @@
 	"@metadata": {
 		"authors": [
 			"Metalhead64",
-			"Mirzali"
+			"Mirzali",
+			"Umherirrender"
 		]
 	},
-	"wikimediaeditortasks-desc": "Erzeugung von Aufgaben, Speicher und API-Module für Mikrobeiträge."
+	"wikimediaeditortasks-desc": "Erzeugung von Aufgaben, Speicher und API-Module für Mikrobeiträge.",
+	"tag-apps-suggested-edits": "„Vorgeschlagene Bearbeitung“-Bearbeitung",
+	"tag-apps-suggested-edits-description": "Bearbeitung durch das Wikimedia-App-Feature „Vorgeschlagene Bearbeitung“"
 }
