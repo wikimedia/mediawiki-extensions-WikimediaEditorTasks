@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Daud I.F. Argana"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Statistik suntingan fitur tertentu untuk pengguna yang masuk log.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Banyak hasil yang diinginkan. Perhatikan bahwa hasil yang diberikan bisa lebih sedikit, apabila banyak hasil yang tersedia lebih sedikit dari yang diinginkan.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Cari hanya di dalam ruang-ruang nama ini."
+}
