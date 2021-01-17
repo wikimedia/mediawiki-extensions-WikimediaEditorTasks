@@ -33,7 +33,7 @@ abstract class WikipediaAppCounter extends Counter {
 
 	/**
 	 * @param string $comment Revision comment from which the language may be extracted.
-	 * @return string|null ?string Language parsed from the given comment, or a constant overridden language.
+	 * @return string|null Language parsed from the given comment, or a constant overridden language.
 	 */
 	abstract protected function getLanguageFromComment( string $comment ): ?string;
 
@@ -130,6 +130,10 @@ abstract class WikipediaAppCounter extends Counter {
 		return null;
 	}
 
+	/**
+	 * @param WebRequest $request
+	 * @return bool
+	 */
 	private function isWikipediaAppRequest( WebRequest $request ) {
 		$ua = $request->getHeader( 'User-agent' );
 		if ( $ua ) {

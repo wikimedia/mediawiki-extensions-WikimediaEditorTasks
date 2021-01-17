@@ -188,7 +188,7 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 	}
 
 	/**
-	 * @param string comment
+	 * @param string $comment
 	 * @return RevisionStoreRecord
 	 */
 	private function getRevision( string $comment = '' ): RevisionStoreRecord {

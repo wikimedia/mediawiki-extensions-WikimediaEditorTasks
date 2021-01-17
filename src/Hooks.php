@@ -202,6 +202,9 @@ class Hooks {
 		}
 	}
 
+	/**
+	 * @return Counter[]
+	 */
 	private static function getCounters() {
 		$counterFactory = WikimediaEditorTasksServices::getInstance()->getCounterFactory();
 		return $counterFactory->createAll( Utils::getEnabledCounters() );
