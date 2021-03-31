@@ -21,11 +21,14 @@ namespace MediaWiki\Extension\WikimediaEditorTasks\Api;
 
 use ApiQuery;
 use ApiQueryBase;
+use Config;
+use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
-use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
-use MediaWiki\MediaWikiServices;
 
 class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
+
+	/** @var CounterDao */
+	private $counterDao;
 
 	/** @var bool */
 	private $editStreaksEnabled;
@@ -34,38 +37,21 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 	private $revertCountsEnabled;
 
 	/**
-	 * @param ApiQuery $main
-	 * @param string $moduleName
-	 * @return self
-	 */
-	public static function factory( ApiQuery $main, $moduleName ) {
-		$services = MediaWikiServices::getInstance();
-		$extensionServices = new WikimediaEditorTasksServices( $services );
-		$extensionConfig = $extensionServices->getExtensionConfig();
-		return new self(
-			$main,
-			$moduleName,
-			$extensionConfig->get( 'WikimediaEditorTasksEnableEditStreaks' ),
-			$extensionConfig->get( 'WikimediaEditorTasksEnableRevertCounts' )
-		);
-	}
-
-	/**
-	 * ApiQueryWikimediaEditorTasksCounts constructor.
 	 * @param ApiQuery $queryModule
 	 * @param string $moduleName
-	 * @param bool $editStreaksEnabled
-	 * @param bool $revertCountsEnabled
+	 * @param CounterDao $counterDao
+	 * @param Config $extensionConfig
 	 */
 	public function __construct(
 		ApiQuery $queryModule,
 		string $moduleName,
-		bool $editStreaksEnabled,
-		bool $revertCountsEnabled
+		CounterDao $counterDao,
+		Config $extensionConfig
 	) {
 		parent::__construct( $queryModule, $moduleName, 'wmetc' );
-		$this->editStreaksEnabled = $editStreaksEnabled;
-		$this->revertCountsEnabled = $revertCountsEnabled;
+		$this->counterDao = $counterDao;
+		$this->editStreaksEnabled = $extensionConfig->get( 'WikimediaEditorTasksEnableEditStreaks' );
+		$this->revertCountsEnabled = $extensionConfig->get( 'WikimediaEditorTasksEnableRevertCounts' );
 	}
 
 	/**
@@ -79,7 +65,7 @@ class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 		}
 		$this->checkUserRightsAny( 'viewmyprivateinfo' );
 
-		$dao = WikimediaEditorTasksServices::getInstance()->getCounterDao();
+		$dao = $this->counterDao;
 		$centralId = Utils::getCentralId( $this->getUser() );
 
 		$result = [ 'counts' => $dao->getAllEditCounts( $centralId ) ];

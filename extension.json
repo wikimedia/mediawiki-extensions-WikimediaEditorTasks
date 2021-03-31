@@ -48,7 +48,10 @@
 	"APIMetaModules": {
 		"wikimediaeditortaskscounts": {
 			"class": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksCounts",
-			"factory": "MediaWiki\\Extension\\WikimediaEditorTasks\\Api\\ApiQueryWikimediaEditorTasksCounts::factory"
+			"services": [
+				"WikimediaEditorTasksCounterDao",
+				"WikimediaEditorTasksConfig"
+			]
 		}
 	},
 	"Hooks": {
