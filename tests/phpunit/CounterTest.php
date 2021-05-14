@@ -62,7 +62,7 @@ class CounterTest extends MediaWikiTestCase {
 		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$counterFactory = WikimediaEditorTasksServices::getInstance()->getCounterFactory();
 
-		$this->counters = array_map( function ( $counter ) {
+		$this->counters = array_map( static function ( $counter ) {
 			return TestingAccessWrapper::newFromObject( $counter );
 		}, $counterFactory->createAll( [
 			[

@@ -10,11 +10,11 @@ use MediaWiki\Storage\NameTableStore;
 
 return [
 
-	'WikimediaEditorTasksConfig' => function ( MediaWikiServices $services ): Config {
+	'WikimediaEditorTasksConfig' => static function ( MediaWikiServices $services ): Config {
 		return $services->getConfigFactory()->makeConfig( 'WikimediaEditorTasks' );
 	},
 
-	'WikimediaEditorTasksCounterFactory' => function ( MediaWikiServices $services ):
+	'WikimediaEditorTasksCounterFactory' => static function ( MediaWikiServices $services ):
 		CounterFactory {
 		$wmetServices = WikimediaEditorTasksServices::wrap( $services );
 		return new CounterFactory(
@@ -25,14 +25,14 @@ return [
 		);
 	},
 
-	'WikimediaEditorTasksCounterDao' => function ( MediaWikiServices $services ): CounterDao {
+	'WikimediaEditorTasksCounterDao' => static function ( MediaWikiServices $services ): CounterDao {
 		return new CounterDao(
 			Utils::getUserCountsDB( DB_MASTER, $services ),
 			Utils::getUserCountsDB( DB_REPLICA, $services )
 		);
 	},
 
-	'WikimediaEditorTasksNameTableStore' => function ( MediaWikiServices $services ):
+	'WikimediaEditorTasksNameTableStore' => static function ( MediaWikiServices $services ):
 		NameTableStore {
 		$wmetServices = WikimediaEditorTasksServices::getInstance();
 		$database = $wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsDatabase' );

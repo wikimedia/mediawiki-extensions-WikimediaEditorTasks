@@ -63,7 +63,7 @@ class WikipediaAppCounterTest extends MediaWikiTestCase {
 		$this->counterDao = $extensionServices->getCounterDao();
 
 		$counterFactory = $extensionServices->getCounterFactory();
-		$this->counters = array_map( function ( $counter ) {
+		$this->counters = array_map( static function ( $counter ) {
 			return TestingAccessWrapper::newFromObject( $counter );
 		}, $counterFactory->createAll( [
 			[
