@@ -81,8 +81,11 @@ abstract class Counter {
 	 * @param int $revisionId revision ID of the reverted edit
 	 * @param RevisionRecord $revision RevisionRecord corresponding with $revisionID
 	 */
-	abstract public function onRevert( int $centralId, int $revisionId, RevisionRecord $revision ):
-		void;
+	abstract public function onRevert(
+		int $centralId,
+		int $revisionId,
+		RevisionRecord $revision
+	): void;
 
 	/** @return bool */
 	protected function isRevertCountingEnabled(): bool {

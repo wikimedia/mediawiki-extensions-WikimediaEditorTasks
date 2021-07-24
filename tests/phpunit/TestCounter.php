@@ -26,8 +26,11 @@ use WebRequest;
 class TestCounter extends WikipediaAppCounter {
 
 	/** @inheritDoc */
-	public function onEditSuccess( int $centralId, WebRequest $request, RevisionRecord $revision ):
-		void {
+	public function onEditSuccess(
+		int $centralId,
+		WebRequest $request,
+		RevisionRecord $revision
+	): void {
 		$this->incrementEditCountForLang( $centralId, '*' );
 		$this->updateEditStreak( $centralId );
 	}

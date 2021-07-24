@@ -14,8 +14,7 @@ return [
 		return $services->getConfigFactory()->makeConfig( 'WikimediaEditorTasks' );
 	},
 
-	'WikimediaEditorTasksCounterFactory' => static function ( MediaWikiServices $services ):
-		CounterFactory {
+	'WikimediaEditorTasksCounterFactory' => static function ( MediaWikiServices $services ): CounterFactory {
 		$wmetServices = WikimediaEditorTasksServices::wrap( $services );
 		return new CounterFactory(
 			$wmetServices->getCounterDao(),
@@ -32,8 +31,7 @@ return [
 		);
 	},
 
-	'WikimediaEditorTasksNameTableStore' => static function ( MediaWikiServices $services ):
-		NameTableStore {
+	'WikimediaEditorTasksNameTableStore' => static function ( MediaWikiServices $services ): NameTableStore {
 		$wmetServices = WikimediaEditorTasksServices::getInstance();
 		$database = $wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsDatabase' );
 		$cluster = $wmetServices->getExtensionConfig()->get( 'WikimediaEditorTasksUserCountsCluster' );
