@@ -31,7 +31,7 @@ class UtilsTest extends MediaWikiTestCase {
 
 	public function testGetUserCountsDB() {
 		$services = MediaWikiServices::getInstance();
-		$dbw = Utils::getUserCountsDB( DB_MASTER, $services );
+		$dbw = Utils::getUserCountsDB( DB_PRIMARY, $services );
 		$dbr = Utils::getUserCountsDB( DB_REPLICA, $services );
 		$this->assertInstanceOf( DBConnRef::class, $dbw );
 		$this->assertInstanceOf( DBConnRef::class, $dbr );

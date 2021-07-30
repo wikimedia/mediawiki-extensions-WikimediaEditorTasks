@@ -81,7 +81,7 @@ class CounterDao {
 	 */
 	public function getAllEditCountsForKey( $centralId, $keyId, $flags = 0 ) {
 		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = ( $index === DB_MASTER ) ? $this->dbw : $this->dbr;
+		$db = ( $index === DB_PRIMARY ) ? $this->dbw : $this->dbr;
 
 		$wrapper = $db->select(
 			'wikimedia_editor_tasks_counts',

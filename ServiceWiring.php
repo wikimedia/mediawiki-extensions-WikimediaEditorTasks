@@ -26,7 +26,7 @@ return [
 
 	'WikimediaEditorTasksCounterDao' => static function ( MediaWikiServices $services ): CounterDao {
 		return new CounterDao(
-			Utils::getUserCountsDB( DB_MASTER, $services ),
+			Utils::getUserCountsDB( DB_PRIMARY, $services ),
 			Utils::getUserCountsDB( DB_REPLICA, $services )
 		);
 	},
