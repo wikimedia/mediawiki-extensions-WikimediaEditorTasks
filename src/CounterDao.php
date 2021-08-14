@@ -31,7 +31,7 @@ class CounterDao {
 
 	/**
 	 * CounterDao constructor.
-	 * @param DBConnRef $dbw handle to DB_MASTER for writes
+	 * @param DBConnRef $dbw handle to DB_PRIMARY for writes
 	 * @param DBConnRef $dbr handle to DB_REPLICA for reads
 	 */
 	public function __construct( $dbw, $dbr ) {

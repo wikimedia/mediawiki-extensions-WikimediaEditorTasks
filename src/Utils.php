@@ -48,7 +48,7 @@ class Utils {
 
 	/**
 	 * Get a database connection to the user counts database.
-	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
+	 * @param int $db Type of the connection to get, e.g. DB_PRIMARY or DB_REPLICA.
 	 * @param MediaWikiServices $services
 	 * @param array $groups Query groups [optional]
 	 * @return DBConnRef
@@ -63,7 +63,7 @@ class Utils {
 
 	/**
 	 * Get a database connection.
-	 * @param int $db Type of the connection to get, e.g. DB_MASTER or DB_REPLICA.
+	 * @param int $db Type of the connection to get, e.g. DB_PRIMARY or DB_REPLICA.
 	 * @param MediaWikiServices $services
 	 * @param string $database DB name from extension config
 	 * @param string $cluster cluster name from extension config
