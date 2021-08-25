@@ -33,8 +33,8 @@ class Utils {
 	 * @return int central user ID
 	 */
 	public static function getCentralId( User $user ) {
-		return CentralIdLookup::factory()->centralIdFromLocalUser( $user,
-			CentralIdLookup::AUDIENCE_RAW );
+		return MediaWikiServices::getInstance()->getCentralIdLookupFactory()->getLookup()
+			->centralIdFromLocalUser( $user, CentralIdLookup::AUDIENCE_RAW );
 	}
 
 	/**
