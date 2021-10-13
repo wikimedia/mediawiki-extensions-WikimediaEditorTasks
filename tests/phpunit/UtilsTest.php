@@ -21,13 +21,13 @@ namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 use MediaWiki\MediaWikiServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use Wikimedia\Rdbms\DBConnRef;
 
 /**
  * @covers \MediaWiki\Extension\WikimediaEditorTasks\Utils
  */
-class UtilsTest extends MediaWikiTestCase {
+class UtilsTest extends MediaWikiIntegrationTestCase {
 
 	public function testGetUserCountsDB() {
 		$services = MediaWikiServices::getInstance();

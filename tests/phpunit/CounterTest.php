@@ -23,7 +23,7 @@ use MediaWiki\Extension\WikimediaEditorTasks\Counter;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionStore;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use WebRequest;
 use Wikimedia\TestingAccessWrapper;
 
@@ -32,7 +32,7 @@ use Wikimedia\TestingAccessWrapper;
  * @covers \MediaWiki\Extension\WikimediaEditorTasks\Counter
  * @covers \MediaWiki\Extension\WikimediaEditorTasks\CounterFactory
  */
-class CounterTest extends MediaWikiTestCase {
+class CounterTest extends MediaWikiIntegrationTestCase {
 
 	private const LANG = '*';
 	private const TEST_EDIT_COUNT = 2;

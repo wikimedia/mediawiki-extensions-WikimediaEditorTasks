@@ -21,13 +21,13 @@ namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 
 use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 
 /**
  * @group Database
  * @covers \MediaWiki\Extension\WikimediaEditorTasks\CounterDao
  */
-class CounterDaoTest extends MediaWikiTestCase {
+class CounterDaoTest extends MediaWikiIntegrationTestCase {
 
 	private const KEY_ID = 0;
 	private const LANG = 'test';

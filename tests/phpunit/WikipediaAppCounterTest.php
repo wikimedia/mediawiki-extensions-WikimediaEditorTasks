@@ -13,7 +13,7 @@ use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
 use MediaWiki\Revision\SlotRecord;
-use MediaWikiTestCase;
+use MediaWikiIntegrationTestCase;
 use TextContent;
 use Title;
 use User;
@@ -24,7 +24,7 @@ use Wikimedia\TestingAccessWrapper;
  * @group Database
  * @covers \MediaWiki\Extension\WikimediaEditorTasks\WikipediaAppCounter
  */
-class WikipediaAppCounterTest extends MediaWikiTestCase {
+class WikipediaAppCounterTest extends MediaWikiIntegrationTestCase {
 
 	private const DESCRIPTION_COMMENT =
 		'/* wbsetdescription-add:1|zh */ 韓國高速鐵道, #suggestededit-add 1.0';
