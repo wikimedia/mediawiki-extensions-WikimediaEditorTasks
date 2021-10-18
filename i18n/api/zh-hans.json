@@ -2,7 +2,8 @@
 	"@metadata": {
 		"authors": [
 			"A Chinese Wikipedian",
-			"Shizhao"
+			"Shizhao",
+			"Xiplus"
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "登录用户特定于功能的编辑统计信息。",
@@ -10,10 +11,10 @@
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "预定义类型的微贡献建议。",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "获取有意大利语而没有日语描述的项目的维基数据实体ID。",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "获取意大利语中缺少标签的项目的Wikidata实体ID，并将它们用作生成器。",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "获取文件名字空间中缺少意大利语标签（又名说明）的项目的维基数据实体ID，并将它们用作生成器。",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "获取文件命名空间中缺少意大利语标签（又名说明）的项目的维基数据实体ID，并将它们用作生成器。",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "任务建议类型。",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "对于翻译类型的任务建议，wiki语言代码用于给定项目的内容应存在的语言。",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "给定项目缺少内容的语言的Wiki语言代码。",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "所需的结果数量。请注意，如果可用数量少于所需数量，则可能会返回更少的结果。",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "仅在这些名字空间内搜索。"
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "仅在这些命名空间内搜索。"
 }
