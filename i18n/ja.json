@@ -5,6 +5,6 @@
 		]
 	},
 	"wikimediaeditortasks-desc": "microcontribution用のタスク生成、ストレージ、APIモジュール",
-	"tag-apps-suggested-edits": "提案編集の編集",
-	"tag-apps-suggested-edits-description": "ウィキメディアアプリの提案された編集による編集"
+	"tag-apps-suggested-edits": "編集提案の編集",
+	"tag-apps-suggested-edits-description": "ウィキメディアアプリの編集提案での編集"
 }

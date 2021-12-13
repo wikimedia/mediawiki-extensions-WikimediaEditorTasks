@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Daud I.F. Argana"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Statistik suntingan fitur tertentu untuk pengguna yang masuk log.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Mendapatkan hitungan untuk tugas tertentu yang dilakukan pengguna yang masuk log.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Saran mikrokontribusi dengan jenis yang sudah ditentukan.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Mendapatkan ID entitas Wikidata untuk butir dengan deskripsi dalam bahasa Italia tetapi tidak dalam bahasa Jepang.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Mendapatkan ID entitas Wikidata untuk butir yang tidak punya deskripsi dalam bahasa Italia, dan menggunakannya sebagai generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Mendapatkan ID entitas Wikidata untuk butir dengan label dalam bahasa Italia tetapi tidak dalam bahasa Jepang.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Mendapatkan ID entitas Wikidata untuk butir yang tidak punya label dalam bahasa Italia, dan menggunakannya sebagai generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Mendapatkan ID entitas Wikidata untuk butir dalam ruang nama File dengan label (keterangan gambar) dalam bahasa Italia tetapi tidak dalam bahasa Jepang.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Mendapatkan ID entitas Wikidata untuk butir dalam ruang nama File yang tidak punya label dalam bahasa Italia, dan menggunakannya sebagai generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Jenis saran pekerjaan.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Untuk saran pekerjaan berjenis penerjemahan, kode bahasa wiki untuk bahasa yang seharusnya mengandung konten untuk suatu butir.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Kode bahasa wiki untuk bahasa yang kontennya kurang untuk suatu butir tertentu.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Banyak hasil yang diinginkan. Perhatikan bahwa hasil yang diberikan bisa lebih sedikit, apabila banyak hasil yang tersedia lebih sedikit dari yang diinginkan.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Cari hanya di dalam ruang-ruang nama ini."
+}
