@@ -22,17 +22,17 @@ namespace MediaWiki\Extension\WikimediaEditorTasks;
 use CentralIdLookup;
 use ConfigException;
 use MediaWiki\MediaWikiServices;
-use User;
+use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\DBConnRef;
 
 class Utils {
 
 	/**
 	 * Get the central user ID for $user
-	 * @param User $user local User
+	 * @param UserIdentity $user local User
 	 * @return int central user ID
 	 */
-	public static function getCentralId( User $user ) {
+	public static function getCentralId( UserIdentity $user ) {
 		return MediaWikiServices::getInstance()->getCentralIdLookupFactory()->getLookup()
 			->centralIdFromLocalUser( $user, CentralIdLookup::AUDIENCE_RAW );
 	}

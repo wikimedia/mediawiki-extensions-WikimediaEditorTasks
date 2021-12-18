@@ -26,7 +26,7 @@ use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
-use MediaWiki\User\USerIdentity;
+use MediaWiki\User\UserIdentity;
 use RequestContext;
 use Title;
 use User;
@@ -60,8 +60,7 @@ class Hooks {
 
 		$cb = function () use ( $revisionRecord, $userIdentity, $undidRevId, $wikiPage ) {
 			if ( $userIdentity->isRegistered() ) {
-				$user = User::newFromIdentity( $userIdentity );
-				self::countersOnEditSuccess( $user, $revisionRecord );
+				self::countersOnEditSuccess( $userIdentity, $revisionRecord );
 			}
 
 			if ( $undidRevId ) {
@@ -93,15 +92,9 @@ class Hooks {
 	public static function onRollbackComplete( WikiPage $wikiPage, $agent, $newRev, $oldRev ) {
 		$cb = function () use ( $wikiPage, $oldRev, $newRev ) {
 			$victim = $oldRev->getUser();
-			$isRegistered = $victim ? $victim->isRegistered() : false;
 
 			// Ignore anonymous users and null rollbacks
-			if ( $isRegistered && !$oldRev->hasSameContent( $newRev ) ) {
-				// Is getUser returned null, the if condition fails
-				// Need the full name because of T250765
-				'@phan-var \MediaWiki\User\UserIdentity $victim';
-				$victim = User::newFromIdentity( $victim );
-
+			if ( $victim && $victim->isRegistered() && !$oldRev->hasSameContent( $newRev ) ) {
 				foreach ( self::getCounters() as $counter ) {
 					$counter->onRevert(
 						Utils::getCentralId( $victim ),
@@ -159,10 +152,10 @@ class Hooks {
 	}
 
 	/**
-	 * @param User $user user who succeeded in editing
+	 * @param UserIdentity $user user who succeeded in editing
 	 * @param RevisionRecord $revision revision representing the successful edit
 	 */
-	private static function countersOnEditSuccess( User $user, RevisionRecord $revision ) {
+	private static function countersOnEditSuccess( UserIdentity $user, RevisionRecord $revision ) {
 		$centralId = Utils::getCentralId( $user );
 
 		// We need to check the underlying request headers to determine if this is an app edit
@@ -185,8 +178,8 @@ class Hooks {
 			return;
 		}
 
-		$undidUserId = $undidRev->getUser( RevisionRecord::FOR_PUBLIC )->getId();
-		if ( !$undidUserId ) {
+		$undidUserIdentity = $undidRev->getUser( RevisionRecord::FOR_PUBLIC );
+		if ( !$undidUserIdentity ) {
 			return;
 		}
 
@@ -196,9 +189,8 @@ class Hooks {
 			return;
 		}
 
-		$undidUser = User::newFromId( $undidUserId );
 		foreach ( self::getCounters() as $counter ) {
-			$counter->onRevert( Utils::getCentralId( $undidUser ), $undidRevId, $undidRev );
+			$counter->onRevert( Utils::getCentralId( $undidUserIdentity ), $undidRevId, $undidRev );
 		}
 	}
 
