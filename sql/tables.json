@@ -1,0 +1,91 @@
+[
+	{
+		"name": "wikimedia_editor_tasks_keys",
+		"comment": "Table for storing counter keys efficiently",
+		"columns": [
+			{
+				"name": "wet_id",
+				"type": "integer",
+				"options": { "autoincrement": true, "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "wet_key",
+				"comment": "Key identifying the counter",
+				"type": "binary",
+				"options": { "length": 255, "notnull": true }
+			}
+		],
+		"indexes": [
+			{
+				"name": "wet_key",
+				"columns": [ "wet_key" ],
+				"unique": true
+			}
+		],
+		"pk": [ "wet_id" ]
+	},
+	{
+		"name": "wikimedia_editor_tasks_counts",
+		"comment": "Counter values per user",
+		"columns": [
+			{
+				"name": "wetc_user",
+				"comment": "User's central ID",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "wetc_key_id",
+				"comment": "Key ID for the counter",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "wetc_lang",
+				"comment": "Language code for this count",
+				"type": "binary",
+				"options": { "notnull": true, "length": 32 }
+			},
+			{
+				"name": "wetc_count",
+				"comment": "Counter value",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			},
+			{
+				"name": "wetc_revert_count",
+				"comment": "Revert Counter value",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true, "default": 0 }
+			}
+		],
+		"indexes": [],
+		"pk": [ "wetc_user", "wetc_key_id", "wetc_lang" ]
+	},
+	{
+		"name": "wikimedia_editor_tasks_edit_streak",
+		"comment": "Stores streak length and last edit time when user making edits.",
+		"columns": [
+			{
+				"name": "wetes_user",
+				"comment": "User's central ID",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "wetes_streak_length",
+				"comment": "Length of edit streak",
+				"type": "integer",
+				"options": { "notnull": true, "unsigned": true }
+			},
+			{
+				"name": "wetes_last_edit_time",
+				"comment": "Timestamp of last edit time",
+				"type": "mwtimestamp",
+				"options": { "notnull": true, "default": "19700101000000" }
+			}
+		],
+		"indexes": [],
+		"pk": [ "wetes_user" ]
+	}
+]

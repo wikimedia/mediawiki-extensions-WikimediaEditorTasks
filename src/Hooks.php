@@ -27,6 +27,7 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
+use MWException;
 use RequestContext;
 use Title;
 use User;
@@ -133,23 +134,27 @@ class Hooks {
 	 * @param DatabaseUpdater $updater
 	 */
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		$baseDir = dirname( __DIR__ );
-		$updater->addExtensionTable( 'wikimedia_editor_tasks_keys', "$baseDir/sql/keys.sql" );
-		$updater->addExtensionTable( 'wikimedia_editor_tasks_counts', "$baseDir/sql/counts.sql" );
+		if ( $updater->getDB()->getType() !== 'mysql' ) {
+			// Wikimedia specific extension
+			throw new MWException( 'only mysql is supported' );
+		}
+		$baseDir = dirname( __DIR__ ) . '/sql';
+
+		$updater->addExtensionTable( 'wikimedia_editor_tasks_keys', "$baseDir/tables-generated.sql" );
 		$updater->addExtensionTable( 'wikimedia_editor_tasks_edit_streak',
 			"$baseDir/sql/edit_streak.sql" );
 		$updater->dropExtensionTable(
 			'wikimedia_editor_tasks_entity_description_exists',
-			"$baseDir/sql/drop-wikimedia_editor_tasks_entity_description_exists.sql"
+			"$baseDir/drop-wikimedia_editor_tasks_entity_description_exists.sql"
 		);
 		$updater->dropExtensionTable(
 			'wikimedia_editor_tasks_targets_passed',
-			"$baseDir/sql/drop-wikimedia_editor_tasks_targets_passed.sql"
+			"$baseDir/drop-wikimedia_editor_tasks_targets_passed.sql"
 		);
 		$updater->addExtensionField(
 			'wikimedia_editor_tasks_counts',
 			'wetc_revert_count',
-			"$baseDir/sql/alter-wikimedia_editor_tasks_counts.sql"
+			"$baseDir/alter-wikimedia_editor_tasks_counts.sql"
 		);
 	}
 
