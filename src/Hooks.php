@@ -95,10 +95,12 @@ class Hooks {
 
 			// Ignore anonymous users and null rollbacks
 			if ( $victim && $victim->isRegistered() && !$oldRev->hasSameContent( $newRev ) ) {
+				$victimCentralId = Utils::getCentralId( $victim );
+				$oldId = $oldRev->getId();
 				foreach ( self::getCounters() as $counter ) {
 					$counter->onRevert(
-						Utils::getCentralId( $victim ),
-						$oldRev->getId(),
+						$victimCentralId,
+						$oldId,
 						$oldRev
 					);
 				}
@@ -189,8 +191,9 @@ class Hooks {
 			return;
 		}
 
+		$undidUserCentralId = Utils::getCentralId( $undidUserIdentity );
 		foreach ( self::getCounters() as $counter ) {
-			$counter->onRevert( Utils::getCentralId( $undidUserIdentity ), $undidRevId, $undidRev );
+			$counter->onRevert( $undidUserCentralId, $undidRevId, $undidRev );
 		}
 	}
 
