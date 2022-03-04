@@ -23,7 +23,7 @@ use CentralIdLookup;
 use ConfigException;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\User\UserIdentity;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 
 class Utils {
 
@@ -51,7 +51,7 @@ class Utils {
 	 * @param int $db Type of the connection to get, e.g. DB_PRIMARY or DB_REPLICA.
 	 * @param MediaWikiServices $services
 	 * @param array $groups Query groups [optional]
-	 * @return DBConnRef
+	 * @return IDatabase
 	 * @throws ConfigException
 	 */
 	public static function getUserCountsDB( $db, $services, $groups = [] ) {
@@ -68,7 +68,7 @@ class Utils {
 	 * @param string $database DB name from extension config
 	 * @param string $cluster cluster name from extension config
 	 * @param array $groups Query groups [optional]
-	 * @return DBConnRef
+	 * @return IDatabase
 	 * @throws ConfigException
 	 */
 	private static function getDB( $db, $services, $database, $cluster, $groups = [] ) {
@@ -76,7 +76,7 @@ class Utils {
 		$loadBalancer = $cluster
 			? $loadBalancerFactory->getExternalLB( $cluster )
 			: $loadBalancerFactory->getMainLB( $database );
-		return $loadBalancer->getLazyConnectionRef( $db, $groups, $database );
+		return $loadBalancer->getConnectionRef( $db, $groups, $database );
 	}
 
 }
