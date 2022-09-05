@@ -5,10 +5,10 @@
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Uredničke statistike za prijavljenog korisnika prema pojedinim mogućnosti.",
-	"apihelp-query+wikimediaeditortaskscounts-example": "Brojevi i ciljevi za pojedinačne zadatke prijavljenog korisnika.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Pribavi brojeve za pojedinačne zadatke prijavljenog korisnika.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Predloženi mikro-doprinosi predodređenih vrsta.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Daje naznake za predmete Wikipodataka s opisima na talijanskom, ali ne na japanskom (i srodne članke na obje Wikipedije).",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Daje naznake za predmete Wikipodataka s povezanim člancima na talijanskoj Wikipediji, ali bez opisa na talijanskom, te ih koristi kao generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Daje naznake za predmete Wikipodataka s opisima na talijanskom, ali ne na japanskom.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Daje naznake za stavke Wikipodataka bez opisa na talijanskom, te ih koristi kao generator.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Vrsta predloženog zadatka.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Za predložene zadatke prijevoda, wikikod jezika na kojem bi sadržaj trebao postojati za određeni predmet.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Wikikod jezika na kojem nedostaje sadržaj za određeni predmet.",
