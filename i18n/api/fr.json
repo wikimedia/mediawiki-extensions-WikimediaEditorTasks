@@ -2,15 +2,16 @@
 	"@metadata": {
 		"authors": [
 			"Gomoko",
-			"Wladek92"
+			"Wladek92",
+			"Verdy p"
 		]
 	},
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Statistiques d’édition spécifiques à la fonctionnalité pour l’utilisateur connecté.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Obtenir les compteurs spécifiques à la tâche pour l’utilisateur connecté.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Suggestions de micro-contributions de types prédéfinis.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obtenir les ID d’entités Wikidata pour les éléments ayant des descriptions en italien mais pas en japonais.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obtenir les identifiants d’entités Wikidata pour les éléments avec des descriptions en italien mais pas en japonais.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Obtenir les ID d’entités Wikidata pour les éléments qui n'ont pas de description en italien, et les utiliser comme un générateur.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Obtenir les ID d’entité de Wikidata pour les éléments avec des libellés en italien mais pas en japonais.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Obtenir les identifiants d’entité de Wikidata pour les éléments avec des libellés en italien mais pas en japonais.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Obtenir les ID d’entité de Wikidata pour les éléments n’ayant pas de libellé en italien, et les utilise comme un générateur.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Obtenir les ID d’entité de Wikidata pour les éléments dans l’espace de noms Fichier avec des libellés (alias légendes) en italien mais pas en japonais.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Obtenir les ID d’entité Wikidata pour les éléments n'ayant pas de libellés dans l’espace de noms File  (alias les légendes) en italien, et les utiliser comme générateur.",
