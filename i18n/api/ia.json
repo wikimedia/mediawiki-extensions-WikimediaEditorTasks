@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"McDutchie"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Statisticas de modification specific al function pro le usator authenticate.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Obtene numeros specific al carga pro le usator authenticate.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Suggestiones de microcontribution de typos predefinite.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obtene IDs de entitate de Wikidata pro articulos con descriptiones in italiano ma non in japonese.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Obtene IDs de entitate de Wikidata pro elementos sin description in italiano, e usa los como un generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Obtene IDs de entitate de Wikidata pro elementos con etiquettas in italiano ma non japonese.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Obtene IDs de entitate de Wikidata pro elementos sin etiquettas in italiano, e usa los como un generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Obtene IDs de entitate de Wikidata pro elementos in le spatio de nomines File con etiquettas (alias legendas) in italiano ma non in japonese.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Obtene IDs de entitate de Wikidata pro elementos in le spatio de nomines File sin etiquettas (alias legendas) in italiano, e usa los como un generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Typo de suggestion de carga.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Pro suggestiones de carga de typo traduction, codice de lingua wiki pro le lingua in le qual le contento debe exister pro un determinate elemento.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Codice de lingua wiki pro le lingua in le qual le contento manca pro un determinate elemento.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Numero desirate de resultatos. Nota que pote esser retornate un numero minor de resultatos, si un numero minor que le numero desirate es disponibile.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Cercar solmente intra iste spatios de nomines."
+}
