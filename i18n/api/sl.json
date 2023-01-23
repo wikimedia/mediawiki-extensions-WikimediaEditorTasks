@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Eleassar"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Statistika urejanja prijavljenega uporabnika po možnostih.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Pridobite števila posameznih opravil za prijavljenega uporabnika.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Predlagani mikroprispevki vnaprej določenih vrst.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Pridobite ID-je entitet Wikipodatkov za predmete z opisi v italijanščini, ne pa tudi v japonščini.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Pridobite ID-je entitet Wikipodatkov za predmete, ki nimajo opisov v italijanščini, in jih uporabite kot generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Pridobite ID-je entitet Wikipodatkov za predmete z oznakami v italijanščini, ne pa tudi v japonščini.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Pridobite ID-je entitet Wikipodatkov za predmete, ki jim manjkajo oznake v italijanščini, in jih uporabite kot generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Pridobite ID-je entitet Wikipodatkov za predmete v imenskem prostoru datotek z oznakami (napisi) v italijanščini, ne pa tudi v japonščini.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Pridobite ID-je entitet Wikipodatkov za predmete v imenskem prostoru datotek, ki jim manjkajo oznake (napisi) v italijanščini, in jih uporabite kot generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Vrsta predlagane naloge.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Za predloge nalog prevajanja jezikovna oznaka vikija v jeziku, v katerem bi morala obstajati vsebina za dani predmet.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Jezikovna oznaka vikija v jeziku, v katerem manjka vsebina za dani predmet.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Želeno število zadetkov. Upoštevajte, da je lahko vrnjenih manj zadetkov, če jih je na voljo manj od želenega števila.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Išči samo znotraj teh imenskih prostorov."
+}
