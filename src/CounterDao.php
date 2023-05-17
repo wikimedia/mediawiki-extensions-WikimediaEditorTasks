@@ -184,10 +184,9 @@ class CounterDao {
 	 * @param int $keyId counter key ID
 	 * @param string $lang language code for this count
 	 * @param int $count new count
-	 * @return bool true if no exception was thrown
 	 */
 	public function setEditCountForKeyAndLang( $centralId, $keyId, $lang, $count ) {
-		return $this->dbw->upsert(
+		$this->dbw->upsert(
 			'wikimedia_editor_tasks_counts',
 			[
 				'wetc_user' => $centralId,
@@ -225,11 +224,10 @@ class CounterDao {
 	 * Set the edit streak for a user.
 	 * Increase the edit streak length if the user makes an edit within 2 days.
 	 * @param int $centralId central user ID
-	 * @return bool true if no exception was thrown
 	 */
 	public function setEditStreak( $centralId ) {
 		$currentTime = $this->dbw->timestamp( time() );
-		return $this->dbw->upsert(
+		$this->dbw->upsert(
 			'wikimedia_editor_tasks_edit_streak',
 			[
 				'wetes_user' => $centralId,

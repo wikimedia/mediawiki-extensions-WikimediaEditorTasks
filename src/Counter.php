@@ -111,10 +111,9 @@ abstract class Counter {
 	 * @param int $centralId
 	 * @param string $lang language code
 	 * @param int $count value to set
-	 * @return bool true if no exception was thrown
 	 */
 	protected function setEditCountForLang( $centralId, $lang, $count ) {
-		return $this->dao->setEditCountForKeyAndLang( $centralId, $this->keyId, $lang, $count );
+		$this->dao->setEditCountForKeyAndLang( $centralId, $this->keyId, $lang, $count );
 	}
 
 	/**
