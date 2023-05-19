@@ -3,12 +3,12 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 
 use CommentStoreComment;
-use FauxRequest;
 use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
 use MediaWiki\Extension\WikimediaEditorTasks\WikipediaAppCounter;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\FauxRequest;
 use MediaWiki\Revision\RevisionSlots;
 use MediaWiki\Revision\RevisionStore;
 use MediaWiki\Revision\RevisionStoreRecord;
