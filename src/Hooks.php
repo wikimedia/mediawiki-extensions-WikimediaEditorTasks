@@ -27,8 +27,8 @@ use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
 use MediaWiki\User\UserIdentity;
-use MWException;
 use RequestContext;
+use RuntimeException;
 use Title;
 use User;
 use WikiPage;
@@ -136,7 +136,7 @@ class Hooks {
 	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
 		if ( $updater->getDB()->getType() !== 'mysql' ) {
 			// Wikimedia specific extension
-			throw new MWException( 'only mysql is supported' );
+			throw new RuntimeException( 'only mysql is supported' );
 		}
 		$baseDir = dirname( __DIR__ ) . '/sql';
 
