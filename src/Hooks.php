@@ -26,10 +26,10 @@ use IDBAccessObject;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use RequestContext;
 use RuntimeException;
-use Title;
 use User;
 use WikiPage;
 
