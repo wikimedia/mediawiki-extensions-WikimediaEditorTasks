@@ -1,11 +1,12 @@
 {
 	"@metadata": {
 		"authors": [
+			"Amire80",
 			"Hamilton Abreu",
 			"Mansil alfalb"
 		]
 	},
-	"apihelp-query+wikimediaeditortaskscounts-summary": "Estatísticas de edição para funcionalidades  específicas, do utilizador autenticado.",
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Estatísticas de edição para funcionalidades específicas, do utilizador autenticado.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Obter contagens de tarefas específicas para o utilizador autenticado.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Sugestões de microcontribuições, de tipos predefinidos.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obter identificadores das entidades Wikidata para os elementos que têm descrições em italiano mas não em japonês.",
