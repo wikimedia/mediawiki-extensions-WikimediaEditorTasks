@@ -20,23 +20,29 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 use AutoCommitUpdate;
-use DatabaseUpdater;
 use DeferredUpdates;
 use IDBAccessObject;
+use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
+use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Page\Hook\RollbackCompleteHook;
 use MediaWiki\Revision\RevisionRecord;
 use MediaWiki\Storage\EditResult;
+use MediaWiki\Storage\Hook\PageSaveCompleteHook;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
 use RequestContext;
-use RuntimeException;
-use User;
 use WikiPage;
 
 /**
  * Hooks for WikimediaEditorTasks extension
  */
-class Hooks {
+class Hooks implements
+	RollbackCompleteHook,
+	PageSaveCompleteHook,
+	ListDefinedTagsHook,
+	ChangeTagsListActiveHook
+{
 
 	/**
 	 * Handler for PageSaveComplete hook
@@ -49,13 +55,13 @@ class Hooks {
 	 * @param RevisionRecord $revisionRecord
 	 * @param EditResult $editResult
 	 */
-	public static function onPageSaveComplete(
-		WikiPage $wikiPage,
-		UserIdentity $userIdentity,
-		string $summary,
-		int $flags,
-		RevisionRecord $revisionRecord,
-		EditResult $editResult
+	public function onPageSaveComplete(
+		$wikiPage,
+		$userIdentity,
+		$summary,
+		$flags,
+		$revisionRecord,
+		$editResult
 	) {
 		$undidRevId = $editResult->getUndidRevId();
 
@@ -86,11 +92,11 @@ class Hooks {
 	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/RollbackComplete
 	 *
 	 * @param WikiPage $wikiPage The article that was edited
-	 * @param User $agent The user who did the rollback
+	 * @param UserIdentity $agent The user who did the rollback
 	 * @param RevisionRecord $newRev The revision the page was reverted back to
 	 * @param RevisionRecord $oldRev The revision of the top edit that was reverted
 	 */
-	public static function onRollbackComplete( WikiPage $wikiPage, $agent, $newRev, $oldRev ) {
+	public function onRollbackComplete( $wikiPage, $agent, $newRev, $oldRev ) {
 		$cb = function () use ( $wikiPage, $oldRev, $newRev ) {
 			$victim = $oldRev->getUser();
 
@@ -122,40 +128,24 @@ class Hooks {
 
 	/**
 	 * @param array &$tags
-	 * @return bool true
-	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ListDefinedTags
 	 */
-	public static function onRegisterTags( array &$tags ) {
+	private static function onRegisterTags( array &$tags ) {
 		$tags[] = 'apps-suggested-edits';
-		return true;
 	}
 
 	/**
-	 * @param DatabaseUpdater $updater
+	 * @param array &$tags
+	 * @see https://www.mediawiki.org/wiki/Manual:Hooks/ListDefinedTags
 	 */
-	public static function onLoadExtensionSchemaUpdates( DatabaseUpdater $updater ) {
-		if ( $updater->getDB()->getType() !== 'mysql' ) {
-			// Wikimedia specific extension
-			throw new RuntimeException( 'only mysql is supported' );
-		}
-		$baseDir = dirname( __DIR__ ) . '/sql';
+	public function onListDefinedTags( &$tags ) {
+		self::onRegisterTags( $tags );
+	}
 
-		$updater->addExtensionTable( 'wikimedia_editor_tasks_keys', "$baseDir/tables-generated.sql" );
-		$updater->addExtensionTable( 'wikimedia_editor_tasks_edit_streak',
-			"$baseDir/sql/edit_streak.sql" );
-		$updater->dropExtensionTable(
-			'wikimedia_editor_tasks_entity_description_exists',
-			"$baseDir/drop-wikimedia_editor_tasks_entity_description_exists.sql"
-		);
-		$updater->dropExtensionTable(
-			'wikimedia_editor_tasks_targets_passed',
-			"$baseDir/drop-wikimedia_editor_tasks_targets_passed.sql"
-		);
-		$updater->addExtensionField(
-			'wikimedia_editor_tasks_counts',
-			'wetc_revert_count',
-			"$baseDir/alter-wikimedia_editor_tasks_counts.sql"
-		);
+	/**
+	 * @param array &$tags
+	 */
+	public function onChangeTagsListActive( &$tags ) {
+		self::onRegisterTags( $tags );
 	}
 
 	/**

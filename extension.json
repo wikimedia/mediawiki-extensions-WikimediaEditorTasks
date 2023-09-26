@@ -55,11 +55,19 @@
 		}
 	},
 	"Hooks": {
-		"RollbackComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRollbackComplete",
-		"LoadExtensionSchemaUpdates": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onLoadExtensionSchemaUpdates",
-		"PageSaveComplete": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onPageSaveComplete",
-		"ListDefinedTags": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRegisterTags",
-		"ChangeTagsListActive": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks::onRegisterTags"
+		"RollbackComplete": "main",
+		"LoadExtensionSchemaUpdates": "schema",
+		"PageSaveComplete": "main",
+		"ListDefinedTags": "main",
+		"ChangeTagsListActive": "main"
+	},
+	"HookHandlers": {
+		"main": {
+			"class": "MediaWiki\\Extension\\WikimediaEditorTasks\\Hooks"
+		},
+		"schema": {
+			"class": "MediaWiki\\Extension\\WikimediaEditorTasks\\SchemaHooks"
+		}
 	},
 	"MessagesDirs": {
 		"WikimediaEditorTasks": [
