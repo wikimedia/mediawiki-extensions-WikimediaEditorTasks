@@ -26,6 +26,7 @@ use Wikimedia\Rdbms\DBConnRef;
 
 /**
  * @covers \MediaWiki\Extension\WikimediaEditorTasks\Utils
+ * @group Database
  */
 class UtilsTest extends MediaWikiIntegrationTestCase {
 

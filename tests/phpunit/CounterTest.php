@@ -36,13 +36,15 @@ class CounterTest extends MediaWikiIntegrationTestCase {
 
 	private const LANG = '*';
 	private const TEST_EDIT_COUNT = 2;
-	private const REV_ID = 1;
 
 	/** @var Counter[] */
 	private $counters;
 
 	/** @var int */
 	private $userId;
+
+	/** @var int */
+	private $revId;
 
 	/** @var RevisionStore */
 	private $revisionStore;
@@ -58,6 +60,9 @@ class CounterTest extends MediaWikiIntegrationTestCase {
 			'wikimedia_editor_tasks_counts',
 			'wikimedia_editor_tasks_edit_streak'
 		] );
+
+		$wikiPage = $this->getExistingTestPage();
+		$this->revId = $wikiPage->getId();
 
 		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 		$counterFactory = WikimediaEditorTasksServices::getInstance()->getCounterFactory();
@@ -92,7 +97,7 @@ class CounterTest extends MediaWikiIntegrationTestCase {
 	public function testOnEditSuccess() {
 		foreach ( $this->counters as $counter ) {
 			$counter->onEditSuccess( $this->userId, new WebRequest(),
-				$this->revisionStore->getRevisionById( self::REV_ID ) );
+				$this->revisionStore->getRevisionById( $this->revId ) );
 			$this->assertSame( 1, $counter->getEditCountForLang( $this->userId, self::LANG ) );
 			$this->assertSame( 1, $counter->getEditStreak( $this->userId )['length'] );
 			$this->assertCount( 2, $counter->getEditStreak( $this->userId ) );
@@ -105,14 +110,14 @@ class CounterTest extends MediaWikiIntegrationTestCase {
 		foreach ( $this->counters as $counter ) {
 			for ( $i = 0; $i < self::TEST_EDIT_COUNT; $i++ ) {
 				$counter->onEditSuccess( $this->userId, new WebRequest(),
-					$this->revisionStore->getRevisionById( self::REV_ID ) );
+					$this->revisionStore->getRevisionById( $this->revId ) );
 			}
 			$this->assertEquals( 2, $counter->getEditCountForLang( $this->userId, self::LANG ) );
 		}
 
 		foreach ( $this->counters as $counter ) {
-			$counter->onRevert( $this->userId, self::REV_ID,
-				$this->revisionStore->getRevisionById( self::REV_ID ) );
+			$counter->onRevert( $this->userId, $this->revId,
+				$this->revisionStore->getRevisionById( $this->revId ) );
 		}
 		$this->assertSame( 1, $testCounter->getRevertCountForLang( $this->userId, self::LANG ) );
 	}
