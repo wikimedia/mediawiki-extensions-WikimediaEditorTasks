@@ -1,0 +1,9 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ranveig"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Type oppgåveforslag.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Berre søk i desse namneromma."
+}
