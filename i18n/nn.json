@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Ranveig"
+		]
+	},
+	"wikimediaeditortasks-desc": "Oppgåvegenerering, lagring og API-moduler for mikrobidrag.",
+	"tag-apps-suggested-edits": "Endring via Foreslåtte endringar",
+	"tag-apps-suggested-edits-description": "Endringar gjort med Wikimedia-appane sin funksjon for foreslåtte endringar"
+}
