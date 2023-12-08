@@ -1,8 +1,22 @@
 {
 	"@metadata": {
 		"authors": [
-			"Mainframe98"
+			"Mainframe98",
+			"McDutchie"
 		]
 	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Functiespecifieke bewerkingsstatistieken voor de aangemelde gebruiker.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Ontvang taakspecifieke tellingen voor de aangemelde gebruiker.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Suggesties voor microbijdragen van vooraf gedefinieerde typen.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Vraag Wikidata-entiteits-ID’s op voor items met beschrijvingen in het Italiaans maar niet in het Japans.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Vraag Wikidata-entiteits-ID’s op voor items waarvoor beschrijvingen in het Italiaans ontbreken, en gebruik ze als generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Vraag Wikidata-entiteits-ID’s op voor items met labels in het Italiaans maar niet in het Japans.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Vraag Wikidata-entiteits-ID’s op voor items waarvoor labels ontbreken in het Italiaans, en gebruik ze als generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Vraag Wikidata-entiteits-ID’s op voor items in de naamruimte File/Bestand met labels (ook wel bijschriften genoemd) in het Italiaans maar niet in het Japans.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Vraag Wikidata-entiteits-ID’s op voor items in de naamruimte File/Bestand waarin labels (ook wel bijschriften genoemd) ontbreken in het Italiaans, en gebruik ze als generator.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Type taaksuggestie.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Voor taaksuggesties van het vertaaltype: wikitaalcode voor de taal waarin de inhoud voor een bepaald item zou moeten bestaan.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Wiki-taalcode voor de taal waarin de inhoud voor een bepaald item ontbreekt.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Gewenst aantal resultaten. Houd er rekening mee dat er mogelijk minder resultaten worden geretourneerd als er minder dan het gewenste aantal beschikbaar zijn.",
 	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Zoek alleen binnen deze naamruimten."
 }
