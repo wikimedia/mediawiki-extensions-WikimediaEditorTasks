@@ -20,8 +20,8 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 
 use MediaWiki\Extension\WikimediaEditorTasks\WikipediaAppCounter;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionRecord;
-use WebRequest;
 
 class TestCounter extends WikipediaAppCounter {
 

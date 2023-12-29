@@ -22,9 +22,9 @@ namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 use MediaWiki\Extension\WikimediaEditorTasks\Counter;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionStore;
 use MediaWikiIntegrationTestCase;
-use WebRequest;
 use Wikimedia\TestingAccessWrapper;
 
 /**

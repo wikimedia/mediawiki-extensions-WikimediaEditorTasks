@@ -19,11 +19,11 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use AutoCommitUpdate;
-use DeferredUpdates;
 use IDBAccessObject;
 use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
 use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
+use MediaWiki\Deferred\AutoCommitUpdate;
+use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Page\Hook\RollbackCompleteHook;
 use MediaWiki\Revision\RevisionRecord;

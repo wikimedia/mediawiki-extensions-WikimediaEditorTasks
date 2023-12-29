@@ -19,8 +19,8 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionRecord;
-use WebRequest;
 
 /**
  * Base counter class containing most of the logic for interacting with the DAO.  Subclasses must

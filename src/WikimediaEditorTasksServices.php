@@ -19,7 +19,7 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Storage\NameTableStore;
 

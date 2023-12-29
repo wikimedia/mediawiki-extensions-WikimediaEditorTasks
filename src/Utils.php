@@ -19,9 +19,9 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use CentralIdLookup;
-use ConfigException;
+use MediaWiki\Config\ConfigException;
 use MediaWiki\MediaWikiServices;
+use MediaWiki\User\CentralId\CentralIdLookup;
 use MediaWiki\User\UserIdentity;
 use Wikimedia\Rdbms\IDatabase;
 

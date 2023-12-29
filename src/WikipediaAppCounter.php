@@ -20,8 +20,8 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 use ChangeTags;
+use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionRecord;
-use WebRequest;
 
 abstract class WikipediaAppCounter extends Counter {
 

@@ -21,7 +21,7 @@ namespace MediaWiki\Extension\WikimediaEditorTasks\Api;
 
 use ApiQuery;
 use ApiQueryBase;
-use Config;
+use MediaWiki\Config\Config;
 use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 
