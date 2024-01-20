@@ -51,12 +51,6 @@ class WikipediaAppCounterTest extends MediaWikiIntegrationTestCase {
 		$wgWikimediaEditorTasksEnableEditStreaks = true;
 		$wgWikimediaEditorTasksEnableRevertCounts = true;
 
-		$this->tablesUsed = array_merge( $this->tablesUsed, [
-			'wikimedia_editor_tasks_keys',
-			'wikimedia_editor_tasks_counts',
-			'wikimedia_editor_tasks_edit_streak'
-		] );
-
 		$this->revisionStore = MediaWikiServices::getInstance()->getRevisionStore();
 
 		$extensionServices = WikimediaEditorTasksServices::getInstance();

@@ -40,11 +40,6 @@ class CounterDaoTest extends MediaWikiIntegrationTestCase {
 
 	public function setUp(): void {
 		parent::setUp();
-		$this->tablesUsed = array_merge( $this->tablesUsed, [
-			'wikimedia_editor_tasks_keys',
-			'wikimedia_editor_tasks_counts',
-			'wikimedia_editor_tasks_edit_streak'
-		] );
 		$this->dao = WikimediaEditorTasksServices::getInstance()->getCounterDao();
 		$this->userId = $this::getTestUser()->getUser()->getId();
 	}

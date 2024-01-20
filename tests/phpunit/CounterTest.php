@@ -55,12 +55,6 @@ class CounterTest extends MediaWikiIntegrationTestCase {
 		$wgWikimediaEditorTasksEnableEditStreaks = true;
 		$wgWikimediaEditorTasksEnableRevertCounts = true;
 
-		$this->tablesUsed = array_merge( $this->tablesUsed, [
-			'wikimedia_editor_tasks_keys',
-			'wikimedia_editor_tasks_counts',
-			'wikimedia_editor_tasks_edit_streak'
-		] );
-
 		$wikiPage = $this->getExistingTestPage();
 		$this->revId = $wikiPage->getId();
 
