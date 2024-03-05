@@ -18,7 +18,7 @@
  */
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use DBAccessObjectUtils;
+use IDBAccessObject;
 use Wikimedia\Rdbms\DBConnRef;
 
 class CounterDao {
@@ -80,19 +80,18 @@ class CounterDao {
 	 * @return array counts for all langs for the specified key
 	 */
 	public function getAllEditCountsForKey( $centralId, $keyId, $flags = 0 ) {
-		list( $index, $options ) = DBAccessObjectUtils::getDBOptions( $flags );
-		$db = ( $index === DB_PRIMARY ) ? $this->dbw : $this->dbr;
+		if ( ( $flags & IDBAccessObject::READ_LATEST ) == IDBAccessObject::READ_LATEST ) {
+			$db = $this->dbw;
+		} else {
+			$db = $this->dbr;
+		}
 
-		$wrapper = $db->select(
-			'wikimedia_editor_tasks_counts',
-			[ 'wetc_lang', 'wetc_count' ],
-			[
-				'wetc_user' => $centralId,
-				'wetc_key_id' => $keyId,
-			],
-			__METHOD__,
-			$options
-		);
+		$wrapper = $db->newSelectQueryBuilder()
+			->select( [ 'wetc_lang', 'wetc_count' ] )
+			->from( 'wikimedia_editor_tasks_counts' )
+			->where( [ 'wetc_user' => $centralId, 'wetc_key_id' => $keyId ] )
+			->recency( $flags )
+			->caller( __METHOD__ )->fetchResultSet();
 		$result = [];
 		foreach ( $wrapper as $row ) {
 			$result[$row->wetc_lang] = (int)$row->wetc_count;
