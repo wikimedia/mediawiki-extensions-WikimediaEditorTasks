@@ -19,7 +19,6 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use ChangeTags;
 use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionRecord;
@@ -76,7 +75,9 @@ abstract class WikipediaAppCounter extends Counter {
 		}
 		$this->incrementEditCountForLang( $centralId, $lang );
 		$this->updateEditStreak( $centralId );
-		ChangeTags::addTags( 'apps-suggested-edits', null, $revision->getId() );
+
+		$changeTagsStore = MediaWikiServices::getInstance()->getChangeTagsStore();
+		$changeTagsStore->addTags( 'apps-suggested-edits', null, $revision->getId() );
 	}
 
 	/**
@@ -104,8 +105,9 @@ abstract class WikipediaAppCounter extends Counter {
 	 * @return bool
 	 */
 	protected function hasSuggestedEditsChangeTag( int $revisionId ): bool {
-		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
-		$tags = ChangeTags::getTags( $dbr, null, $revisionId );
+		$services = MediaWikiServices::getInstance();
+		$dbr = $services->getConnectionProvider()->getReplicaDatabase();
+		$tags = $services->getChangeTagsStore()->getTags( $dbr, null, $revisionId, null );
 		return in_array( 'apps-suggested-edits', $tags, true );
 	}
 
