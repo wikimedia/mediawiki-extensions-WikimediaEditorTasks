@@ -81,7 +81,7 @@ class Hooks implements
 				Utils::getUserCountsDB( DB_PRIMARY, $services ),
 				__METHOD__,
 				$cb,
-				[ wfGetDB( DB_PRIMARY ) ]
+				[ $services->getConnectionProvider()->getPrimaryDatabase() ]
 			),
 			DeferredUpdates::POSTSEND
 		);
@@ -120,7 +120,7 @@ class Hooks implements
 				Utils::getUserCountsDB( DB_PRIMARY, $services ),
 				__METHOD__,
 				$cb,
-				[ wfGetDB( DB_PRIMARY ) ]
+				[ $services->getConnectionProvider()->getPrimaryDatabase() ]
 			),
 			DeferredUpdates::POSTSEND
 		);

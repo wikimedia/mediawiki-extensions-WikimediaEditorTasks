@@ -20,6 +20,7 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 use ChangeTags;
+use MediaWiki\MediaWikiServices;
 use MediaWiki\Request\WebRequest;
 use MediaWiki\Revision\RevisionRecord;
 
@@ -103,7 +104,8 @@ abstract class WikipediaAppCounter extends Counter {
 	 * @return bool
 	 */
 	protected function hasSuggestedEditsChangeTag( int $revisionId ): bool {
-		$tags = ChangeTags::getTags( wfGetDB( DB_REPLICA ), null, $revisionId );
+		$dbr = MediaWikiServices::getInstance()->getConnectionProvider()->getReplicaDatabase();
+		$tags = ChangeTags::getTags( $dbr, null, $revisionId );
 		return in_array( 'apps-suggested-edits', $tags, true );
 	}
 
