@@ -185,18 +185,19 @@ class CounterDao {
 	 * @param int $count new count
 	 */
 	public function setEditCountForKeyAndLang( $centralId, $keyId, $lang, $count ) {
-		$this->dbw->upsert(
-			'wikimedia_editor_tasks_counts',
-			[
+		$this->dbw->newInsertQueryBuilder()
+			->insertInto( 'wikimedia_editor_tasks_counts' )
+			->row( [
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
 				'wetc_lang' => $lang,
 				'wetc_count' => $count,
-			],
-			[ [ 'wetc_user', 'wetc_key_id', 'wetc_lang' ] ],
-			[ 'wetc_count = wetc_count + ' . (int)$count ],
-			__METHOD__
-		);
+			] )
+			->onDuplicateKeyUpdate()
+			->uniqueIndexFields( [ 'wetc_user', 'wetc_key_id', 'wetc_lang' ] )
+			->set( [ 'wetc_count = wetc_count + ' . (int)$count ] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -226,15 +227,16 @@ class CounterDao {
 	 */
 	public function setEditStreak( $centralId ) {
 		$currentTime = $this->dbw->timestamp( time() );
-		$this->dbw->upsert(
-			'wikimedia_editor_tasks_edit_streak',
-			[
+		$this->dbw->newInsertQueryBuilder()
+			->insertInto( 'wikimedia_editor_tasks_edit_streak' )
+			->row( [
 				'wetes_user' => $centralId,
 				'wetes_streak_length' => 1,
 				'wetes_last_edit_time' => $currentTime,
-			],
-			'wetes_user',
-			[
+			] )
+			->onDuplicateKeyUpdate()
+			->uniqueIndexFields( 'wetes_user' )
+			->set( [
 				'wetes_streak_length = IF (
 					DATEDIFF ( ' . $currentTime . ', wetes_last_edit_time ) >= 2,
 					1,
@@ -244,10 +246,10 @@ class CounterDao {
 						wetes_streak_length
 					)
 				)',
-				'wetes_last_edit_time = ' . $currentTime
-			],
-			__METHOD__
-		);
+				'wetes_last_edit_time' => $currentTime,
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
