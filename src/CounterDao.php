@@ -123,17 +123,16 @@ class CounterDao {
 	 * Delete counts for all languages for a single key and user.
 	 * @param int $centralId central user ID
 	 * @param int $keyId ID for counter key
-	 * @return bool true if no exception was thrown
 	 */
 	public function deleteAllCountsForKey( $centralId, $keyId ) {
-		return $this->dbw->delete(
-			'wikimedia_editor_tasks_counts',
-			[
+		$this->dbw->newDeleteQueryBuilder()
+			->deleteFrom( 'wikimedia_editor_tasks_counts' )
+			->where( [
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -141,19 +140,18 @@ class CounterDao {
 	 * @param int $centralId central user ID
 	 * @param int $keyId
 	 * @param string $lang language code for this count
-	 * @return bool true if no exception was thrown
 	 */
 	public function incrementEditCountForKeyAndLang( $centralId, $keyId, $lang ) {
-		return $this->dbw->update(
-			'wikimedia_editor_tasks_counts',
-			[ 'wetc_count = wetc_count + 1' ],
-			[
+		$this->dbw->newUpdateQueryBuilder()
+			->update( 'wikimedia_editor_tasks_counts' )
+			->set( [ 'wetc_count = wetc_count + 1' ] )
+			->where( [
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
 				'wetc_lang' => $lang,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -161,20 +159,19 @@ class CounterDao {
 	 * @param int $centralId central user ID
 	 * @param int $keyId
 	 * @param string $lang language code for this count
-	 * @return bool true if no exception was thrown
 	 */
 	public function decrementEditCountForKeyAndLang( $centralId, $keyId, $lang ) {
-		return $this->dbw->update(
-			'wikimedia_editor_tasks_counts',
-			[ 'wetc_count = wetc_count - 1' ],
-			[
+		$this->dbw->newUpdateQueryBuilder()
+			->update( 'wikimedia_editor_tasks_counts' )
+			->set( [ 'wetc_count = wetc_count - 1' ] )
+			->where( [
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
 				'wetc_lang' => $lang,
-				'wetc_count > 0'
-			],
-			__METHOD__
-		);
+				$this->dbw->expr( 'wetc_count', '>', 0 ),
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
@@ -257,19 +254,18 @@ class CounterDao {
 	 * @param int $centralId central user ID
 	 * @param int $keyId
 	 * @param string $lang language code for this count
-	 * @return bool true if no exception was thrown
 	 */
 	public function incrementRevertCountForKeyAndLang( $centralId, $keyId, $lang ) {
-		return $this->dbw->update(
-			'wikimedia_editor_tasks_counts',
-			[ 'wetc_revert_count = wetc_revert_count + 1' ],
-			[
+		$this->dbw->newUpdateQueryBuilder()
+			->update( 'wikimedia_editor_tasks_counts' )
+			->set( [ 'wetc_revert_count = wetc_revert_count + 1' ] )
+			->where( [
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
 				'wetc_lang' => $lang,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->execute();
 	}
 
 	/**
