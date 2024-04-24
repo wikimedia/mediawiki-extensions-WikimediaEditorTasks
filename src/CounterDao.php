@@ -52,19 +52,13 @@ class CounterDao {
 	 * ]
 	 */
 	public function getAllEditCounts( $centralId ) {
-		$wrapper = $this->dbr->select(
-			[ 'wikimedia_editor_tasks_counts', 'wikimedia_editor_tasks_keys' ],
-			[ 'wet_key', 'wetc_lang', 'wetc_count' ],
-			[ 'wetc_user' => $centralId ],
-			__METHOD__,
-			[],
-			[
-				'wikimedia_editor_tasks_keys' => [
-					'LEFT JOIN',
-					'wet_id=wetc_key_id',
-				],
-			]
-		);
+		$wrapper = $this->dbr->newSelectQueryBuilder()
+			->select( [ 'wet_key', 'wetc_lang', 'wetc_count' ] )
+			->from( 'wikimedia_editor_tasks_counts' )
+			->leftJoin( 'wikimedia_editor_tasks_keys', null, 'wet_id=wetc_key_id' )
+			->where( [ 'wetc_user' => $centralId ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$result = [];
 		foreach ( $wrapper as $row ) {
 			$result[$row->wet_key][$row->wetc_lang] = (int)$row->wetc_count;
@@ -107,16 +101,16 @@ class CounterDao {
 	 * @return int count for the specified key (returns 0 if not found)
 	 */
 	public function getEditCountForKeyAndLang( $centralId, $keyId, $lang ) {
-		return (int)$this->dbr->selectField(
-			'wikimedia_editor_tasks_counts',
-			'wetc_count',
-			[
+		return (int)$this->dbr->newSelectQueryBuilder()
+			->select( 'wetc_count' )
+			->from( 'wikimedia_editor_tasks_counts' )
+			->where( [
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
 				'wetc_lang' => $lang,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchField();
 	}
 
 	/**
@@ -203,12 +197,12 @@ class CounterDao {
 	 * @return array[] An array contains current streak length and last edit time
 	 */
 	public function getEditStreak( $centralId ) {
-		$wrapper = $this->dbr->selectRow(
-			[ 'wikimedia_editor_tasks_edit_streak' ],
-			[ 'wetes_streak_length', 'wetes_last_edit_time' ],
-			[ 'wetes_user' => $centralId ],
-			__METHOD__
-		);
+		$wrapper = $this->dbr->newSelectQueryBuilder()
+			->select( [ 'wetes_streak_length', 'wetes_last_edit_time' ] )
+			->from( 'wikimedia_editor_tasks_edit_streak' )
+			->where( [ 'wetes_user' => $centralId ] )
+			->caller( __METHOD__ )
+			->fetchRow();
 		$result = [];
 		if ( $wrapper != false ) {
 			$result['length'] = (int)$wrapper->wetes_streak_length;
@@ -281,19 +275,13 @@ class CounterDao {
 	 * ]
 	 */
 	public function getAllRevertCounts( $centralId ) {
-		$wrapper = $this->dbr->select(
-			[ 'wikimedia_editor_tasks_counts', 'wikimedia_editor_tasks_keys' ],
-			[ 'wet_key', 'wetc_lang', 'wetc_revert_count' ],
-			[ 'wetc_user' => $centralId ],
-			__METHOD__,
-			[],
-			[
-				'wikimedia_editor_tasks_keys' => [
-					'LEFT JOIN',
-					'wet_id=wetc_key_id',
-				],
-			]
-		);
+		$wrapper = $this->dbr->newSelectQueryBuilder()
+			->select( [ 'wet_key', 'wetc_lang', 'wetc_revert_count' ] )
+			->from( 'wikimedia_editor_tasks_counts' )
+			->leftJoin( 'wikimedia_editor_tasks_keys', null, 'wet_id=wetc_key_id' )
+			->where( [ 'wetc_user' => $centralId ] )
+			->caller( __METHOD__ )
+			->fetchResultSet();
 		$result = [];
 		foreach ( $wrapper as $row ) {
 			$result[$row->wet_key][$row->wetc_lang] = (int)$row->wetc_revert_count;
@@ -309,15 +297,15 @@ class CounterDao {
 	 * @return int revert count for the specified key (returns 0 if not found)
 	 */
 	public function getRevertCountForKeyAndLang( $centralId, $keyId, $lang ) {
-		return (int)$this->dbr->selectField(
-			'wikimedia_editor_tasks_counts',
-			'wetc_revert_count',
-			[
+		return (int)$this->dbr->newSelectQueryBuilder()
+			->select( 'wetc_revert_count' )
+			->from( 'wikimedia_editor_tasks_counts' )
+			->where( [
 				'wetc_user' => $centralId,
 				'wetc_key_id' => $keyId,
 				'wetc_lang' => $lang,
-			],
-			__METHOD__
-		);
+			] )
+			->caller( __METHOD__ )
+			->fetchField();
 	}
 }
