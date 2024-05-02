@@ -19,20 +19,21 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
 use IDBAccessObject;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IReadableDatabase;
 
 class CounterDao {
 
-	/** @var DBConnRef */
+	/** @var IDatabase */
 	private $dbw;
 
-	/** @var DBConnRef */
+	/** @var IReadableDatabase */
 	private $dbr;
 
 	/**
 	 * CounterDao constructor.
-	 * @param DBConnRef $dbw handle to DB_PRIMARY for writes
-	 * @param DBConnRef $dbr handle to DB_REPLICA for reads
+	 * @param IDatabase $dbw handle to DB_PRIMARY for writes
+	 * @param IReadableDatabase $dbr handle to DB_REPLICA for reads
 	 */
 	public function __construct( $dbw, $dbr ) {
 		$this->dbw = $dbw;

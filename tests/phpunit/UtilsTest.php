@@ -22,7 +22,7 @@ namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 use MediaWiki\MediaWikiServices;
 use MediaWikiIntegrationTestCase;
-use Wikimedia\Rdbms\DBConnRef;
+use Wikimedia\Rdbms\IDatabase;
 
 /**
  * @covers \MediaWiki\Extension\WikimediaEditorTasks\Utils
@@ -34,8 +34,8 @@ class UtilsTest extends MediaWikiIntegrationTestCase {
 		$services = MediaWikiServices::getInstance();
 		$dbw = Utils::getUserCountsDB( DB_PRIMARY, $services );
 		$dbr = Utils::getUserCountsDB( DB_REPLICA, $services );
-		$this->assertInstanceOf( DBConnRef::class, $dbw );
-		$this->assertInstanceOf( DBConnRef::class, $dbr );
+		$this->assertInstanceOf( IDatabase::class, $dbw );
+		$this->assertInstanceOf( IDatabase::class, $dbr );
 	}
 
 }
