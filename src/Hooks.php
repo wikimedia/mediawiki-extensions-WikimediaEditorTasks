@@ -22,6 +22,7 @@ namespace MediaWiki\Extension\WikimediaEditorTasks;
 use IDBAccessObject;
 use MediaWiki\ChangeTags\Hook\ChangeTagsListActiveHook;
 use MediaWiki\ChangeTags\Hook\ListDefinedTagsHook;
+use MediaWiki\Context\RequestContext;
 use MediaWiki\Deferred\AutoCommitUpdate;
 use MediaWiki\Deferred\DeferredUpdates;
 use MediaWiki\MediaWikiServices;
@@ -31,7 +32,6 @@ use MediaWiki\Storage\EditResult;
 use MediaWiki\Storage\Hook\PageSaveCompleteHook;
 use MediaWiki\Title\Title;
 use MediaWiki\User\UserIdentity;
-use RequestContext;
 use WikiPage;
 
 /**

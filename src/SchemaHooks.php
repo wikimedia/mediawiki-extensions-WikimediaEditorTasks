@@ -19,7 +19,7 @@
 
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use DatabaseUpdater;
+use MediaWiki\Installer\DatabaseUpdater;
 use MediaWiki\Installer\Hook\LoadExtensionSchemaUpdatesHook;
 use RuntimeException;
 
