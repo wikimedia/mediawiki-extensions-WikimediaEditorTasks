@@ -1,9 +1,11 @@
 {
 	"@metadata": {
 		"authors": [
-			"Rail"
+			"Rail",
+			"Woytecr"
 		]
 	},
+	"wikimediaeditortasks-desc": "Moduł generowania zadań, przechowywania i API dla mikrowkładu",
 	"tag-apps-suggested-edits": "Edycja sugerowana",
 	"tag-apps-suggested-edits-description": "Edycje wykonane z aplikacji mobilnych za pośrednictwem funkcji sugerowanych edycji"
 }
