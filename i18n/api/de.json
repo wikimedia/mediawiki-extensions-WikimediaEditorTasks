@@ -4,12 +4,14 @@
 			"Brettchenweber",
 			"Metalhead64",
 			"Mirzali",
-			"Umherirrender"
+			"Umherirrender",
+			"TMg"
 		]
 	},
 	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Abrufen von Wikidata-Entitäts-IDs für Elemente mit Bezeichnungen auf Italienisch, jedoch nicht auf Japanisch.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Abrufen von Wikidata-Entitäts-IDs, denen italienische Bezeichnungen fehlen. Verwenden Sie diese als Generator.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Abrufen von Wikidata-Entitäts-IDs für Elemente im Datei-Namensraum mit Bezeichnungen (a.k.a.-Beschriftungen) auf Italienisch, jedoch nicht auf Japanisch.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Abrufen von Wikidata-Entitäts-IDs für Elemente im Datei-Namensraum mit fehlenden Bezeichnungen (a.k.a.-Beschriftungen) auf Italienisch und verwenden dieser Bezeichnungen als Generator.",
-	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Aufgabenvorschlagstyp."
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Aufgabenvorschlagstyp.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Suche nur innerhalb dieser Namensräume."
 }
