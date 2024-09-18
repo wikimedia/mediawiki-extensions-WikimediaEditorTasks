@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"Samoasambia"
+		]
+	},
+	"wikimediaeditortasks-desc": "Tehtävien generointi, säilöminen ja API-moduulit mikromuokkauksia varten.",
+	"tag-apps-suggested-edits": "Ehdotetut muokkaukset -muokkaus",
+	"tag-apps-suggested-edits-description": "Muokkaukset, jotka on tehty Wikimedia-sovellusten Ehdotetut muokkaukset -ominaisuudella"
+}
