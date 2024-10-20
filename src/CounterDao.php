@@ -18,8 +18,8 @@
  */
 namespace MediaWiki\Extension\WikimediaEditorTasks;
 
-use IDBAccessObject;
 use Wikimedia\Rdbms\IDatabase;
+use Wikimedia\Rdbms\IDBAccessObject;
 use Wikimedia\Rdbms\IReadableDatabase;
 
 class CounterDao {

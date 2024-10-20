@@ -3,6 +3,7 @@
 namespace MediaWiki\Extension\WikimediaEditorTasks\Test;
 
 use MediaWiki\CommentStore\CommentStoreComment;
+use MediaWiki\Content\TextContent;
 use MediaWiki\Extension\WikimediaEditorTasks\CounterDao;
 use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 use MediaWiki\Extension\WikimediaEditorTasks\WikimediaEditorTasksServices;
@@ -17,7 +18,6 @@ use MediaWiki\Revision\SlotRecord;
 use MediaWiki\Title\Title;
 use MediaWiki\User\User;
 use MediaWikiIntegrationTestCase;
-use TextContent;
 use Wikimedia\TestingAccessWrapper;
 
 /**
