@@ -1,8 +1,10 @@
 {
 	"@metadata": {
 		"authors": [
-			"Robby"
+			"Robby",
+			"Volvox"
 		]
 	},
-	"tag-apps-suggested-edits": "Ännerung vu proposéierten Ännerungen"
+	"tag-apps-suggested-edits": "Ännerung vun den Ännerungsvirschléi",
+	"tag-apps-suggested-edits-description": "Ännerungen, déi mat der Ännerungsvirschléi-Funktioun vun der Wikimedia-App gemaach goufen."
 }
