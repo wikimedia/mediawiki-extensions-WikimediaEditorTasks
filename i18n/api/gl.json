@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"Toliño"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "Estatísticas de edición específicas para os usuarios rexistrados.",
+	"apihelp-query+wikimediaeditortaskscounts-example": "Obter recontos específicos de tarefas para o usuario rexistrado.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Suxestións de microcontribucións de tipos predefinidos.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obter os identificadores de entidades de Wikidata para os elementos con descricións en italiano pero non en xaponés.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Obter os identificadores de entidades de Wikidata para os elementos aos que lle falta a descrición en italiano e usalos como xeradores.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Obter os identificadores de entidades de Wikidata para os elementos con etiquetas en italiano pero non en xaponés.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Obter os identificadores de entidades de Wikidata para os elementos aos que lle falta a etiqueta en italiano e usalos como xeradores.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "Obter os identificadores de entidades de Wikidata no espazo de nomes \"File\" con etiquetas (isto é, lendas) en italiano pero non en xaponés.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "Obter os identificadores de entidades de Wikidata no espazo de nomes \"File\" aos que lle falta a etiqueta (isto é, lenda) en italiano e usalos como xeradores.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "Tipo de suxestión de tarefa.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "Para as suxestións de tarefas de tipo tradución, código de lingua wiki para o idioma no que debería existir o contido para un determinado elemento.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "Código de lingua wiki para o idioma no que falta o contido para un determinado elemento.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "Número de resultados desexado. Ten en conta que se poden devolver menos resultados se hai menos dos solicitados.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "Buscar só nestes espazos de nomes."
+}
