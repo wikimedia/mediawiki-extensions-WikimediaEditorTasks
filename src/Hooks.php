@@ -97,7 +97,7 @@ class Hooks implements
 	 * @param RevisionRecord $oldRev The revision of the top edit that was reverted
 	 */
 	public function onRollbackComplete( $wikiPage, $agent, $newRev, $oldRev ) {
-		$cb = function () use ( $wikiPage, $oldRev, $newRev ) {
+		$cb = function () use ( $oldRev, $newRev ) {
 			$victim = $oldRev->getUser();
 
 			// Ignore anonymous users and null rollbacks
