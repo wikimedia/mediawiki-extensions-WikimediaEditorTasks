@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"شاه زمان پټان"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "ننوتلي کارن لپاره ټاکلي ځانگړي سمون شمارنې",
+	"apihelp-query+wikimediaeditortaskscounts-example": "ننوتلي کارن لپاره د دندې ځانگړی شمار ترلاسه کول.",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "د مخکې ټاکل شويو ډولونو د کوچنيو ونډو وړانديزونه.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "د هغه توکو لپاره د ويکي‌اومتوک شتونتيا پېژند چې څرگنداوي يې په اېټاليايي ژبه وي؛ خو په جاپاني ژبه نه وي.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "د هغه توکو چې په اېټاليايي ژبه کې څرگنداوي نه لري، ويکي‌اومتوک شتونتيا پېژند ترلاسه کول او د زېږوونکي په توگه يې کارول.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "د هغه توکو لپاره ويکي‌اومتوک شتونتيا پېژند ترلاسه کول چې اېټاليايي نښکه لري؛ خو جاپاني نه لري.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "د هغه توکو چې په اېټاليايي ژبه کې نښکې نه لري، ويکي‌اومتوک شتونتيا پېژند ترلاسه کول او د زېږوونکي په توگه يې کارول.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "د دوتنې نوم‌تشيال کې د نښکو سره د توکو لپاره د ويکي‌اومتوک شتونتيا پېژند ترلاسه کول (a.k.a نيونگونه) په اېټاليايي وي؛ خو په جاپاني نه وي",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "د دوتنې نوم‌تشيال کې چې نښکې نه لري د توکو لپاره د ويکي‌اومتوک شتونتيا پېژند ترلاسه کول (a.k.a نيونگونه) په اېټاليايي وي؛ خو په جاپاني نه وي او د زېږوونکي په توگه د هغې کارول.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "د دندې وړاندیز ډول.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "د ژباړې ډول دندې وړانديزونو لپاره ويکي‌ژبکوډ په هغه ژبه چې د ورکړل شوي توکي منځپانگه لري.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "ويکي‌ژبکوډ په هغه ژبه چې د ورکړل شوي توکي منځپانگه نه لري.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "د غوښتل شوو پايلو شمېر. په ياد ولرئ که د پايلو شمېر له غوښتل شوي شمېر نه لږ وو؛ نو لږ شمېر پايلې شايد بېرته راوگرځي.",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "يوازې په دې نوم‌تشيالونو کې يې ولټوئ."
+}
