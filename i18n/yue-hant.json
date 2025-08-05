@@ -1,0 +1,10 @@
+{
+	"@metadata": {
+		"authors": [
+			"JeffreyKim"
+		]
+	},
+	"wikimediaeditortasks-desc": "微貢獻嘅任務生成、儲存同埋 API 模組。",
+	"tag-apps-suggested-edits": "建議啲編輯",
+	"tag-apps-suggested-edits-description": "用維基媒體應用程式「建議編輯」功能進行嘅編輯"
+}
