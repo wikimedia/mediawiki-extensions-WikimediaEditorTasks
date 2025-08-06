@@ -1,0 +1,21 @@
+{
+	"@metadata": {
+		"authors": [
+			"JeffreyKim"
+		]
+	},
+	"apihelp-query+wikimediaeditortaskscounts-summary": "簽到咗嘅使用者嘅功能專用編輯統計資料。",
+	"apihelp-query+wikimediaeditortaskscounts-example": "為簽到咗嘅使用者攞到特定任務嘅計數。",
+	"apihelp-query+wikimediaeditortaskssuggestions-summary": "預先定義嘅類型嘅微貢獻建議。",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "攞維基數據實體ID，用意大利文但唔係日文嘅描述項目。",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "攞維基數據實體ID嚟搵缺少意大利文描述嘅項目，然後用佢哋做生成器。",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "為有意大利文但唔係日文標籤嘅項目取得維基數據實體ID。",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "為缺少意大利文標籤嘅項目攞維基數據實體ID，然後用佢哋做生成器。",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-5": "喺快勞命名空間入面攞到有意大利文但唔係日文嘅標籤（又名字幕）嘅項目嘅維基數據實體ID。",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-6": "攞到快勞命名空間入面缺少意大利文標籤（又名字幕）嘅項目嘅維基數據實體 ID ，然後用佢哋做生成器。",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-task": "任務建議類型。",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-source": "如果要建議翻譯類型嘅任務，請用維基語言代碼，用嚟顯示特定項目嘅內容應該用嘅語言。",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-target": "特定項目嘅內容缺失嘅語言嘅維基語言代碼。",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-limit": "所需嘅結果數量請注意，如果可用嘅結果少過所需嘅數量，可能會返返去嘅結果會少啲。",
+	"apihelp-query+wikimediaeditortaskssuggestions-param-namespace": "淨係喺呢啲命名空間入面搵。"
+}
