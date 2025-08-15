@@ -21,7 +21,7 @@
 		"ServiceWiring.php"
 	],
 	"ConfigRegistry": {
-		"WikimediaEditorTasks": "GlobalVarConfig::newInstance"
+		"WikimediaEditorTasks": "MediaWiki\\Config\\GlobalVarConfig::newInstance"
 	},
 	"config": {
 		"WikimediaEditorTasksUserCountsCluster": {
