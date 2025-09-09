@@ -25,9 +25,6 @@ use MediaWiki\Storage\NameTableStore;
 
 class WikimediaEditorTasksServices {
 
-	/** @var MediaWikiServices */
-	private $services;
-
 	/**
 	 * @return WikimediaEditorTasksServices
 	 */
@@ -43,11 +40,7 @@ class WikimediaEditorTasksServices {
 		return new self( $services );
 	}
 
-	/**
-	 * @param MediaWikiServices $services
-	 */
-	public function __construct( MediaWikiServices $services ) {
-		$this->services = $services;
+	public function __construct( private readonly MediaWikiServices $services ) {
 	}
 
 	/**

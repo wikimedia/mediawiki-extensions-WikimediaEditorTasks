@@ -27,29 +27,19 @@ use MediaWiki\Extension\WikimediaEditorTasks\Utils;
 
 class ApiQueryWikimediaEditorTasksCounts extends ApiQueryBase {
 
-	/** @var CounterDao */
-	private $counterDao;
-
 	/** @var bool */
 	private $editStreaksEnabled;
 
 	/** @var bool */
 	private $revertCountsEnabled;
 
-	/**
-	 * @param ApiQuery $queryModule
-	 * @param string $moduleName
-	 * @param CounterDao $counterDao
-	 * @param Config $extensionConfig
-	 */
 	public function __construct(
 		ApiQuery $queryModule,
 		string $moduleName,
-		CounterDao $counterDao,
-		Config $extensionConfig
+		private readonly CounterDao $counterDao,
+		Config $extensionConfig,
 	) {
 		parent::__construct( $queryModule, $moduleName, 'wmetc' );
-		$this->counterDao = $counterDao;
 		$this->editStreaksEnabled = $extensionConfig->get( 'WikimediaEditorTasksEnableEditStreaks' );
 		$this->revertCountsEnabled = $extensionConfig->get( 'WikimediaEditorTasksEnableRevertCounts' );
 	}
