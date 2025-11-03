@@ -7,7 +7,7 @@
 	"apihelp-query+wikimediaeditortaskscounts-summary": "Statisticas de modification specific al function pro le usator authenticate.",
 	"apihelp-query+wikimediaeditortaskscounts-example": "Obtene numeros specific al carga pro le usator authenticate.",
 	"apihelp-query+wikimediaeditortaskssuggestions-summary": "Suggestiones de microcontribution de typos predefinite.",
-	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obtene IDs de entitate de Wikidata pro articulos con descriptiones in italiano ma non in japonese.",
+	"apihelp-query+wikimediaeditortaskssuggestions-example-1": "Obtene IDs de entitate de Wikidata pro elementos con descriptiones in italiano ma non in japonese.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-2": "Obtene IDs de entitate de Wikidata pro elementos sin description in italiano, e usa los como un generator.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-3": "Obtene IDs de entitate de Wikidata pro elementos con etiquettas in italiano ma non japonese.",
 	"apihelp-query+wikimediaeditortaskssuggestions-example-4": "Obtene IDs de entitate de Wikidata pro elementos sin etiquettas in italiano, e usa los como un generator.",
